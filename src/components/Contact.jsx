@@ -209,18 +209,6 @@ export default function Contact({ theme }) {
                 border: `1px solid ${borderColor}`,
               }}
             >
-              {feedback && (
-                <div
-                  className={`mb-4 p-3 rounded-lg text-center ${
-                    feedback.includes("successfully")
-                      ? "bg-green-100 text-green-800"
-                      : "bg-red-100 text-red-800"
-                  }`}
-                >
-                  {feedback}
-                </div>
-              )}
-
               <form className="space-y-4" onSubmit={sendEmail}>
                 <div>
                   <label
@@ -322,10 +310,28 @@ export default function Contact({ theme }) {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-indigo-600 px-4 py-2 font-semibold text-white shadow hover:bg-indigo-700"
+                  className={`w-full inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 font-semibold text-white shadow 
+                    ${
+                      loading
+                        ? "bg-gray-400 cursor-not-allowed"
+                        : "bg-indigo-600 hover:bg-indigo-700 hover:cursor-pointer"
+                    }`}
                 >
                   {loading ? "Sending..." : "Send Message"}
                 </button>
+
+                {/* Success/Error message under button */}
+                {feedback && (
+                  <div
+                    className={`mt-3 p-3 rounded-lg text-center ${
+                      feedback.includes("successfully")
+                        ? "bg-green-100 text-green-800"
+                        : "bg-red-100 text-red-800"
+                    }`}
+                  >
+                    {feedback}
+                  </div>
+                )}
               </form>
             </div>
           </motion.div>
