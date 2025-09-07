@@ -1,0 +1,80 @@
+@import "tailwindcss";
+html {
+  scroll-behavior: smooth;
+}
+/* index.css */
+/* html {
+  scroll-behavior: smooth;
+} */
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background-color: #f9fafb;
+  color: #111827;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark mode */
+html.dark body {
+  background-color: #111827;
+  color: #f9fafb;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid #e5e7eb;
+  backdrop-filter: blur(10px);
+}
+
+html.dark .navbar {
+  background-color: rgba(17, 24, 39, 0.9);
+  border-color: #374151;
+}
+
+/* Links */
+.navbar a {
+  margin: 0 0.5rem;
+  text-decoration: none;
+  font-weight: 500;
+  color: #374151;
+}
+
+html.dark .navbar a {
+  color: #d1d5db;
+}
+
+.navbar a:hover {
+  color: #6366f1;
+}
+
+/* Mobile menu */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+}
+
+.mobile-menu a {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+html.dark .mobile-menu a:hover {
+  background-color: #1f2937;
+}
+
+@media (max-width: 640px) {
+  .desktop-menu {
+    display: none;
+  }
+  .mobile-menu {
+    display: flex;
+  }
+}
