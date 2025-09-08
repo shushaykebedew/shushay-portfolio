@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const education = [
   {
     degree: "Bachelor's in Information Technology",
-    institute: "University of Mekelle/MIT",
+    institute: "Mekelle University/MIT",
     year: "2018 - 2025",
     details:
       "Focused on full-stack development, networking, data structures, algorithms, and other IT-related fields.",
