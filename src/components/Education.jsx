@@ -1,5 +1,6 @@
 import React from "react";
 import { GraduationCap, Calendar, Building } from "lucide-react";
+import { FaCheckCircle } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const education = [
@@ -27,7 +28,6 @@ export default function Education({ theme }) {
   const iconBg = theme === "dark" ? "#374151" : "#e0f2fe";
   const iconColor = theme === "dark" ? "#60a5fa" : "#0c4a6e";
 
-  // Animation variants for cards
   const cardVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i) => ({
@@ -73,7 +73,7 @@ export default function Education({ theme }) {
               animate="visible"
             >
               {/* Header with Icon */}
-              <div className="flex items-center gap-4">
+              <div className="flex flex-col md:flex-row items-start gap-4 text-left">
                 <div
                   className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: iconBg }}
@@ -105,10 +105,17 @@ export default function Education({ theme }) {
                 </p>
               </div>
 
-              {/* Details */}
-              <p className="text-base mt-4" style={{ color: subTextColor }}>
-                {details}
-              </p>
+              {/* Details with check icon */}
+              <div className="flex items-start gap-2 mt-4">
+                <FaCheckCircle
+                  size={16}
+                  color={iconColor}
+                  className="mt-1 flex-shrink-0"
+                />
+                <p className="text-base" style={{ color: subTextColor }}>
+                  {details}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>

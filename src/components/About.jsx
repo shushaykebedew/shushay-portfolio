@@ -4,7 +4,7 @@ import { CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function About({ theme }) {
-  const textColor = theme === "dark" ? "#d1d5db" : "#374151"; // paragraph text
+  const textColor = theme === "dark" ? "#d1d5db" : "#555"; // paragraph text
   const eyebrowColor = theme === "dark" ? "#9ca3af" : "#6b7280"; // small text
   const borderColor = theme === "dark" ? "#1f2937" : "#e5e7eb"; // image border
 
@@ -30,7 +30,7 @@ export default function About({ theme }) {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-10 items-center">
         {/* Image */}
         <motion.div
-          className="flex justify-center"
+          className="hidden md:flex justify-center"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
@@ -55,13 +55,13 @@ export default function About({ theme }) {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <p
-            className="text-sm uppercase tracking-widest mb-2"
+            className="text-sm text-center uppercase tracking-widest mb-2"
             style={{ color: eyebrowColor }}
           >
             About Me
           </p>
           <h2
-            className="text-3xl sm:text-4xl font-extrabold mb-4"
+            className="text-3xl text-center sm:text-4xl font-extrabold mb-4"
             style={{ color: theme === "dark" ? "#f9fafb" : "#111827" }}
           >
             Who I Am

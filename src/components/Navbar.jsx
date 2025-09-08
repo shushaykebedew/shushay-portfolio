@@ -36,7 +36,7 @@ export default function Navbar({ theme, setTheme }) {
             </a>
           ))}
 
-          {/* Dark Mode Toggle */}
+          {/* Dark Mode Toggle (Desktop) */}
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className={`p-2 rounded-xl border cursor-pointer ${
@@ -50,13 +50,29 @@ export default function Navbar({ theme, setTheme }) {
           </button>
         </nav>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="sm:hidden inline-flex items-center p-2 rounded-xl border cursor-pointer"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        {/* Mobile Actions: Dark Mode + Hamburger */}
+        <div className="sm:hidden flex items-center gap-2">
+          {/* Dark Mode Toggle (Mobile) */}
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className={`p-2 rounded-xl border cursor-pointer ${
+              theme === "dark"
+                ? "border-gray-800 hover:bg-gray-900"
+                : "border-gray-200 hover:bg-gray-100"
+            }`}
+            aria-label="Toggle Dark Mode"
+          >
+            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+
+          {/* Hamburger Menu */}
+          <button
+            className="inline-flex items-center p-2 rounded-xl border cursor-pointer"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Panel */}
@@ -81,15 +97,6 @@ export default function Navbar({ theme, setTheme }) {
                 {label}
               </a>
             ))}
-
-            {/* Mobile Dark Mode Toggle */}
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2 border rounded-xl mt-2 flex items-center justify-center cursor-pointer"
-              aria-label="Toggle Dark Mode"
-            >
-              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
           </div>
         </div>
       )}

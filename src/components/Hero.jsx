@@ -1,40 +1,58 @@
 import React from "react";
 import HeroImg from "../assets/hero-img.jpg";
-import { Globe, Github, Linkedin, Download } from "lucide-react";
+import { FaGlobe, FaGithub, FaLinkedin } from "react-icons/fa";
+import { FileText } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Hero({ theme }) {
-  // Animation for buttons
-  const buttonsVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0, transition: { delay: 0.8 } },
+  // Staggered animation variants
+  const containerVariants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.2 } },
   };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  // Button helper with slow hover transition
+  const buttonClass = (theme, type = "outline") =>
+    type === "outline"
+      ? `inline-flex items-center gap-2 px-4 py-2 rounded-2xl border ${
+          theme === "dark"
+            ? "border-gray-700 text-gray-100"
+            : "border-gray-300 text-gray-700"
+        } transform transition-all duration-700 hover:border-transparent hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 hover:text-white`
+      : `inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-indigo-600 text-white transform transition-all duration-700 hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500`;
 
   return (
     <section id="home" className="py-16 md:py-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-10 items-center">
-        {/* Text */}
+        {/* Text Section */}
         <motion.div
-          initial={{ x: -50, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
         >
-          <div
-            className="inline-flex items-center gap-2 mb-4 rounded-full border px-3 py-1 text-xs font-semibold"
+          <motion.div
+            className={`inline-flex items-center gap-2 mb-4 rounded-full border px-3 py-1 text-xs font-semibold`}
             style={{
               backgroundColor: theme === "dark" ? "#1f2937" : "#e0f2fe",
               color: theme === "dark" ? "#60a5fa" : "#0c4a6e",
             }}
+            variants={itemVariants}
           >
-            <Globe size={14} /> Full Stack Developer
-          </div>
+            <FaGlobe size={14} /> Full Stack Developer
+          </motion.div>
 
-          {/* Title with original gradient */}
           <motion.h1
-            className="text-4xl sm:text-5xl font-extrabold mb-4"
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4"
+            variants={itemVariants}
           >
             Hi, I'm{" "}
             <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
@@ -45,72 +63,61 @@ export default function Hero({ theme }) {
           <motion.p
             className={`${
               theme === "dark" ? "text-gray-300" : "text-gray-700"
-            } mb-6`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
+            } mb-6 max-w-xl`}
+            variants={itemVariants}
           >
             A passionate Full Stack Developer creating scalable, efficient, and
             user-friendly web applications.
           </motion.p>
 
           {/* Buttons */}
-          <motion.div
-            className="flex flex-wrap gap-3"
-            variants={buttonsVariants}
-            initial="hidden"
-            animate="visible"
-          >
+          <motion.div className="flex flex-wrap gap-3" variants={itemVariants}>
             <a
               href="https://github.com/shushaykebedew"
               target="_blank"
               rel="noreferrer"
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-2xl border ${
-                theme === "dark"
-                  ? "border-gray-700 hover:bg-gray-900 text-gray-100"
-                  : "border-gray-300 hover:bg-gray-100 text-gray-700"
-              }`}
+              className={buttonClass(theme)}
             >
-              <Github size={18} /> GitHub
+              <FaGithub size={18} /> GitHub
             </a>
             <a
               href="https://www.linkedin.com/in/shushay-kebedew/"
               target="_blank"
               rel="noreferrer"
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-2xl border ${
-                theme === "dark"
-                  ? "border-gray-700 hover:bg-gray-900 text-gray-100"
-                  : "border-gray-300 hover:bg-gray-100 text-gray-700"
-              }`}
+              className={buttonClass(theme)}
             >
-              <Linkedin size={18} /> LinkedIn
+              <FaLinkedin size={18} /> LinkedIn
             </a>
             <a
               href="/SHUSHAY_KEBEDEW_CV.pdf"
               target="_blank"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-indigo-600 text-white hover:bg-indigo-700"
+              className={buttonClass(theme, "filled")}
             >
-              <Download size={18} /> Download CV
+              <FileText size={18} /> Resume
             </a>
           </motion.div>
         </motion.div>
 
-        {/* Image */}
+        {/* Image Section */}
         <motion.div
           className="flex justify-center"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          whileHover={{ y: -5 }}
+          whileHover={{
+            scale: 1.03,
+            y: -5,
+            transition: { duration: 0.5, ease: "easeOut" },
+          }}
         >
           <div
-            className={`rounded-2xl border shadow-lg overflow-hidden w-72 h-72 md:w-80 md:h-100 flex items-center justify-center`}
+            className={`rounded-2xl border shadow-lg overflow-hidden w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-96 flex items-center justify-center transition-shadow duration-500`}
             style={{ borderColor: theme === "dark" ? "#1f2937" : "#e5e7eb" }}
           >
             <img
               src={HeroImg}
               alt="Shushay"
-              className="max-w-full max-h-full object-contain"
+              className="w-full h-full object-contain"
               loading="lazy"
             />
           </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import sheqleeDashboard from "../assets/sheqlee-dashboard.png";
-import qrCodeScan from "../assets/qr-code-scan.jpg";
+import qrCodeScan from "../assets/qr-code-scan.png";
 
 const projects = [
   {
@@ -67,11 +67,7 @@ export default function Projects({ theme }) {
               initial="hidden"
               animate="visible"
             >
-              <img
-                src={image}
-                alt={title}
-                className="w-full h-56 object-cover"
-              />
+              <img src={image} alt={title} className="w-full h-56" />
               <div className="p-6">
                 <h3
                   className="text-xl font-bold mb-2"

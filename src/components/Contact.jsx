@@ -98,16 +98,18 @@ export default function Contact({ theme }) {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Equal height grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
           {/* Left: Contact Details + Map */}
           <motion.div
             custom={0}
             variants={cardVariants}
             initial="hidden"
             animate="visible"
+            className="h-full"
           >
             <div
-              className="rounded-2xl p-6 shadow-sm hover:shadow-md transition"
+              className="rounded-2xl p-6 shadow-sm hover:shadow-md transition h-full"
               style={{
                 backgroundColor: bgColor,
                 border: `1px solid ${borderColor}`,
@@ -201,9 +203,10 @@ export default function Contact({ theme }) {
             variants={cardVariants}
             initial="hidden"
             animate="visible"
+            className="h-full"
           >
             <div
-              className="rounded-2xl p-6 shadow-sm hover:shadow-md transition"
+              className="rounded-2xl p-6 shadow-sm hover:shadow-md transition h-full"
               style={{
                 backgroundColor: bgColor,
                 border: `1px solid ${borderColor}`,
@@ -320,7 +323,7 @@ export default function Contact({ theme }) {
                   {loading ? "Sending..." : "Send Message"}
                 </button>
 
-                {/* Success/Error message under button */}
+                {/* Success/Error message */}
                 {feedback && (
                   <div
                     className={`mt-3 p-3 rounded-lg text-center ${

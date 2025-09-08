@@ -1,35 +1,44 @@
 import React from "react";
-import { Code, Terminal, Layers, Database, Github, Wind } from "lucide-react";
 import { motion } from "framer-motion";
+import {
+  DiHtml5,
+  DiCss3,
+  DiJavascript1,
+  DiReact,
+  DiNodejsSmall,
+  DiGit,
+  DiJava,
+  DiMysql,
+  DiMongodb,
+} from "react-icons/di";
+import { SiTailwindcss, SiTypescript, SiNextdotjs } from "react-icons/si";
 
 const skills = [
-  { name: "HTML", icon: Code, color: "bg-orange-100 text-orange-600" },
-  { name: "CSS", icon: Code, color: "bg-blue-100 text-blue-600" },
-  {
-    name: "JavaScript",
-    icon: Terminal,
-    color: "bg-yellow-100 text-yellow-600",
-  },
-  { name: "React", icon: Layers, color: "bg-cyan-100 text-cyan-600" },
-  { name: "Next.JS", icon: Code, color: "bg-teal-100 text-teal-600" },
-  { name: "Node.js", icon: Terminal, color: "bg-green-100 text-green-600" },
-  { name: "MongoDB", icon: Database, color: "bg-green-200 text-green-700" },
-  { name: "MySQL", icon: Database, color: "bg-blue-200 text-blue-700" },
-  { name: "Git/GitHub", icon: Github, color: "bg-gray-200 text-gray-700" },
-  { name: "Tailwind CSS", icon: Wind, color: "bg-teal-100 text-teal-600" },
+  { name: "HTML", icon: DiHtml5, color: "text-orange-600" },
+  { name: "CSS", icon: DiCss3, color: "text-blue-600" },
+  { name: "JavaScript", icon: DiJavascript1, color: "text-yellow-600" },
+  { name: "TypeScript", icon: SiTypescript, color: "text-blue-700" },
+  { name: "React", icon: DiReact, color: "text-cyan-600" },
+  { name: "Next.js", icon: SiNextdotjs, color: "text-teal-600" },
+  { name: "Node.js", icon: DiNodejsSmall, color: "text-green-600" },
+  { name: "MongoDB", icon: DiMongodb, color: "text-green-700" },
+  { name: "MySQL", icon: DiMysql, color: "text-blue-700" },
+  { name: "Git/GitHub", icon: DiGit, color: "text-yellow-600" },
+  { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-teal-600" },
+  { name: "Java", icon: DiJava, color: "text-red-600" },
 ];
 
 export default function Skills({ theme }) {
-  const textColor = theme === "dark" ? "#f9fafb" : "#111827"; // Skill text
-  const bgColor = theme === "dark" ? "#111827" : "#ffffff"; // Card background
-  const borderColor = theme === "dark" ? "#1f2937" : "#e5e7eb"; // Card border
+  const textColor = theme === "dark" ? "#f9fafb" : "#111827";
+  const bgColor = theme === "dark" ? "#111827" : "#ffffff";
+  const borderColor = theme === "dark" ? "#1f2937" : "#e5e7eb";
 
-  // Animation variants for skills
   const skillVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
+    hidden: { opacity: 0, scale: 0.8, y: 10 },
     visible: (i) => ({
       opacity: 1,
       scale: 1,
+      y: 0,
       transition: { delay: i * 0.1, duration: 0.5, ease: "easeOut" },
     }),
   };
@@ -51,11 +60,13 @@ export default function Skills({ theme }) {
         </div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {skills.map(({ name, icon: Icon, color }, index) => (
             <motion.div
               key={name}
-              className="flex items-center gap-2 p-2 sm:p-3 rounded-lg shadow-sm hover:shadow-md transition-all hover:scale-[1.02] cursor-pointer"
+              className="flex items-center gap-2 p-3 rounded-lg shadow-sm cursor-pointer
+                         hover:shadow-lg hover:-translate-y-1 hover:bg-gray-50 dark:hover:bg-gray-800
+                         transition-all duration-300"
               style={{
                 backgroundColor: bgColor,
                 border: `1px solid ${borderColor}`,
@@ -65,15 +76,10 @@ export default function Skills({ theme }) {
               initial="hidden"
               animate="visible"
             >
-              {/* Icon: hidden on mobile, visible from sm screens */}
-              <div
-                className={`hidden sm:flex flex-shrink-0 items-center justify-center rounded-full ${color} 
-                   w-10 h-10 md:w-12 md:h-12`}
-              >
-                <Icon className="w-4 h-4 md:w-5 md:h-5" />
-              </div>
+              {/* Icon inline with text */}
+              <Icon className={`${color} w-5 h-5 md:w-6 md:h-6`} />
 
-              {/* Skill name */}
+              {/* Skill Name */}
               <span
                 className="text-sm sm:text-base font-medium"
                 style={{ color: textColor }}
