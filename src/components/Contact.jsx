@@ -152,9 +152,12 @@ export default function Contact({ theme }) {
                     >
                       Call
                     </p>
-                    <p className="font-semibold" style={{ color: textColor }}>
+                    <a
+                      href="tel:+251943668796"
+                      className={`${textColor} font-semibold cursor-pointer hover:underline`}
+                    >
                       +251 943 668 796
-                    </p>
+                    </a>
                   </div>
                 </div>
 
@@ -173,9 +176,14 @@ export default function Contact({ theme }) {
                     >
                       Email
                     </p>
-                    <p className="font-semibold" style={{ color: textColor }}>
+                    <a
+                      href="https://mail.google.com/mail/?view=cm&fs=1&to=shusaykebedew12@gmail.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${textColor} font-semibold cursor-pointer hover:underline`}
+                    >
                       shusaykebedew12@gmail.com
-                    </p>
+                    </a>
                   </div>
                 </div>
 

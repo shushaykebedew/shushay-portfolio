@@ -7,7 +7,7 @@ import {
   DiReact,
   DiNodejsSmall,
   DiGit,
-  DiJava,
+  DiPython,
   DiMysql,
   DiMongodb,
 } from "react-icons/di";
@@ -25,29 +25,37 @@ const skills = [
   { name: "MySQL", icon: DiMysql, color: "text-blue-700" },
   { name: "Git/GitHub", icon: DiGit, color: "text-yellow-600" },
   { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-teal-600" },
-  { name: "Java", icon: DiJava, color: "text-red-600" },
+  { name: "Python", icon: DiPython, color: "text-cyan-600" },
 ];
 
 export default function Skills({ theme }) {
   const textColor = theme === "dark" ? "#f9fafb" : "#111827";
-  const bgColor = theme === "dark" ? "#111827" : "#ffffff";
-  const borderColor = theme === "dark" ? "#1f2937" : "#e5e7eb";
+  const bgColor = theme === "dark" ? "#0f172a" : "#ffffff";
+  const borderColor = theme === "dark" ? "#1e293b" : "#e5e7eb";
 
-  const skillVariants = {
-    hidden: { opacity: 0, scale: 0.8, y: 10 },
-    visible: (i) => ({
+  const container = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.08,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
       opacity: 1,
-      scale: 1,
       y: 0,
-      transition: { delay: i * 0.1, duration: 0.5, ease: "easeOut" },
-    }),
+      transition: { duration: 0.4, ease: "easeOut" },
+    },
   };
 
   return (
-    <section id="skills" className="py-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-12">
+    <section id="skills" className="py-24">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-14">
           <p
             className="text-sm uppercase tracking-widest mb-2"
             style={{ color: theme === "dark" ? "#9ca3af" : "#6b7280" }}
@@ -59,36 +67,44 @@ export default function Skills({ theme }) {
           </h2>
         </div>
 
-        {/* Skills Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {skills.map(({ name, icon: Icon, color }, index) => (
+        {/* Grid */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6"
+        >
+          {skills.map(({ name, icon: Icon, color }) => (
             <motion.div
               key={name}
-              className="flex items-center gap-2 p-3 rounded-lg shadow-sm cursor-pointer
-                         hover:shadow-lg hover:-translate-y-1 hover:bg-gray-50 dark:hover:bg-gray-800
-                         transition-all duration-300"
+              variants={item}
+              className="group  rounded-xl p-5
+                         transition-all duration-300
+                         hover:-translate-y-1 hover:shadow-xl"
               style={{
                 backgroundColor: bgColor,
                 border: `1px solid ${borderColor}`,
               }}
-              custom={index}
-              variants={skillVariants}
-              initial="hidden"
-              animate="visible"
             >
-              {/* Icon inline with text */}
-              <Icon className={`${color} w-5 h-5 md:w-6 md:h-6`} />
+              <div className="flex items-center gap-3">
+                <div
+                  className="flex items-center justify-center rounded-lg
+                             bg-gray-100 dark:bg-gray-800
+                             w-10 h-10"
+                >
+                  <Icon className={`${color} w-6 h-6`} />
+                </div>
 
-              {/* Skill Name */}
-              <span
-                className="text-sm sm:text-base font-medium"
-                style={{ color: textColor }}
-              >
-                {name}
-              </span>
+                <span
+                  className="text-base font-medium"
+                  style={{ color: textColor }}
+                >
+                  {name}
+                </span>
+              </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,5 +1,4 @@
-import React from "react";
-import AboutImg from "../assets/about-img.png";
+import AboutImg from "../assets/me2.JPG";
 import { CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -42,7 +41,7 @@ export default function About({ theme }) {
             <img
               src={AboutImg}
               alt="Shushay"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-fill"
               loading="lazy"
             />
           </div>
@@ -71,7 +70,8 @@ export default function About({ theme }) {
               Hi! I'm <strong>Shushay Kebedew</strong>, a passionate Web
               Developer with experience in creating modern, responsive, and
               user-friendly web applications. My expertise lies in technologies
-              like React, JavaScript, Node.js, and MongoDB.
+              like React, Next.js, Tailwind CSS, TypeScript, Node.js, and
+              MongoDB.
             </p>
 
             <ul className="space-y-1">

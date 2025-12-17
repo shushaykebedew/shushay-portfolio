@@ -1,7 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import sheqleeDashboard from "../assets/sheqlee-dashboard.png";
-import qrCodeScan from "../assets/qr-code-scan.png";
+import qrCodeScan from "../assets/qr-code-scan.jpg";
+import machaImg from "../assets/macha.png";
+import glitchImg from "../assets/glitch.png";
 
 const projects = [
   {
@@ -17,6 +19,20 @@ const projects = [
       "Admin dashboard for the Sheqlee web app, helping freelancers and companies manage profiles, projects, and payments with an intuitive UI.",
     image: sheqleeDashboard,
     tech: ["React", "Node.js", "MongoDB", "CSS Module"],
+  },
+  {
+    title: "Macha Taximeter",
+    description:
+      "Macha Taximeter modernizes taxi services by accurately calculating fares based on distance and time. It ensures a transparent, reliable experience for both drivers and passengers.",
+    image: machaImg,
+    tech: ["Next.js", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS"],
+  },
+  {
+    title: "Glitch",
+    description:
+      "A multilingual landing page supporting English and Korean, focused on clean design, performance, and accessibility with a modern responsive layout.",
+    image: glitchImg,
+    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
   },
 ];
 
@@ -38,7 +54,7 @@ export default function Projects({ theme }) {
 
   return (
     <section id="projects" className="py-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">
           <p
@@ -53,11 +69,11 @@ export default function Projects({ theme }) {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
           {projects.map(({ title, description, image, tech }, index) => (
             <motion.div
               key={title}
-              className="rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-transform hover:scale-[1.02]"
+              className="rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-transform hover:scale-[1.02]  flex flex-col h-full"
               style={{
                 backgroundColor: bgColor,
                 border: `1px solid ${borderColor}`,
@@ -68,7 +84,7 @@ export default function Projects({ theme }) {
               animate="visible"
             >
               <img src={image} alt={title} className="w-full h-56" />
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-1">
                 <h3
                   className="text-xl font-bold mb-2"
                   style={{ color: textColor }}
@@ -80,7 +96,7 @@ export default function Projects({ theme }) {
                 </p>
 
                 {/* Tech Tags */}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2  mt-auto">
                   {tech.map((t) => (
                     <span
                       key={t}

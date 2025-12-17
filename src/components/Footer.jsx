@@ -97,16 +97,24 @@ export default function Footer({ theme }) {
               size={15}
               className={theme === "dark" ? "text-gray-300" : "text-gray-700"}
             />
-            <span className={subTextColor}>+251 943 668 796</span>
+            <a
+              href="tel:+251943668796"
+              className={`${subTextColor} cursor-pointer hover:underline`}
+            >
+              +251 943 668 796
+            </a>
           </div>
           <div className="mt-1 flex items-center gap-2 text-sm flex-wrap">
             <Mail
               size={15}
               className={theme === "dark" ? "text-gray-300" : "text-gray-700"}
             />
+
             <a
-              href="mailto:shushaykebedew12@gmail.com"
-              className={`${subTextColor} hover:underline break-all`}
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=shusaykebedew12@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${subTextColor} hover:underline cursor-pointer break-all`}
             >
               shushaykebedew12@gmail.com
             </a>
@@ -121,7 +129,7 @@ export default function Footer({ theme }) {
           animate="visible"
         >
           <h4 className="font-semibold mb-3">Quick Links</h4>
-          <div className="flex flex-col sm:flex-row sm:gap-8">
+          <div className="flex gap-8">
             {/* First Column */}
             <div className="flex flex-col gap-1">
               {usefulLinks.slice(0, 3).map((link) => (
@@ -135,7 +143,7 @@ export default function Footer({ theme }) {
               ))}
             </div>
             {/* Second Column */}
-            <div className="flex flex-col gap-1 mt-2 sm:mt-0">
+            <div className="flex flex-col gap-1">
               {usefulLinks.slice(3).map((link) => (
                 <a
                   key={link}
@@ -186,7 +194,7 @@ export default function Footer({ theme }) {
         animate="visible"
         className={`mt-10 border-t ${borderColor} pt-6 text-center text-sm ${subTextColor}`}
       >
-        © {year} All rights reserved
+        © {year} All rights reserved!
       </motion.div>
 
       {/* Back to Top */}

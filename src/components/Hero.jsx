@@ -54,7 +54,7 @@ export default function Hero({ theme }) {
             className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4"
             variants={itemVariants}
           >
-            Hi, I'm{" "}
+            Hi, I'm&nbsp;
             <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
               Shushay
             </span>
@@ -63,11 +63,17 @@ export default function Hero({ theme }) {
           <motion.p
             className={`${
               theme === "dark" ? "text-gray-300" : "text-gray-700"
-            } mb-6 max-w-xl`}
+            } mb-6 max-w-xl leading-loose`}
             variants={itemVariants}
           >
-            A passionate Full Stack Developer creating scalable, efficient, and
-            user-friendly web applications.
+            A passionate
+            <strong>
+              <em> Full Stack Developer </em>
+            </strong>
+            specializing in building scalable, efficient, and user-friendly web
+            applications. I love turning ideas into functional digital
+            experiences, optimizing performance, and creating clean,
+            maintainable code that delivers real value to users and businesses.
           </motion.p>
 
           {/* Buttons */}
@@ -111,7 +117,7 @@ export default function Hero({ theme }) {
           }}
         >
           <div
-            className={`rounded-2xl border shadow-lg overflow-hidden w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-96 flex items-center justify-center transition-shadow duration-500`}
+            className={`rounded-2xl border shadow-lg overflow-hidden w-64 h-64 sm:w-72 sm:h-72 md:w-72 md:h-96 flex items-center justify-center transition-shadow duration-500`}
             style={{ borderColor: theme === "dark" ? "#1f2937" : "#e5e7eb" }}
           >
             <img
