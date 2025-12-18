@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -7,6 +7,7 @@ import Projects from "./components/Projects";
 import Education from "./components/Education";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import Experience from "./components/Experience";
 
 export default function App() {
   // Initialize theme from localStorage or default to dark
@@ -38,6 +39,7 @@ export default function App() {
       <Hero theme={theme} />
       <About theme={theme} />
       <Skills theme={theme} />
+      <Experience theme={theme} />
       <Projects theme={theme} />
       <Education theme={theme} />
       <Contact theme={theme} />

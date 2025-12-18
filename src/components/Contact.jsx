@@ -83,7 +83,7 @@ export default function Contact({ theme }) {
   };
 
   return (
-    <section id="contact" className="py-20">
+    <section id="contact" className="py-16 md:py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -93,7 +93,10 @@ export default function Contact({ theme }) {
           >
             Contact Me
           </p>
-          <h2 className="text-4xl font-bold" style={{ color: textColor }}>
+          <h2
+            className="text-2xl sm:text-3xl font-bold"
+            style={{ color: textColor }}
+          >
             Let's Build Something Great
           </h2>
         </div>

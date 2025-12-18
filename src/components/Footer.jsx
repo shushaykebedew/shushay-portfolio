@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import {
   FaFacebookF,
   FaLinkedinIn,
-  FaTwitter,
   FaInstagram,
+  FaTwitter,
   FaGithub,
   FaArrowUp,
 } from "react-icons/fa";
@@ -61,10 +61,10 @@ export default function Footer({ theme }) {
     },
   ];
 
-  const usefulLinks = [
-    "Home",
+  const quickLinks = [
     "About",
     "Skills",
+    "Experience",
     "Projects",
     "Education",
     "Contact",
@@ -121,7 +121,7 @@ export default function Footer({ theme }) {
           </div>
         </motion.div>
 
-        {/* Useful Links */}
+        {/* Quick Links */}
         <motion.div
           custom={1}
           variants={sectionVariants}
@@ -129,31 +129,16 @@ export default function Footer({ theme }) {
           animate="visible"
         >
           <h4 className="font-semibold mb-3">Quick Links</h4>
-          <div className="flex gap-8">
-            {/* First Column */}
-            <div className="flex flex-col gap-1">
-              {usefulLinks.slice(0, 3).map((link) => (
-                <a
-                  key={link}
-                  href={`#${link.toLowerCase()}`}
-                  className={`${subTextColor} hover:text-indigo-500 transition text-sm`}
-                >
-                  {link}
-                </a>
-              ))}
-            </div>
-            {/* Second Column */}
-            <div className="flex flex-col gap-1">
-              {usefulLinks.slice(3).map((link) => (
-                <a
-                  key={link}
-                  href={`#${link.toLowerCase()}`}
-                  className={`${subTextColor} hover:text-indigo-500 transition text-sm`}
-                >
-                  {link}
-                </a>
-              ))}
-            </div>
+          <div className="inline-grid grid-cols-2 gap-x-12 gap-y-2 justify-items-start">
+            {quickLinks.map((link) => (
+              <a
+                key={link}
+                href={`#${link.toLowerCase()}`}
+                className={`${subTextColor} hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 hover:bg-clip-text hover:text-transparent transition text-sm`}
+              >
+                {link}
+              </a>
+            ))}
           </div>
         </motion.div>
 
@@ -176,7 +161,7 @@ export default function Footer({ theme }) {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={label}
-                className={`inline-flex items-center justify-center rounded-xl border ${borderColor} p-3 text-sm transition-all duration-300 
+                className={`inline-flex items-center justify-center rounded-xl border ${borderColor} p-3 text-sm transition-all duration-300
                 hover:border-transparent hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 hover:text-white`}
               >
                 <Icon size={15} />
@@ -205,7 +190,7 @@ export default function Footer({ theme }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className={`fixed bottom-6 right-6 inline-flex items-center justify-center rounded-full border ${borderColor} p-3 shadow-lg transition-all duration-300 
+          className={`fixed bottom-6 right-6 inline-flex items-center justify-center rounded-full border ${borderColor} p-3 shadow-lg transition-all duration-300
           hover:border-transparent hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 hover:text-white`}
         >
           <FaArrowUp size={18} />

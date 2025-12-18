@@ -25,7 +25,7 @@ export default function About({ theme }) {
   };
 
   return (
-    <section id="about" className="py-16 md:py-24">
+    <section id="about" className="py-16 md:py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-10 items-center">
         {/* Image */}
         <motion.div
@@ -60,7 +60,7 @@ export default function About({ theme }) {
             About Me
           </p>
           <h2
-            className="text-3xl text-center sm:text-4xl font-extrabold mb-4"
+            className="text-2xl text-center sm:text-3xl font-extrabold mb-4"
             style={{ color: theme === "dark" ? "#f9fafb" : "#111827" }}
           >
             Who I Am
@@ -97,7 +97,10 @@ export default function About({ theme }) {
 
             <p>
               Want to know more about me or collaborate on a project?{" "}
-              <a href="#contact" className="text-indigo-500 hover:underline">
+              <a
+                href="#contact"
+                className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent hover:underline"
+              >
                 Let’s connect!
               </a>
             </p>

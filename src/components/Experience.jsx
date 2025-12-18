@@ -1,26 +1,25 @@
-import React from "react";
-import { GraduationCap, Calendar, Building } from "lucide-react";
+import { Briefcase, Calendar } from "lucide-react";
 import { FaCheckCircle } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-const education = [
+const experience = [
   {
-    degree: "Bachelor's in Information Technology",
-    institute: "Mekelle University/MIT",
-    year: "2018 - 2025",
+    role: "Frontend Developer",
+    company: "Metnee Systems PLC",
+    year: "Aug 2025 - Present",
     details:
-      "Focused on full-stack development, networking, data structures, algorithms, and other IT-related fields.",
+      "Developing responsive web applications using React, Next.js, and Tailwind CSS, implementing modern UI/UX principles and optimizing performance.",
   },
   {
-    degree: "Bachelor's in Business Management",
-    institute: "Ethio Lens College",
-    year: "2020 - 2025",
+    role: "Web Developer(Intern)",
+    company: "Metnee Systems PLC",
+    year: "Nov 2024 - Feb 2025",
     details:
-      "Explored core principles of business management, leadership, organizational behavior, economics, and strategic planning.",
+      "Worked on both frontend and backend features, integrating REST APIs, handling database operations, and maintaining code quality with best practices.",
   },
 ];
 
-export default function Education({ theme }) {
+function Experience({ theme }) {
   const textColor = theme === "dark" ? "#f9fafb" : "#111827";
   const subTextColor = theme === "dark" ? "#d1d5db" : "#4b5563";
   const bgColor = theme === "dark" ? "#1f2937" : "#ffffff";
@@ -39,7 +38,7 @@ export default function Education({ theme }) {
 
   return (
     <section
-      id="education"
+      id="experience"
       className="py-16 md:py-20 transition-colors duration-300"
       style={{ backgroundColor: theme === "dark" ? "#111827" : "#f9fafb" }}
     >
@@ -50,21 +49,21 @@ export default function Education({ theme }) {
             className="text-base uppercase tracking-widest mb-2"
             style={{ color: subTextColor }}
           >
-            Education
+            Experience
           </p>
           <h2
             className="text-2xl sm:text-3xl font-bold"
             style={{ color: textColor }}
           >
-            Academic Background
+            Professional Background
           </h2>
         </div>
 
-        {/* Education Grid */}
+        {/* Experience Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {education.map(({ degree, institute, year, details }, index) => (
+          {experience.map(({ role, company, year, details }, index) => (
             <motion.div
-              key={degree}
+              key={role}
               className="flex flex-col gap-4 p-8 rounded-2xl shadow-sm hover:shadow-lg transition transform hover:scale-[1.02]"
               style={{
                 backgroundColor: bgColor,
@@ -81,24 +80,23 @@ export default function Education({ theme }) {
                   className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: iconBg }}
                 >
-                  <GraduationCap size={24} color={iconColor} />
+                  <Briefcase size={24} color={iconColor} />
                 </div>
                 <h3
                   className="text-base sm:text-xl font-bold"
                   style={{ color: textColor }}
                 >
-                  {degree}
+                  {role}
                 </h3>
               </div>
 
-              {/* Institute & Year */}
+              {/* Company & Year */}
               <div className="flex items-center gap-4">
-                <Building size={20} color={iconColor} />
                 <p
                   className="text-base font-semibold"
                   style={{ color: subTextColor }}
                 >
-                  {institute}
+                  {company}
                 </p>
               </div>
               <div className="flex items-center gap-4">
@@ -112,7 +110,7 @@ export default function Education({ theme }) {
               </div>
 
               {/* Details with check icon */}
-              <div className="flex items-start gap-2 mt-4">
+              <div className="flex items-start gap-2 mt-3">
                 <FaCheckCircle
                   size={16}
                   color={iconColor}
@@ -129,3 +127,4 @@ export default function Education({ theme }) {
     </section>
   );
 }
+export default Experience;

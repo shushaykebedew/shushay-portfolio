@@ -1,47 +1,46 @@
-import React from "react";
 import { motion } from "framer-motion";
-import {
-  DiHtml5,
-  DiCss3,
-  DiJavascript1,
-  DiReact,
-  DiNodejsSmall,
-  DiGit,
-  DiPython,
-  DiMysql,
-  DiMongodb,
-} from "react-icons/di";
-import { SiTailwindcss, SiTypescript, SiNextdotjs } from "react-icons/si";
 
-const skills = [
-  { name: "HTML", icon: DiHtml5, color: "text-orange-600" },
-  { name: "CSS", icon: DiCss3, color: "text-blue-600" },
-  { name: "JavaScript", icon: DiJavascript1, color: "text-yellow-600" },
-  { name: "TypeScript", icon: SiTypescript, color: "text-blue-700" },
-  { name: "React", icon: DiReact, color: "text-cyan-600" },
-  { name: "Next.js", icon: SiNextdotjs, color: "text-teal-600" },
-  { name: "Node.js", icon: DiNodejsSmall, color: "text-green-600" },
-  { name: "MongoDB", icon: DiMongodb, color: "text-green-700" },
-  { name: "MySQL", icon: DiMysql, color: "text-blue-700" },
-  { name: "Git/GitHub", icon: DiGit, color: "text-yellow-600" },
-  { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-teal-600" },
-  { name: "Python", icon: DiPython, color: "text-cyan-600" },
+const skillGroups = [
+  {
+    title: "Programming Languages",
+    skills: [
+      { name: "JavaScript", level: 90 },
+      { name: "TypeScript", level: 85 },
+      { name: "Python", level: 88 },
+      { name: "Java", level: 85 },
+    ],
+  },
+  {
+    title: "Frontend Development",
+    skills: [
+      { name: "HTML", level: 95 },
+      { name: "CSS", level: 90 },
+      { name: "React.js", level: 90 },
+      { name: "Next.js", level: 85 },
+      { name: "Tailwind CSS", level: 90 },
+    ],
+  },
+  {
+    title: "Backend & Databases",
+    skills: [
+      { name: "Node.js", level: 80 },
+      { name: "MongoDB", level: 80 },
+      { name: "MySQL", level: 75 },
+      { name: "Git/GitHub", level: 85 },
+    ],
+  },
 ];
 
 export default function Skills({ theme }) {
   const textColor = theme === "dark" ? "#f9fafb" : "#111827";
+  const subTextColor = theme === "dark" ? "#d1d5db" : "#6b7280";
   const bgColor = theme === "dark" ? "#0f172a" : "#ffffff";
   const borderColor = theme === "dark" ? "#1e293b" : "#e5e7eb";
 
   const container = {
     hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.08,
-      },
-    },
+    visible: { transition: { staggerChildren: 0.1 } },
   };
-
   const item = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -52,55 +51,77 @@ export default function Skills({ theme }) {
   };
 
   return (
-    <section id="skills" className="py-24">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+    <section id="skills" className="py-16 md:py-20">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <p
             className="text-sm uppercase tracking-widest mb-2"
-            style={{ color: theme === "dark" ? "#9ca3af" : "#6b7280" }}
+            style={{ color: subTextColor }}
           >
             My Skills
           </p>
-          <h2 className="text-4xl font-bold" style={{ color: textColor }}>
+          <h2
+            className="text-2xl sm:text-3xl font-bold"
+            style={{ color: textColor }}
+          >
             Tools & Technologies
           </h2>
         </div>
 
-        {/* Grid */}
         <motion.div
           variants={container}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6"
+          className="grid md:grid-cols-3 gap-6"
         >
-          {skills.map(({ name, icon: Icon, color }) => (
+          {skillGroups.map(({ title, experience, skills }) => (
             <motion.div
-              key={name}
+              key={title}
               variants={item}
-              className="group  rounded-xl p-5
-                         transition-all duration-300
-                         hover:-translate-y-1 hover:shadow-xl"
+              className="p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
               style={{
                 backgroundColor: bgColor,
                 border: `1px solid ${borderColor}`,
               }}
             >
-              <div className="flex items-center gap-3">
-                <div
-                  className="flex items-center justify-center rounded-lg
-                             bg-gray-100 dark:bg-gray-800
-                             w-10 h-10"
-                >
-                  <Icon className={`${color} w-6 h-6`} />
-                </div>
+              <h3
+                className="text-lg font-bold mb-1"
+                style={{ color: textColor }}
+              >
+                {title}
+              </h3>
 
-                <span
-                  className="text-base font-medium"
-                  style={{ color: textColor }}
-                >
-                  {name}
-                </span>
+              <div className="space-y-5 mt-4">
+                {skills.map(({ name, level }) => (
+                  <div key={name}>
+                    <div
+                      className="flex justify-between mb-1 text-sm font-medium"
+                      style={{ color: textColor }}
+                    >
+                      <span>{name}</span>
+                      <span>{level}%</span>
+                    </div>
+                    <div
+                      className="w-full h-2 rounded-full overflow-hidden"
+                      style={{
+                        backgroundColor:
+                          theme === "dark" ? "#1f2937" : "#e5e7eb",
+                      }}
+                    >
+                      <motion.div
+                        className="h-full rounded-full"
+                        style={{
+                          width: `${level}%`,
+                          background:
+                            "linear-gradient(to right, #6366f1, #8b5cf6, #ec4899)",
+                        }}
+                        initial={{ width: 0 }}
+                        animate={{ width: `${level}%` }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
             </motion.div>
           ))}

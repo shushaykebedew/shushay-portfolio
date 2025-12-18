@@ -18,7 +18,7 @@ const projects = [
     description:
       "Admin dashboard for the Sheqlee web app, helping freelancers and companies manage profiles, projects, and payments with an intuitive UI.",
     image: sheqleeDashboard,
-    tech: ["React", "Node.js", "MongoDB", "CSS Module"],
+    tech: ["React", "Node.js", "MongoDB", "CSS"],
   },
   {
     title: "Macha Taximeter",
@@ -53,7 +53,7 @@ export default function Projects({ theme }) {
   };
 
   return (
-    <section id="projects" className="py-20">
+    <section id="projects" className="py-16 md:py-20">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -63,8 +63,11 @@ export default function Projects({ theme }) {
           >
             My Projects
           </p>
-          <h2 className="text-4xl font-bold" style={{ color: textColor }}>
-            Selected Work
+          <h2
+            className="text-2xl sm:text-3xl font-bold"
+            style={{ color: textColor }}
+          >
+            Selected Works
           </h2>
         </div>
 
@@ -86,7 +89,7 @@ export default function Projects({ theme }) {
               <img src={image} alt={title} className="w-full h-56" />
               <div className="p-6 flex flex-col flex-1">
                 <h3
-                  className="text-xl font-bold mb-2"
+                  className="text-lg sm:text-xl font-bold mb-2"
                   style={{ color: textColor }}
                 >
                   {title}

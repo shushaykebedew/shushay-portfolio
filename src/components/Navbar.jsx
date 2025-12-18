@@ -1,9 +1,26 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
+import {
+  FaUser,
+  FaTools,
+  FaBriefcase,
+  FaProjectDiagram,
+  FaGraduationCap,
+  FaEnvelope,
+} from "react-icons/fa";
 
 export default function Navbar({ theme, setTheme }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const links = ["About", "Skills", "Projects", "Education", "Contact"];
+
+  // Define links with optional mobile icons
+  const links = [
+    { label: "About", icon: FaUser },
+    { label: "Skills", icon: FaTools },
+    { label: "Experience", icon: FaBriefcase },
+    { label: "Projects", icon: FaProjectDiagram },
+    { label: "Education", icon: FaGraduationCap },
+    { label: "Contact", icon: FaEnvelope },
+  ];
 
   return (
     <header
@@ -24,7 +41,7 @@ export default function Navbar({ theme, setTheme }) {
 
         {/* Desktop Navigation */}
         <nav className="hidden sm:flex gap-6 items-center text-sm font-medium">
-          {links.map((label) => (
+          {links.map(({ label }) => (
             <a
               key={label}
               href={`#${label.toLowerCase()}`}
@@ -52,7 +69,6 @@ export default function Navbar({ theme, setTheme }) {
 
         {/* Mobile Actions: Dark Mode + Hamburger */}
         <div className="sm:hidden flex items-center gap-2">
-          {/* Dark Mode Toggle (Mobile) */}
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className={`p-2 rounded-xl border cursor-pointer ${
@@ -65,7 +81,6 @@ export default function Navbar({ theme, setTheme }) {
             {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
           </button>
 
-          {/* Hamburger Menu */}
           <button
             className="inline-flex items-center p-2 rounded-xl border cursor-pointer"
             onClick={() => setMenuOpen(!menuOpen)}
@@ -84,16 +99,18 @@ export default function Navbar({ theme, setTheme }) {
               : "bg-white border-gray-200"
           } sm:hidden border-t`}
         >
-          <div className="flex flex-col gap-2 px-4 py-3">
-            {links.map((label) => (
+          <div className="flex flex-col gap-2 px-4 py-3 ">
+            {links.map(({ label, icon: Icon }) => (
               <a
                 key={label}
                 href={`#${label.toLowerCase()}`}
-                className={`${
+                className={`flex items-center  gap-3 px-2 py-2 rounded-xl ${
                   theme === "dark" ? "text-gray-300" : "text-gray-700"
-                } px-2 py-2 rounded-xl hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 hover:bg-clip-text hover:text-transparent transition`}
+                } hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 hover:bg-clip-text hover:text-transparent transition`}
                 onClick={() => setMenuOpen(false)}
               >
+                {/* Mobile icon */}
+                <Icon size={18} className="sm:hidden" />
                 {label}
               </a>
             ))}

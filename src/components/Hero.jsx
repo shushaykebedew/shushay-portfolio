@@ -1,4 +1,3 @@
-import React from "react";
 import HeroImg from "../assets/hero-img.jpg";
 import { FaGlobe, FaGithub, FaLinkedin } from "react-icons/fa";
 import { FileText } from "lucide-react";
@@ -31,7 +30,7 @@ export default function Hero({ theme }) {
       : `inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-indigo-600 text-white transform transition-all duration-700 hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500`;
 
   return (
-    <section id="home" className="py-16 md:py-24">
+    <section id="home" className="py-16 md:py-24 scroll-mt-16 md:scroll-mt-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-10 items-center">
         {/* Text Section */}
         <motion.div
@@ -70,10 +69,9 @@ export default function Hero({ theme }) {
             <strong>
               <em> Full Stack Developer </em>
             </strong>
-            specializing in building scalable, efficient, and user-friendly web
-            applications. I love turning ideas into functional digital
-            experiences, optimizing performance, and creating clean,
-            maintainable code that delivers real value to users and businesses.
+            building scalable and user-friendly web applications. Focused on
+            performance, clean architecture, and maintainable code. Turning
+            ideas into reliable digital products that deliver real value.
           </motion.p>
 
           {/* Buttons */}
@@ -104,9 +102,9 @@ export default function Hero({ theme }) {
           </motion.div>
         </motion.div>
 
-        {/* Image Section */}
+        {/* Code Card Section */}
         <motion.div
-          className="flex justify-center"
+          className="relative"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
@@ -116,16 +114,59 @@ export default function Hero({ theme }) {
             transition: { duration: 0.5, ease: "easeOut" },
           }}
         >
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full blur-3xl opacity-20 animate-pulse" />
+
           <div
-            className={`rounded-2xl border shadow-lg overflow-hidden w-64 h-64 sm:w-72 sm:h-72 md:w-72 md:h-96 flex items-center justify-center transition-shadow duration-500`}
-            style={{ borderColor: theme === "dark" ? "#1f2937" : "#e5e7eb" }}
+            className="relative border rounded-2xl p-6 shadow-2xl rotate-3 hover:rotate-0 transition-all duration-500"
+            style={{
+              backgroundColor: theme === "dark" ? "#1e293b" : "#ffffff",
+              borderColor: theme === "dark" ? "#334155" : "#e5e7eb",
+            }}
           >
-            <img
-              src={HeroImg}
-              alt="Shushay"
-              className="w-full h-full object-contain"
-              loading="lazy"
-            />
+            {/* Header */}
+            <div
+              className="flex items-center gap-2 mb-4 pb-4 border-b"
+              style={{
+                borderColor: theme === "dark" ? "#334155" : "#e5e7eb",
+              }}
+            >
+              <div className="w-3 h-3 rounded-full bg-red-500" />
+              <div className="w-3 h-3 rounded-full bg-yellow-500" />
+              <div className="w-3 h-3 rounded-full bg-green-500" />
+            </div>
+
+            {/* Code */}
+            <div className="font-mono text-sm space-y-2">
+              <div className="text-pink-500">
+                const <span className="text-blue-500">developer</span> ={" "}
+                <span className="text-yellow-500">{"{"}</span>
+              </div>
+
+              <div
+                className="pl-4"
+                style={{ color: theme === "dark" ? "#d1d5db" : "#1f2937" }}
+              >
+                name: <span className="text-green-500">'Shushay'</span>,
+              </div>
+
+              <div
+                className="pl-4"
+                style={{ color: theme === "dark" ? "#d1d5db" : "#1f2937" }}
+              >
+                skills: [<span className="text-green-500">'React'</span>,{" "}
+                <span className="text-green-500">'Node'</span>,{" "}
+                <span className="text-green-500">'Next.js'</span>...],
+              </div>
+
+              <div
+                className="pl-4"
+                style={{ color: theme === "dark" ? "#d1d5db" : "#1f2937" }}
+              >
+                hardWorker: <span className="text-purple-500">true</span>
+              </div>
+
+              <div className="text-yellow-500">{"}"}</div>
+            </div>
           </div>
         </motion.div>
       </div>
