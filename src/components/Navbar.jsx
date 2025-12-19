@@ -40,14 +40,14 @@ export default function Navbar({ theme, setTheme }) {
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden sm:flex gap-6 items-center text-sm font-medium">
+        <nav className="hidden sm:flex gap-6 items-center text-sm sm:text-base font-medium">
           {links.map(({ label }) => (
             <a
               key={label}
               href={`#${label.toLowerCase()}`}
               className={`${
                 theme === "dark" ? "text-gray-300" : "text-gray-700"
-              } hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 hover:bg-clip-text hover:text-transparent transition`}
+              }  hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 hover:bg-clip-text hover:text-transparent transition`}
             >
               {label}
             </a>

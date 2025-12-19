@@ -1,4 +1,3 @@
-import HeroImg from "../assets/hero-img.jpg";
 import { FaGlobe, FaGithub, FaLinkedin } from "react-icons/fa";
 import { FileText } from "lucide-react";
 import { motion } from "framer-motion";

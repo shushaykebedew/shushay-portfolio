@@ -1,4 +1,4 @@
-import AboutImg from "../assets/me2.JPG";
+import AboutImg from "../assets/me.png";
 import { CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -29,7 +29,7 @@ export default function About({ theme }) {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-10 items-center">
         {/* Image */}
         <motion.div
-          className="hidden md:flex justify-center"
+          className="flex justify-center"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
@@ -41,7 +41,7 @@ export default function About({ theme }) {
             <img
               src={AboutImg}
               alt="Shushay"
-              className="w-full h-full object-fill"
+              className="w-full h-full "
               loading="lazy"
             />
           </div>

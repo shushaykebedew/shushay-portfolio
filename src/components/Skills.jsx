@@ -2,31 +2,48 @@ import { motion } from "framer-motion";
 
 const skillGroups = [
   {
-    title: "Programming Languages",
+    title: "Core Languages",
     skills: [
       { name: "JavaScript", level: 90 },
-      { name: "TypeScript", level: 85 },
-      { name: "Python", level: 88 },
-      { name: "Java", level: 85 },
+      { name: "TypeScript", level: 88 },
+      { name: "Python", level: 85 },
+      { name: "Java", level: 82 },
     ],
   },
   {
-    title: "Frontend Development",
+    title: "UI & Frontend Frameworks",
     skills: [
-      { name: "HTML", level: 95 },
+      { name: "HTML", level: 90 },
       { name: "CSS", level: 90 },
-      { name: "React.js", level: 90 },
+      { name: "React.js", level: 88 },
       { name: "Next.js", level: 85 },
-      { name: "Tailwind CSS", level: 90 },
+      { name: "Tailwind CSS", level: 92 },
+      { name: "shadcn/ui", level: 85 },
     ],
   },
   {
-    title: "Backend & Databases",
+    title: "State, Forms & Data Fetching",
     skills: [
-      { name: "Node.js", level: 80 },
+      { name: "React Hook Form", level: 88 },
+      { name: "Zustand", level: 86 },
+      { name: "Redux Toolkit", level: 82 },
+      { name: "TanStack Query", level: 88 },
+    ],
+  },
+  {
+    title: "Backend & APIs",
+    skills: [
+      { name: "Node.js", level: 82 },
+      { name: "REST APIs", level: 88 },
       { name: "MongoDB", level: 80 },
-      { name: "MySQL", level: 75 },
-      { name: "Git/GitHub", level: 85 },
+      { name: "MySQL", level: 85 },
+    ],
+  },
+  {
+    title: "Version Control & Tooling",
+    skills: [
+      { name: "Git", level: 88 },
+      { name: "GitHub", level: 88 },
     ],
   },
 ];
