@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const skillGroups = [
   {
-    title: "Core Languages",
+    title: "Programming Languages",
     skills: [
       { name: "JavaScript", level: 90 },
       { name: "TypeScript", level: 88 },
@@ -89,7 +89,7 @@ export default function Skills({ theme }) {
           variants={container}
           initial="hidden"
           animate="visible"
-          className="grid md:grid-cols-3 gap-6"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {skillGroups.map(({ title, experience, skills }) => (
             <motion.div

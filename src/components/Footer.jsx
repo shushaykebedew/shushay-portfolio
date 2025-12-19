@@ -74,7 +74,7 @@ export default function Footer({ theme }) {
     <footer
       className={`${bgColor} ${borderColor} border-t ${textColor} pt-12 pb-6 relative`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Brand & Contact */}
         <motion.div
           custom={0}
@@ -128,8 +128,8 @@ export default function Footer({ theme }) {
           initial="hidden"
           animate="visible"
         >
-          <h4 className="font-semibold mb-3">Quick Links</h4>
-          <div className="inline-grid grid-cols-2 gap-x-12 gap-y-2 justify-items-start">
+          <h4 className="font-medium mb-3 uppercase">Quick Links</h4>
+          <div className="inline-grid grid-cols-2 gap-x-8 gap-y-2 justify-items-start">
             {quickLinks.map((link) => (
               <a
                 key={link}
@@ -149,7 +149,7 @@ export default function Footer({ theme }) {
           initial="hidden"
           animate="visible"
         >
-          <h4 className="font-semibold mb-3">Social Links</h4>
+          <h4 className="font-medium uppercase mb-3">Social Links</h4>
           <p className={`text-sm ${subTextColor}`}>
             Connect with me on social media
           </p>
