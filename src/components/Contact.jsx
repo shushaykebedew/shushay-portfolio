@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
@@ -72,6 +72,7 @@ export default function Contact({ theme }) {
   const subTextColor = theme === "dark" ? "#d1d5db" : "#4b5563";
   const bgColor = theme === "dark" ? "#1f2937" : "#ffffff";
   const borderColor = theme === "dark" ? "#374151" : "#e5e7eb";
+  const iconColor = theme === "dark" ? "#60a5fa" : "#0c4a6e";
 
   const cardVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -126,9 +127,10 @@ export default function Contact({ theme }) {
                 <div className="flex items-start gap-3">
                   <MapPin
                     size={18}
-                    className={
-                      theme === "dark" ? "text-gray-300" : "text-gray-700"
-                    }
+                    // className={
+                    //   theme === "dark" ? "text-gray-300" : "text-gray-700"
+                    // }
+                    color={iconColor}
                   />
                   <div>
                     <p
@@ -145,12 +147,7 @@ export default function Contact({ theme }) {
 
                 {/* Phone */}
                 <div className="flex items-start gap-3">
-                  <Phone
-                    size={18}
-                    className={
-                      theme === "dark" ? "text-gray-300" : "text-gray-700"
-                    }
-                  />
+                  <Phone size={18} color={iconColor} />
                   <div>
                     <p
                       className="text-xs uppercase tracking-wider"
@@ -169,12 +166,7 @@ export default function Contact({ theme }) {
 
                 {/* Email */}
                 <div className="flex items-start gap-3">
-                  <Mail
-                    size={18}
-                    className={
-                      theme === "dark" ? "text-gray-300" : "text-gray-700"
-                    }
-                  />
+                  <Mail size={18} color={iconColor} />
                   <div>
                     <p
                       className="text-xs uppercase tracking-wider"
@@ -327,11 +319,11 @@ export default function Contact({ theme }) {
                 <button
                   type="submit"
                   disabled={loading || !shouldBtnActive}
-                  className={`w-full inline-flex items-center bg-indigo-600 justify-center gap-2 rounded-2xl px-4 py-2 font-semibold text-white shadow 
+                  className={`w-full inline-flex items-center bg-[#60a5fa] justify-center gap-2 rounded-2xl px-4 py-2 font-semibold text-white shadow 
                     ${
                       loading || !shouldBtnActive
                         ? "opacity-60"
-                        : "opacity-100  hover:bg-indigo-700 hover:cursor-pointer"
+                        : "opacity-100  hover:bg-[#4b9afa] hover:cursor-pointer"
                     }`}
                 >
                   {loading ? "Sending..." : "Send Message"}

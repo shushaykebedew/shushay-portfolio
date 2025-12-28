@@ -8,14 +8,14 @@ const experience = [
     company: "Metnee Systems PLC",
     year: "Aug 2025 - Present",
     details:
-      "Developing responsive web applications using React, Next.js, and Tailwind CSS, implementing modern UI/UX principles and optimizing performance.",
+      "Building responsive and high-performance user interfaces using React, Next.js, and Tailwind CSS. Translating Figma designs into clean, accessible UI components and optimizing frontend performance.",
   },
   {
-    role: "Web Developer(Intern)",
+    role: "Frontend Developer (Intern)",
     company: "Metnee Systems PLC",
     year: "Nov 2024 - Feb 2025",
     details:
-      "Worked on both frontend and backend features, integrating REST APIs, handling database operations, and maintaining code quality with best practices.",
+      "Focused on frontend development, implementing UI components, integrating APIs on the client side, fixing UI bugs, and ensuring responsive design across devices using React and Tailwind CSS.",
   },
 ];
 
@@ -110,9 +110,9 @@ function Experience({ theme }) {
               </div>
 
               {/* Details with check icon */}
-              <div className="flex items-start gap-2 mt-3">
+              <div className="flex items-start gap-2">
                 <FaCheckCircle
-                  size={16}
+                  size={20}
                   color={iconColor}
                   className="mt-1 flex-shrink-0"
                 />

@@ -114,7 +114,7 @@ export default function Education({ theme }) {
               {/* Details with check icon */}
               <div className="flex items-start gap-2 mt-4">
                 <FaCheckCircle
-                  size={16}
+                  size={20}
                   color={iconColor}
                   className="mt-1 flex-shrink-0"
                 />

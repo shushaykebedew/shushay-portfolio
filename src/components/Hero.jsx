@@ -38,14 +38,14 @@ export default function Hero({ theme }) {
           animate="visible"
         >
           <motion.div
-            className={`inline-flex items-center gap-2 mb-4 rounded-full border px-3 py-1 text-xs font-semibold`}
+            className={`inline-flex items-center gap-2 mb-4 rounded-full border px-3 py-1.5 text-xs font-semibold`}
             style={{
               backgroundColor: theme === "dark" ? "#1f2937" : "#e0f2fe",
               color: theme === "dark" ? "#60a5fa" : "#0c4a6e",
             }}
             variants={itemVariants}
           >
-            <FaGlobe size={14} /> Full Stack Developer
+            <FaGlobe size={14} /> FRONT DEVELOPER
           </motion.div>
 
           <motion.h1
@@ -66,7 +66,7 @@ export default function Hero({ theme }) {
           >
             A passionate
             <strong>
-              <em> Full Stack Developer </em>
+              <em> Frontend Developer </em>
             </strong>
             building scalable and user-friendly web applications. Focused on
             performance, clean architecture, and maintainable code. Turning
@@ -153,15 +153,15 @@ export default function Hero({ theme }) {
                 style={{ color: theme === "dark" ? "#d1d5db" : "#1f2937" }}
               >
                 skills: [<span className="text-green-500">'React'</span>,{" "}
-                <span className="text-green-500">'Node'</span>,{" "}
-                <span className="text-green-500">'Next.js'</span>...],
+                <span className="text-green-500">'Next.js'</span>,{" "}
+                <span className="text-green-500">'Tailwind CSS'</span>...],
               </div>
 
               <div
                 className="pl-4"
                 style={{ color: theme === "dark" ? "#d1d5db" : "#1f2937" }}
               >
-                hardWorker: <span className="text-purple-500">true</span>
+                passion: <span className="text-purple-400 text-xl">∞</span>
               </div>
 
               <div className="text-yellow-500">{"}"}</div>

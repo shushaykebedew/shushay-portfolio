@@ -16,6 +16,8 @@ export default function Footer({ theme }) {
   const subTextColor = theme === "dark" ? "text-gray-400" : "text-gray-600";
   const bgColor = theme === "dark" ? "bg-gray-900" : "bg-gray-50";
   const borderColor = theme === "dark" ? "border-gray-700" : "border-gray-200";
+  const iconColor = theme === "dark" ? "#60a5fa" : "#0c4a6e";
+
   const year = new Date().getFullYear();
 
   useEffect(() => {
@@ -86,17 +88,11 @@ export default function Footer({ theme }) {
             Shushay Kebedew
           </h3>
           <div className="mt-2 flex items-center gap-2 text-sm">
-            <MapPin
-              size={15}
-              className={theme === "dark" ? "text-gray-300" : "text-gray-700"}
-            />
+            <MapPin size={15} color={iconColor} />
             <span className={subTextColor}>Addis Ababa, Ethiopia</span>
           </div>
           <div className="mt-1 flex items-center gap-2 text-sm">
-            <Phone
-              size={15}
-              className={theme === "dark" ? "text-gray-300" : "text-gray-700"}
-            />
+            <Phone size={15} color={iconColor} />
             <a
               href="tel:+251943668796"
               className={`${subTextColor} cursor-pointer hover:underline`}
@@ -105,10 +101,7 @@ export default function Footer({ theme }) {
             </a>
           </div>
           <div className="mt-1 flex items-center gap-2 text-sm flex-wrap">
-            <Mail
-              size={15}
-              className={theme === "dark" ? "text-gray-300" : "text-gray-700"}
-            />
+            <Mail size={15} color={iconColor} />
 
             <a
               href="https://mail.google.com/mail/?view=cm&fs=1&to=shusaykebedew12@gmail.com"
@@ -191,7 +184,10 @@ export default function Footer({ theme }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
           className={`fixed bottom-6 right-6 inline-flex items-center justify-center rounded-full border ${borderColor} p-3 shadow-lg transition-all duration-300
-          hover:border-transparent hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 hover:text-white`}
+            hover:border-transparent hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 hover:text-white`}
+          style={{
+            backgroundColor: theme === "dark" ? "#111827" : "#ffffff",
+          }}
         >
           <FaArrowUp size={18} />
         </motion.a>

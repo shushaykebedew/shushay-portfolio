@@ -18,14 +18,14 @@ const projects = [
     description:
       "Admin dashboard for the Sheqlee web app, helping freelancers and companies manage profiles, projects, and payments with an intuitive UI.",
     image: sheqleeDashboard,
-    tech: ["React", "Node.js", "MongoDB", "CSS"],
+    tech: ["React", "CSS Module"],
   },
   {
     title: "Macha Taximeter",
     description:
       "Macha Taximeter modernizes taxi services by accurately calculating fares based on distance and time. It ensures a transparent, reliable experience for both drivers and passengers.",
     image: machaImg,
-    tech: ["Next.js", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS"],
+    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
   },
   {
     title: "Glitch",

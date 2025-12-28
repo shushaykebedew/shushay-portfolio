@@ -2,48 +2,52 @@ import { motion } from "framer-motion";
 
 const skillGroups = [
   {
-    title: "Programming Languages",
+    title: "Frontend Architecture",
     skills: [
-      { name: "JavaScript", level: 90 },
-      { name: "TypeScript", level: 88 },
-      { name: "Python", level: 85 },
-      { name: "Java", level: 82 },
+      { name: "React.js", level: 90 },
+      { name: "Next.js", level: 88 },
+      { name: "Tailwind CSS", level: 94 },
+      { name: "shadcn/ui", level: 82 },
+      { name: "i18n (next-intl / i18next)", level: 86 },
     ],
   },
   {
-    title: "UI & Frontend Frameworks",
+    title: "State & Data Handling",
     skills: [
-      { name: "HTML", level: 90 },
-      { name: "CSS", level: 90 },
-      { name: "React.js", level: 88 },
-      { name: "Next.js", level: 85 },
-      { name: "Tailwind CSS", level: 92 },
-      { name: "shadcn/ui", level: 85 },
+      { name: "React Hook Form", level: 90 },
+      { name: "Zustand", level: 85 },
+      { name: "TanStack Query", level: 87 },
+      { name: "TanStack Table", level: 85 },
+      { name: "Axios", level: 90 },
+    ],
+  },
+
+  {
+    title: "Core Programming Skills",
+    skills: [
+      { name: "JavaScript", level: 88 },
+      { name: "TypeScript", level: 86 },
+      { name: "Python", level: 80 },
+      { name: "HTML5", level: 92 },
+      { name: "CSS3", level: 90 },
     ],
   },
   {
-    title: "State, Forms & Data Fetching",
+    title: "UX, Performance & Design",
     skills: [
-      { name: "React Hook Form", level: 88 },
-      { name: "Zustand", level: 86 },
-      { name: "Redux Toolkit", level: 82 },
-      { name: "TanStack Query", level: 88 },
+      { name: "Responsive Design", level: 92 },
+      { name: "Accessibility (a11y)", level: 88 },
+      { name: "Performance Optimization", level: 86 },
+      { name: "Figma → UI Implementation", level: 95 },
     ],
   },
   {
-    title: "Backend & APIs",
-    skills: [
-      { name: "Node.js", level: 82 },
-      { name: "REST APIs", level: 88 },
-      { name: "MongoDB", level: 80 },
-      { name: "MySQL", level: 85 },
-    ],
-  },
-  {
-    title: "Version Control & Tooling",
+    title: "Development Workflow",
     skills: [
       { name: "Git", level: 88 },
       { name: "GitHub", level: 88 },
+      { name: "ESLint / Prettier", level: 90 },
+      { name: "Vite / Next Build Tools", level: 88 },
     ],
   },
 ];
@@ -107,7 +111,10 @@ export default function Skills({ theme }) {
               >
                 {title}
               </h3>
-
+              <div
+                className="h-px w-full my-3"
+                style={{ backgroundColor: borderColor }}
+              />
               <div className="space-y-5 mt-4">
                 {skills.map(({ name, level }) => (
                   <div key={name}>

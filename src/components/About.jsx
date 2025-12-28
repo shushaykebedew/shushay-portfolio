@@ -6,6 +6,7 @@ export default function About({ theme }) {
   const textColor = theme === "dark" ? "#d1d5db" : "#555"; // paragraph text
   const eyebrowColor = theme === "dark" ? "#9ca3af" : "#6b7280"; // small text
   const borderColor = theme === "dark" ? "#1f2937" : "#e5e7eb"; // image border
+  const iconColor = theme === "dark" ? "#60a5fa" : "#0c4a6e";
 
   const skills = [
     "Building efficient and scalable web applications.",
@@ -67,29 +68,24 @@ export default function About({ theme }) {
           </h2>
           <div className="space-y-3" style={{ color: textColor }}>
             <p>
-              Hi! I'm <strong>Shushay Kebedew</strong>, a passionate Web
-              Developer with experience in creating modern, responsive, and
-              user-friendly web applications. My expertise lies in technologies
-              like React, Next.js, Tailwind CSS, TypeScript, Node.js, and
-              MongoDB.
+              Hi! I'm <strong>Shushay Kebedew</strong>, a passionate Frontend
+              Developer focused on building modern, responsive, and
+              user-friendly web interfaces. I specialize in React, Next.js,
+              Tailwind CSS, and TypeScript, with a strong emphasis on clean UI,
+              performance, and accessibility.
             </p>
 
             <ul className="space-y-1">
               {skills.map((skill, index) => (
                 <motion.li
                   key={index}
-                  className="flex items-center gap-2"
+                  className="flex items-start gap-2"
                   custom={index}
                   variants={skillVariants}
                   initial="hidden"
                   animate="visible"
                 >
-                  <CheckCircle
-                    size={18}
-                    className={
-                      theme === "dark" ? "text-green-400" : "text-green-600"
-                    }
-                  />
+                  <CheckCircle size={18} color={iconColor} className="mt-1" />
                   <span>{skill}</span>
                 </motion.li>
               ))}
