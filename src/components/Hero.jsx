@@ -18,15 +18,15 @@ export default function Hero({ theme }) {
     },
   };
 
-  // Button helper with slow hover transition
+  // Button helper with slow hover transition and accessibility
   const buttonClass = (theme, type = "outline") =>
     type === "outline"
-      ? `inline-flex items-center gap-2 px-4 py-2 rounded-2xl border ${
+      ? `inline-flex items-center gap-2 px-4 py-2 rounded-xl border-2 font-medium text-sm transition-all duration-300 ${
           theme === "dark"
-            ? "border-gray-700 text-gray-100"
-            : "border-gray-300 text-gray-700"
-        } transform transition-all duration-700 hover:border-transparent hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 hover:text-white`
-      : `inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-indigo-600 text-white transform transition-all duration-700 hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500`;
+            ? "border-slate-600 text-slate-200 hover:border-transparent"
+            : "border-slate-300 text-slate-700 hover:border-transparent"
+        } hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 hover:text-white hover:scale-105 hover:shadow-md focus:ring-4 focus:ring-indigo-200 dark:focus:ring-indigo-800`
+      : `inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium text-sm transition-all duration-300 hover:from-indigo-500 hover:to-purple-500 hover:scale-105 hover:shadow-md focus:ring-4 focus:ring-indigo-200 dark:focus:ring-indigo-800`;
 
   return (
     <section id="home" className="py-16 md:py-24 scroll-mt-16 md:scroll-mt-24">
@@ -40,12 +40,13 @@ export default function Hero({ theme }) {
           <motion.div
             className={`inline-flex items-center gap-2 mb-4 rounded-full border px-3 py-1.5 text-xs font-semibold`}
             style={{
-              backgroundColor: theme === "dark" ? "#1f2937" : "#e0f2fe",
-              color: theme === "dark" ? "#60a5fa" : "#0c4a6e",
+              backgroundColor: theme === "dark" ? "#0f172a" : "#ffffff",
+              color: theme === "dark" ? "#60a5fa" : "#1e40af",
+              borderColor: theme === "dark" ? "#334155" : "#cbd5e1",
             }}
             variants={itemVariants}
           >
-            <FaGlobe size={14} /> FRONT DEVELOPER
+            <FaGlobe size={14} aria-hidden="true" /> FULL STACK DEVELOPER
           </motion.div>
 
           <motion.h1
@@ -60,43 +61,65 @@ export default function Hero({ theme }) {
 
           <motion.p
             className={`${
-              theme === "dark" ? "text-gray-300" : "text-gray-700"
-            } mb-6 max-w-xl leading-loose`}
+              theme === "dark" ? "text-slate-300" : "text-slate-600"
+            } mb-6 max-w-xl leading-relaxed text-lg font-medium`}
             variants={itemVariants}
           >
-            A passionate
-            <strong>
-              <em> Frontend Developer </em>
-            </strong>
-            building scalable and user-friendly web applications. Focused on
-            performance, clean architecture, and maintainable code. Turning
-            ideas into reliable digital products that deliver real value.
+            Full Stack Developer crafting scalable web applications with modern technologies. 
+            I build end-to-end solutions from database architecture to intuitive user interfaces, 
+            delivering high-performance applications that solve real-world problems.
           </motion.p>
+
+          <motion.div 
+            className={`${
+              theme === "dark" ? "text-slate-400" : "text-slate-500"
+            } mb-8 text-sm`}
+            variants={itemVariants}
+          >
+            <div className="flex flex-wrap gap-4 items-center">
+              <span className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                Available for opportunities
+              </span>
+              <span className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-blue-500" />
+                Remote & On-site
+              </span>
+              <span className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-purple-500" />
+                Full Stack Focus
+              </span>
+            </div>
+          </motion.div>
 
           {/* Buttons */}
           <motion.div className="flex flex-wrap gap-3" variants={itemVariants}>
             <a
               href="https://github.com/shushaykebedew"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
+              aria-label="Visit my GitHub profile"
               className={buttonClass(theme)}
             >
-              <FaGithub size={18} /> GitHub
+              <FaGithub size={16} aria-hidden="true" /> GitHub
             </a>
             <a
               href="https://www.linkedin.com/in/shushay-kebedew/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
+              aria-label="Visit my LinkedIn profile"
               className={buttonClass(theme)}
             >
-              <FaLinkedin size={18} /> LinkedIn
+              <FaLinkedin size={16} aria-hidden="true" /> LinkedIn
             </a>
             <a
               href="/SHUSHAY_KEBEDEW_CV.pdf"
               target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Download my resume"
               className={buttonClass(theme, "filled")}
             >
-              <FileText size={18} /> Resume
+              <FileText size={16} aria-hidden="true" /> Resume
             </a>
           </motion.div>
         </motion.div>
@@ -132,6 +155,7 @@ export default function Hero({ theme }) {
               <div className="w-3 h-3 rounded-full bg-red-500" />
               <div className="w-3 h-3 rounded-full bg-yellow-500" />
               <div className="w-3 h-3 rounded-full bg-green-500" />
+              <span className="ml-2 text-xs text-gray-500">fullstack-dev.js</span>
             </div>
 
             {/* Code */}
@@ -152,9 +176,31 @@ export default function Hero({ theme }) {
                 className="pl-4"
                 style={{ color: theme === "dark" ? "#d1d5db" : "#1f2937" }}
               >
-                skills: [<span className="text-green-500">'React'</span>,{" "}
-                <span className="text-green-500">'Next.js'</span>,{" "}
-                <span className="text-green-500">'Tailwind CSS'</span>...],
+                role: <span className="text-green-500">'Full Stack'</span>,
+              </div>
+
+              <div
+                className="pl-4"
+                style={{ color: theme === "dark" ? "#d1d5db" : "#1f2937" }}
+              >
+                frontend: [<span className="text-green-500">'React'</span>,{" "}
+                <span className="text-green-500">'Next.js'</span>],
+              </div>
+
+              <div
+                className="pl-4"
+                style={{ color: theme === "dark" ? "#d1d5db" : "#1f2937" }}
+              >
+                backend: [<span className="text-green-500">'Node.js'</span>,{" "}
+                <span className="text-green-500">'Express'</span>],
+              </div>
+
+              <div
+                className="pl-4"
+                style={{ color: theme === "dark" ? "#d1d5db" : "#1f2937" }}
+              >
+                database: [<span className="text-green-500">'MongoDB'</span>,{" "}
+                <span className="text-green-500">'MySQL'</span>],
               </div>
 
               <div

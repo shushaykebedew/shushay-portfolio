@@ -8,6 +8,7 @@ import Education from "./components/Education";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Experience from "./components/Experience";
+import Certifications from "./components/Certifications";
 
 export default function App() {
   // Initialize theme from localStorage or default to dark
@@ -34,15 +35,18 @@ export default function App() {
   }, [theme]);
 
   return (
-    <div>
+    <div className="min-h-screen">
       <Navbar theme={theme} setTheme={setTheme} />
-      <Hero theme={theme} />
-      <About theme={theme} />
-      <Skills theme={theme} />
-      <Experience theme={theme} />
-      <Projects theme={theme} />
-      <Education theme={theme} />
-      <Contact theme={theme} />
+      <main id="main-content">
+        <Hero theme={theme} />
+        <About theme={theme} />
+        <Skills theme={theme} />
+        <Experience theme={theme} />
+        <Certifications theme={theme} />
+        <Projects theme={theme} />
+        <Education theme={theme} />
+        <Contact theme={theme} />
+      </main>
       <Footer theme={theme} />
     </div>
   );

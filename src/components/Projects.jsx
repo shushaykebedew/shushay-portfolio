@@ -1,46 +1,83 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import sheqleeDashboard from "../assets/sheqlee-dashboard.png";
-import qrCodeScan from "../assets/qr-code-scan.jpg";
+import qrCodeScan from "../assets/qr-code-scan.png";
 import machaImg from "../assets/macha.png";
 import glitchImg from "../assets/glitch.png";
+import katechImg from "../assets/katech.png"
+
+// Lazy loading component for images
+const LazyImage = ({ src, alt, className }) => {
+  const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(false);
+
+  return (
+    <div className={`relative ${className}`}>
+      {!loaded && !error && (
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse rounded" />
+      )}
+      <img
+        src={src}
+        alt={alt}
+        className={`${className} transition-opacity duration-300 ${
+          loaded ? 'opacity-100' : 'opacity-0'
+        }`}
+        onLoad={() => setLoaded(true)}
+        onError={() => setError(true)}
+        loading="lazy"
+      />
+      {error && (
+        <div className="absolute inset-0 bg-gray-200 flex items-center justify-center text-gray-500 text-sm">
+          Failed to load image
+        </div>
+      )}
+    </div>
+  );
+};
 
 const projects = [
   {
-    title: "QR-Code Based ID Verification",
+    title: "QR-Code ID Verification System",
     description:
-      "A secure, efficient solution for identity verification using QR code scanning. Ensures smooth UX and enhanced security for access control and authentication.",
+      "Enterprise-grade identity verification platform with QR code scanning. Features secure user authentication, real-time verification status, and comprehensive admin dashboard.",
     image: qrCodeScan,
-    tech: ["React", "Node.js", "MySQL", "CSS"],
-  },
+    tech: ["React", "Node.js", "MySQL", "JWT", "REST API"],
+    },
   {
-    title: "Sheqlee's Admin Page",
+    title: "Sheqlee Admin Dashboard",
     description:
-      "Admin dashboard for the Sheqlee web app, helping freelancers and companies manage profiles, projects, and payments with an intuitive UI.",
+      "Full-stack admin platform for freelancer marketplace management. Includes user management, project tracking, payment processing, and analytics dashboard with real-time data synchronization.",
     image: sheqleeDashboard,
-    tech: ["React", "CSS Module"],
-  },
+    tech: ["React", "Node.js", "MongoDB", "REST API"],
+     },
   {
-    title: "Macha Taximeter",
+    title: "Macha Taximeter Platform",
     description:
-      "Macha Taximeter modernizes taxi services by accurately calculating fares based on distance and time. It ensures a transparent, reliable experience for both drivers and passengers.",
+      "Modern taxi fare calculation system with GPS tracking and dynamic pricing. Built with server-side rendering for optimal performance and real-time location updates.",
     image: machaImg,
-    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
-  },
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Geolocation API"],
+    },
   {
-    title: "Glitch",
+    title: "Glitch Multilingual Platform",
     description:
-      "A multilingual landing page supporting English and Korean, focused on clean design, performance, and accessibility with a modern responsive layout.",
+      "Internationalized web platform with English and Korean support. Features server-side rendering, dynamic content management, and optimized SEO performance.",
     image: glitchImg,
-    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
-  },
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "i18n"],
+     },
+  {
+    title: "Katech Driver Data Platform",
+    description:
+      "AI-driven driver data management platform for Korean market. Handles video storage, dataset management, and provides analytics insights for automotive companies with multilingual support.",
+    image: katechImg,
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "AI Integration"],
+    },
 ];
 
 export default function Projects({ theme }) {
-  const textColor = theme === "dark" ? "#f9fafb" : "#111827";
-  const subTextColor = theme === "dark" ? "#d1d5db" : "#4b5563";
-  const bgColor = theme === "dark" ? "#1f2937" : "#ffffff";
-  const borderColor = theme === "dark" ? "#374151" : "#e5e7eb";
+  const textColor = theme === "dark" ? "#f1f5f9" : "#0f172a";
+  const subTextColor = theme === "dark" ? "#cbd5e1" : "#475569";
+  const bgColor = theme === "dark" ? "#1e293b" : "#ffffff";
+  const borderColor = theme === "dark" ? "#334155" : "#cbd5e1";
 
   // Animation variants for project cards
   const projectVariants = {
@@ -56,15 +93,15 @@ export default function Projects({ theme }) {
     <section id="projects" className="py-16 md:py-20">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
           <p
-            className="text-sm uppercase tracking-widest mb-2"
+            className="text-sm uppercase tracking-widest mb-3 font-semibold"
             style={{ color: subTextColor }}
           >
             My Projects
           </p>
           <h2
-            className="text-2xl sm:text-3xl font-bold"
+            className="text-3xl sm:text-4xl font-bold"
             style={{ color: textColor }}
           >
             Selected Works
@@ -73,41 +110,49 @@ export default function Projects({ theme }) {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-          {projects.map(({ title, description, image, tech }, index) => (
+          {projects.map(({ title, description, image, tech, features }, index) => (
             <motion.div
               key={title}
-              className="rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-transform hover:scale-[1.02]  flex flex-col h-full"
+              className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-[1.02] flex flex-col h-full group"
               style={{
                 backgroundColor: bgColor,
-                border: `1px solid ${borderColor}`,
+                border: `2px solid ${borderColor}`,
               }}
               custom={index}
               variants={projectVariants}
               initial="hidden"
               animate="visible"
             >
-              <img src={image} alt={title} className="w-full h-56" />
+              <div className="relative overflow-hidden">
+                <LazyImage
+                  src={image} 
+                  alt={`${title} project screenshot`} 
+                  className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
               <div className="p-6 flex flex-col flex-1">
                 <h3
-                  className="text-lg sm:text-xl font-bold mb-2"
+                  className="text-lg sm:text-xl font-bold mb-3 leading-tight"
                   style={{ color: textColor }}
                 >
                   {title}
                 </h3>
-                <p className="text-sm mb-4" style={{ color: subTextColor }}>
+                <p className="text-sm mb-4 leading-relaxed font-medium" style={{ color: subTextColor }}>
                   {description}
                 </p>
 
                 {/* Tech Tags */}
-                <div className="flex flex-wrap gap-2  mt-auto">
+                <div className="flex flex-wrap gap-2 mt-auto">
                   {tech.map((t) => (
                     <span
                       key={t}
-                      className={`px-3 py-1 text-xs rounded-full border ${
-                        theme === "dark"
-                          ? "border-gray-600 bg-gray-900 text-gray-200"
-                          : "border-gray-300 bg-gray-100 text-gray-700"
-                      }`}
+                      className="px-3 py-1 text-xs rounded-full border font-medium transition-all duration-300 hover:scale-105"
+                      style={{
+                        borderColor: theme === "dark" ? "#475569" : "#94a3b8",
+                        backgroundColor: theme === "dark" ? "#334155" : "#e2e8f0",
+                        color: theme === "dark" ? "#cbd5e1" : "#475569"
+                      }}
                     >
                       {t}
                     </span>

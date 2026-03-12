@@ -1,18 +1,19 @@
-import AboutImg from "../assets/me.png";
+import AboutImg from "../assets/profile.png";
 import { CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function About({ theme }) {
-  const textColor = theme === "dark" ? "#d1d5db" : "#555"; // paragraph text
-  const eyebrowColor = theme === "dark" ? "#9ca3af" : "#6b7280"; // small text
-  const borderColor = theme === "dark" ? "#1f2937" : "#e5e7eb"; // image border
-  const iconColor = theme === "dark" ? "#60a5fa" : "#0c4a6e";
+  const textColor = theme === "dark" ? "#f1f5f9" : "#0f172a";
+  const subTextColor = theme === "dark" ? "#cbd5e1" : "#475569";
+  const eyebrowColor = theme === "dark" ? "#94a3b8" : "#64748b";
+  const borderColor = theme === "dark" ? "#334155" : "#cbd5e1";
+  const iconColor = theme === "dark" ? "#60a5fa" : "#1e40af";
 
   const skills = [
-    "Building efficient and scalable web applications.",
-    "Collaborating on challenging projects that push creativity.",
-    "Exploring books to expand knowledge and inspiration.",
-    "Hiking and exploring nature for energy and creativity.",
+    "Building end-to-end web applications with modern tech stacks.",
+    "Designing and implementing RESTful APIs and backend systems.",
+    "Database architecture, optimization, and integration.",
+    "Writing clean, maintainable, and scalable code.",
   ];
 
   // Variants for skill items
@@ -41,8 +42,8 @@ export default function About({ theme }) {
           >
             <img
               src={AboutImg}
-              alt="Shushay"
-              className="w-full h-full "
+              alt="Shushay Kebedew - Full Stack Developer"
+              className="w-full h-full object-cover"
               loading="lazy"
             />
           </div>
@@ -61,43 +62,134 @@ export default function About({ theme }) {
             About Me
           </p>
           <h2
-            className="text-2xl text-center sm:text-3xl font-extrabold mb-4"
-            style={{ color: theme === "dark" ? "#f9fafb" : "#111827" }}
+            className="text-2xl text-center sm:text-3xl font-bold mb-6"
+            style={{ color: textColor }}
           >
             Who I Am
           </h2>
-          <div className="space-y-3" style={{ color: textColor }}>
-            <p>
-              Hi! I'm <strong>Shushay Kebedew</strong>, a passionate Frontend
-              Developer focused on building modern, responsive, and
-              user-friendly web interfaces. I specialize in React, Next.js,
-              Tailwind CSS, and TypeScript, with a strong emphasis on clean UI,
-              performance, and accessibility.
+          <div className="space-y-6" style={{ color: subTextColor }}>
+            <p className="text-lg leading-relaxed font-medium">
+              I'm <strong style={{ color: textColor }}>Shushay Kebedew</strong>, a passionate Full Stack Developer 
+              with expertise in building modern, scalable web applications. I specialize 
+              in React, Next.js, Node.js, and database technologies, delivering complete 
+              solutions from concept to deployment.
             </p>
 
-            <ul className="space-y-1">
-              {skills.map((skill, index) => (
-                <motion.li
-                  key={index}
-                  className="flex items-start gap-2"
-                  custom={index}
-                  variants={skillVariants}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  <CheckCircle size={18} color={iconColor} className="mt-1" />
-                  <span>{skill}</span>
-                </motion.li>
-              ))}
-            </ul>
+            <p className="leading-relaxed">
+              My approach combines strong technical skills with business understanding, 
+              enabling me to create applications that not only function flawlessly but 
+              also drive real value. I excel at translating complex requirements into 
+              clean, maintainable code and user-friendly interfaces.
+            </p>
 
-            <p>
-              Want to know more about me or collaborate on a project?{" "}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 p-6 rounded-2xl" style={{
+              backgroundColor: theme === "dark" ? "#1e293b" : "#f8fafc",
+              border: `1px solid ${borderColor}`
+            }}>
+              <div>
+                <h4 className="font-bold mb-3 text-lg" style={{ 
+                  color: theme === "dark" ? "#60a5fa" : "#1e40af" 
+                }}>Frontend Expertise</h4>
+                <ul className="space-y-2 text-sm">
+                  {["React & Next.js Applications", "Responsive UI/UX Design", "Modern JavaScript & TypeScript"].map((skill, index) => (
+                    <motion.li
+                      key={index}
+                      className="flex items-start gap-3"
+                      custom={index}
+                      variants={skillVariants}
+                      initial="hidden"
+                      animate="visible"
+                    >
+                      <CheckCircle size={18} color={iconColor} className="mt-0.5 flex-shrink-0" aria-hidden="true" />
+                      <span style={{ color: subTextColor }}>{skill}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-bold mb-3 text-lg" style={{ 
+                  color: theme === "dark" ? "#a855f7" : "#7c3aed" 
+                }}>Backend & Database</h4>
+                <ul className="space-y-2 text-sm">
+                  {["RESTful API Development", "Database Design & Optimization", "Server-side Architecture"].map((skill, index) => (
+                    <motion.li
+                      key={index}
+                      className="flex items-start gap-3"
+                      custom={index + 3}
+                      variants={skillVariants}
+                      initial="hidden"
+                      animate="visible"
+                    >
+                      <CheckCircle size={18} color={iconColor} className="mt-0.5 flex-shrink-0" aria-hidden="true" />
+                      <span style={{ color: subTextColor }}>{skill}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Soft Skills Section */}
+            <div className="my-8 p-6 rounded-2xl" style={{
+              backgroundColor: theme === "dark" ? "#0f172a" : "#f1f5f9",
+              border: `1px solid ${borderColor}`
+            }}>
+              <h4 className="font-bold mb-4 text-lg" style={{ 
+                color: theme === "dark" ? "#fbbf24" : "#f59e0b" 
+              }}>Core Strengths & Approach</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-3">
+                  {[
+                    { skill: "Problem-Solving", desc: "Breaking complex challenges into manageable solutions" },
+                    { skill: "Team Collaboration", desc: "Effective communication in cross-functional teams" }
+                  ].map((item, index) => (
+                    <motion.div
+                      key={index}
+                      className="flex items-start gap-3"
+                      custom={index + 6}
+                      variants={skillVariants}
+                      initial="hidden"
+                      animate="visible"
+                    >
+                      <CheckCircle size={18} color={iconColor} className="mt-0.5 flex-shrink-0" aria-hidden="true" />
+                      <div>
+                        <span className="font-semibold text-sm" style={{ color: textColor }}>{item.skill}</span>
+                        <p className="text-xs mt-1" style={{ color: subTextColor }}>{item.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+                <div className="space-y-3">
+                  {[
+                    { skill: "Continuous Learning", desc: "Staying current with emerging technologies" },
+                    { skill: "Quality Focus", desc: "Writing clean, maintainable, and scalable code" }
+                  ].map((item, index) => (
+                    <motion.div
+                      key={index}
+                      className="flex items-start gap-3"
+                      custom={index + 8}
+                      variants={skillVariants}
+                      initial="hidden"
+                      animate="visible"
+                    >
+                      <CheckCircle size={18} color={iconColor} className="mt-0.5 flex-shrink-0" aria-hidden="true" />
+                      <div>
+                        <span className="font-semibold text-sm" style={{ color: textColor }}>{item.skill}</span>
+                        <p className="text-xs mt-1" style={{ color: subTextColor }}>{item.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <p className="leading-relaxed text-lg">
+              Ready to collaborate on your next project?{" "}
               <a
                 href="#contact"
-                className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent hover:underline"
+                className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent hover:underline font-bold transition-all duration-300 focus:ring-2 focus:ring-indigo-200 dark:focus:ring-indigo-800 rounded px-1"
+                aria-label="Navigate to contact section"
               >
-                Let’s connect!
+                Let's build something amazing together!
               </a>
             </p>
           </div>

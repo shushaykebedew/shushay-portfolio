@@ -12,11 +12,11 @@ import { motion } from "framer-motion";
 
 export default function Footer({ theme }) {
   const [showTop, setShowTop] = useState(false);
-  const textColor = theme === "dark" ? "text-gray-100" : "text-gray-900";
-  const subTextColor = theme === "dark" ? "text-gray-400" : "text-gray-600";
-  const bgColor = theme === "dark" ? "bg-gray-900" : "bg-gray-50";
-  const borderColor = theme === "dark" ? "border-gray-700" : "border-gray-200";
-  const iconColor = theme === "dark" ? "#60a5fa" : "#0c4a6e";
+  const textColor = theme === "dark" ? "text-slate-100" : "text-slate-900";
+  const subTextColor = theme === "dark" ? "text-slate-400" : "text-slate-600";
+  const bgColor = theme === "dark" ? "bg-slate-900" : "bg-slate-50";
+  const borderColor = theme === "dark" ? "border-slate-700" : "border-slate-200";
+  const iconColor = theme === "dark" ? "#60a5fa" : "#1e40af";
 
   const year = new Date().getFullYear();
 
@@ -67,6 +67,7 @@ export default function Footer({ theme }) {
     "About",
     "Skills",
     "Experience",
+    "Certifications",
     "Projects",
     "Education",
     "Contact",
@@ -96,6 +97,7 @@ export default function Footer({ theme }) {
             <a
               href="tel:+251943668796"
               className={`${subTextColor} cursor-pointer hover:underline`}
+              aria-label="Call +251 943 668 796"
             >
               +251 943 668 796
             </a>
@@ -108,8 +110,9 @@ export default function Footer({ theme }) {
               target="_blank"
               rel="noopener noreferrer"
               className={`${subTextColor} hover:underline cursor-pointer break-all`}
+              aria-label="Send email to shusaykebedew12@gmail.com"
             >
-              shushaykebedew12@gmail.com
+              shusaykebedew12@gmail.com
             </a>
           </div>
         </motion.div>
@@ -128,6 +131,7 @@ export default function Footer({ theme }) {
                 key={link}
                 href={`#${link.toLowerCase()}`}
                 className={`${subTextColor} hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 hover:bg-clip-text hover:text-transparent transition text-sm`}
+                aria-label={`Navigate to ${link} section`}
               >
                 {link}
               </a>
@@ -152,12 +156,12 @@ export default function Footer({ theme }) {
                 key={idx}
                 href={link}
                 target="_blank"
-                rel="noreferrer"
-                aria-label={label}
+                rel="noopener noreferrer"
+                aria-label={`Visit my ${label} profile`}
                 className={`inline-flex items-center justify-center rounded-xl border ${borderColor} p-3 text-sm transition-all duration-300
                 hover:border-transparent hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 hover:text-white`}
               >
-                <Icon size={15} />
+                <Icon size={15} aria-hidden="true" />
               </a>
             ))}
           </div>
@@ -179,7 +183,7 @@ export default function Footer({ theme }) {
       {showTop && (
         <motion.a
           href="#home"
-          aria-label="Back to top"
+          aria-label="Scroll back to top"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
@@ -189,7 +193,7 @@ export default function Footer({ theme }) {
             backgroundColor: theme === "dark" ? "#111827" : "#ffffff",
           }}
         >
-          <FaArrowUp size={18} />
+          <FaArrowUp size={18} aria-hidden="true" />
         </motion.a>
       )}
     </footer>

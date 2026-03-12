@@ -8,6 +8,7 @@ import {
   FaGraduationCap,
   FaEnvelope,
   FaHome,
+  FaCertificate,
 } from "react-icons/fa";
 
 export default function Navbar({ theme, setTheme }) {
@@ -19,6 +20,7 @@ export default function Navbar({ theme, setTheme }) {
     { label: "About", id: "about", icon: FaUser },
     { label: "Skills", id: "skills", icon: FaTools },
     { label: "Experience", id: "experience", icon: FaBriefcase },
+    { label: "Certifications", id: "certifications", icon: FaCertificate },
     { label: "Projects", id: "projects", icon: FaProjectDiagram },
     { label: "Education", id: "education", icon: FaGraduationCap },
     { label: "Contact", id: "contact", icon: FaEnvelope },
@@ -28,7 +30,7 @@ export default function Navbar({ theme, setTheme }) {
   useEffect(() => {
     const handleScroll = () => {
       const sections = links.map((link) => document.getElementById(link.id));
-      const scrollPosition = window.scrollY + 100; // offset for navbar height
+      const scrollPosition = window.scrollY + 120;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
@@ -39,23 +41,29 @@ export default function Navbar({ theme, setTheme }) {
       }
     };
 
-    // Also check on mount and hash change
     handleScroll();
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("hashchange", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("hashchange", handleScroll);
+    };
+  }, [links]);
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b ${
+      className={`sticky top-0 z-50 border-b-2 transition-all duration-300 ${
         theme === "dark"
-          ? "border-gray-800 bg-gray-950/90"
-          : "border-gray-200 bg-white/90"
-      } backdrop-blur`}
+          ? "border-slate-700 bg-slate-900/95"
+          : "border-slate-200 bg-white/95"
+      } backdrop-blur-lg shadow-lg`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
         {/* Logo */}
-        <a href="#home" className="font-bold text-lg flex items-center gap-1">
+        <a 
+          href="#home" 
+          className="font-bold text-lg flex items-center gap-1"
+        >
           <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white px-2 py-1 rounded">
             SHUSHAY
           </span>
@@ -64,7 +72,7 @@ export default function Navbar({ theme, setTheme }) {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex gap-8 items-center text-sm lg:text-base font-medium">
-          {links.map(({ label, id, icon: Icon }) => (
+          {links.map(({ label, id }) => (
             <a
               key={id}
               href={`#${id}`}
@@ -73,13 +81,13 @@ export default function Navbar({ theme, setTheme }) {
             >
               <span
                 className={`${
-                  theme === "dark" ? "text-gray-300" : "text-gray-700"
-                } group-hover:bg-gradient-to-r  transition-all duration-300`}
+                  theme === "dark" ? "text-slate-200" : "text-slate-700"
+                } group-hover:bg-gradient-to-r transition-all duration-300 font-semibold`}
               >
                 {label}
               </span>
 
-              {/* Active & Hover Bottom Border */}
+              {/* Active & Hover Bottom Border - NO WHITE FLASH */}
               <span
                 className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 transition-all duration-300 ${
                   activeSection === id ? "w-full" : "w-0 group-hover:w-full"
@@ -88,7 +96,7 @@ export default function Navbar({ theme, setTheme }) {
             </a>
           ))}
 
-          {/* Dark Mode Toggle (Desktop) */}
+          {/* Dark Mode Toggle */}
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className={`p-2 rounded-xl border cursor-pointer ${
@@ -96,7 +104,6 @@ export default function Navbar({ theme, setTheme }) {
                 ? "border-gray-800 hover:bg-gray-900"
                 : "border-gray-200 hover:bg-gray-100"
             }`}
-            aria-label="Toggle Dark Mode"
           >
             {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
           </button>
@@ -106,7 +113,7 @@ export default function Navbar({ theme, setTheme }) {
         <div className="md:hidden flex items-center gap-2">
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className={`p-2 rounded-xl border cursor-pointer ${
+            className={`p-2 rounded-xl border ${
               theme === "dark"
                 ? "border-gray-800 hover:bg-gray-900"
                 : "border-gray-200 hover:bg-gray-100"
@@ -126,7 +133,7 @@ export default function Navbar({ theme, setTheme }) {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div
+        <nav
           className={`${
             theme === "dark"
               ? "bg-gray-950 border-gray-800"
@@ -154,7 +161,7 @@ export default function Navbar({ theme, setTheme }) {
               </a>
             ))}
           </div>
-        </div>
+        </nav>
       )}
     </header>
   );

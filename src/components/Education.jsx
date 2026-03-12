@@ -9,24 +9,25 @@ const education = [
     institute: "Mekelle University/MIT",
     year: "2018 - 2025",
     details:
-      "Focused on full-stack development, networking, data structures, algorithms, and other IT-related fields.",
+      "Comprehensive study in software engineering, full-stack development, database systems, networking, data structures, algorithms, and modern web technologies. Gained hands-on experience in both frontend and backend development with practical project implementations.",
   },
   {
     degree: "Bachelor's in Business Management",
     institute: "Ethio Lens College",
     year: "2020 - 2025",
     details:
-      "Explored core principles of business management, leadership, organizational behavior, economics, and strategic planning.",
+      "Studied business fundamentals, leadership principles, organizational behavior, economics, and strategic planning. Developed strong project management skills and understanding of business requirements for technical solutions.",
   },
 ];
 
 export default function Education({ theme }) {
-  const textColor = theme === "dark" ? "#f9fafb" : "#111827";
-  const subTextColor = theme === "dark" ? "#d1d5db" : "#4b5563";
-  const bgColor = theme === "dark" ? "#1f2937" : "#ffffff";
-  const borderColor = theme === "dark" ? "#374151" : "#e5e7eb";
-  const iconBg = theme === "dark" ? "#374151" : "#e0f2fe";
-  const iconColor = theme === "dark" ? "#60a5fa" : "#0c4a6e";
+  const textColor = theme === "dark" ? "#f1f5f9" : "#0f172a";
+  const subTextColor = theme === "dark" ? "#cbd5e1" : "#475569";
+  const bgColor = theme === "dark" ? "#1e293b" : "#ffffff";
+  const borderColor = theme === "dark" ? "#334155" : "#cbd5e1";
+  const sectionBg = theme === "dark" ? "#0f172a" : "#f8fafc";
+  const iconBg = theme === "dark" ? "#334155" : "#e0f2fe";
+  const iconColor = theme === "dark" ? "#60a5fa" : "#1e40af";
 
   const cardVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -40,20 +41,20 @@ export default function Education({ theme }) {
   return (
     <section
       id="education"
-      className="py-16 md:py-20 transition-colors duration-300"
-      style={{ backgroundColor: theme === "dark" ? "#111827" : "#f9fafb" }}
+      className="py-20 md:py-24 transition-colors duration-300"
+      style={{ backgroundColor: sectionBg }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-20">
           <p
-            className="text-base uppercase tracking-widest mb-2"
+            className="text-sm uppercase tracking-widest mb-3 font-semibold"
             style={{ color: subTextColor }}
           >
             Education
           </p>
           <h2
-            className="text-2xl sm:text-3xl font-bold"
+            className="text-3xl sm:text-4xl font-bold"
             style={{ color: textColor }}
           >
             Academic Background

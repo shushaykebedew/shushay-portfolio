@@ -56,9 +56,59 @@
       name="twitter:image"
       content="https://shushaykebedew-portfolio.vercel.app/sk-logo.svg"
     />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Shushay Kebedew",
+      "jobTitle": "Full Stack Developer",
+      "description": "Full Stack Developer specializing in React, Next.js, Node.js, and MongoDB",
+      "url": "https://shushaykebedew-portfolio.vercel.app/",
+      "sameAs": [
+        "https://github.com/shushaykebedew",
+        "https://www.linkedin.com/in/shushay-kebedew/",
+        "https://x.com/Shushay_Kebedew"
+      ],
+      "knowsAbout": ["React", "Next.js", "Node.js", "MongoDB", "JavaScript", "TypeScript", "Full Stack Development"],
+      "alumniOf": "Mekelle University",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Addis Ababa",
+        "addressCountry": "Ethiopia"
+      }
+    }
+    </script>
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Skip Navigation Link -->
+    <style>
+      .skip-nav {
+        position: absolute;
+        top: -40px;
+        left: 6px;
+        background: #000;
+        color: #fff;
+        padding: 8px;
+        text-decoration: none;
+        border-radius: 4px;
+        z-index: 1000;
+        font-size: 14px;
+      }
+      .skip-nav:focus {
+        top: 6px;
+      }
+    </style>
   </head>
 
   <body>
+    <!-- Skip Navigation -->
+    <a href="#main-content" class="skip-nav">Skip to main content</a>
+    
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
