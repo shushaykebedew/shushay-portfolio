@@ -5,6 +5,8 @@ import qrCodeScan from "../assets/qr-code-scan.png";
 import machaImg from "../assets/macha.png";
 import glitchImg from "../assets/glitch.png";
 import katechImg from "../assets/katech.png"
+import AI_Powered_Fraud_Detection from "../assets/AI_Powered_Fraud_Detection.png"
+
 
 // Lazy loading component for images
 const LazyImage = ({ src, alt, className }) => {
@@ -50,6 +52,13 @@ const projects = [
     image: sheqleeDashboard,
     tech: ["React", "Node.js", "MongoDB", "REST API"],
      },
+     {
+  title: "AI-Powered Fraud Detection",
+  description:
+    "Advanced fraud detection platform for Ethiopian banking and mobile payment systems. Utilizes AI and machine learning to identify suspicious transactions in real-time, ensure secure payments, and provide actionable analytics through an intuitive admin dashboard.",
+  image: AI_Powered_Fraud_Detection, 
+  tech: ["Python", "TensorFlow", "Scikit-learn", "Node.js", "Next.js", "REST API"]
+},
   {
     title: "Macha Taximeter Platform",
     description:

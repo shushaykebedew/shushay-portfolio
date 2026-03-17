@@ -37,8 +37,19 @@ const certifications = [
       {
         title: "Machine Learning Specialization",
         year: "Feb, 2026",
-        description: "Advanced machine learning algorithms and practical implementation",
+        description: "an online course authorized by DeepLearning.AI and Stanford University and offered through Coursera",
         link: "https://www.coursera.org/account/accomplishments/verify/3KO9YDGTRD7G"
+      },
+       {
+        title: "Advanced Learning Algorithms",
+        year: "Mar, 2026",
+        description: "an online course authorized by DeepLearning.AI and Stanford University and offered through Coursera",
+        link: "https://www.coursera.org/account/accomplishments/verify/J0ZHPQHYFRJJ"
+      }, {
+        title: "Unsupervised Learning, Recommenders, Reinforcement Learning",
+        year: "Mar, 2026",
+        description: "an online course authorized by DeepLearning.AI and Stanford University and offered through Coursera",
+        link: "https://www.coursera.org/account/accomplishments/verify/JO3ILQ2WJ2XX"
       },
     ],
   },
@@ -159,9 +170,9 @@ export default function Certifications({ theme }) {
                         {title}
                       </h4>
                       {year && (
-                        <div className="flex items-center gap-1 text-xs">
+                        <div className="flex  items-center gap-1 text-xs">
                           <Calendar size={14} color={iconColor} />
-                          <span style={{ color: subTextColor }}>{year}</span>
+                          <span style={{ color: subTextColor }} className="whitespace-nowrap">{year}</span>
                         </div>
                       )}
                     </div>
