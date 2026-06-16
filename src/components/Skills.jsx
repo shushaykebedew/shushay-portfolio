@@ -1,129 +1,326 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { 
-  Code2, 
-  Server, 
-  Database, 
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useRef, useState } from "react";
+import {
+  Code2,
+  Server,
+  Database,
   Brain,
   Star,
   TrendingUp,
-  CheckCircle2
+  CheckCircle2,
 } from "lucide-react";
 
-const skillGroups = [
+const TABS = [
   {
+    id: "frontend",
+    label: "Frontend",
     title: "Frontend Development",
     icon: Code2,
     color: "from-blue-500 to-cyan-500",
     darkColor: "from-blue-400 to-cyan-400",
+    iconBg: { light: "#E6F1FB", dark: "#0C447C33" },
+    iconColor: { light: "#185FA5", dark: "#85B7EB" },
     skills: [
-      { name: "React.js", level: 90, proficiency: "Expert" },
-      { name: "Next.js", level: 88, proficiency: "Expert" },
-      { name: "TypeScript", level: 86, proficiency: "Advanced" },
-      { name: "JavaScript", level: 88, proficiency: "Expert" },
-      { name: "Tailwind CSS", level: 94, proficiency: "Expert" },
       { name: "HTML5 & CSS3", level: 92, proficiency: "Expert" },
+      { name: "JavaScript", level: 88, proficiency: "Expert" },
+      { name: "Next.js", level: 88, proficiency: "Expert" },
+      { name: "React.js", level: 90, proficiency: "Expert" },
+      { name: "Tailwind CSS", level: 94, proficiency: "Expert" },
+      { name: "SvelteKit", level: 85, proficiency: "Advanced" },
+      { name: "Svelte", level: 85, proficiency: "Advanced" },
+      { name: "TypeScript", level: 86, proficiency: "Advanced" },
     ],
   },
   {
+    id: "backend",
+    label: "Backend",
     title: "Backend Development",
     icon: Server,
     color: "from-emerald-500 to-teal-500",
     darkColor: "from-emerald-400 to-teal-400",
+    iconBg: { light: "#E1F5EE", dark: "#08504133" },
+    iconColor: { light: "#0F6E56", dark: "#5DCAA5" },
     skills: [
-      { name: "Node.js", level: 85, proficiency: "Advanced" },
-      { name: "Express.js", level: 83, proficiency: "Advanced" },
-      { name: "REST APIs", level: 87, proficiency: "Advanced" },
       { name: "Authentication", level: 82, proficiency: "Advanced" },
+      { name: "Express.js", level: 83, proficiency: "Advanced" },
+      { name: "Node.js", level: 85, proficiency: "Advanced" },
+      { name: "REST APIs", level: 87, proficiency: "Advanced" },
     ],
   },
   {
+    id: "databases",
+    label: "Databases",
     title: "Databases & Tools",
     icon: Database,
     color: "from-purple-500 to-pink-500",
     darkColor: "from-purple-400 to-pink-400",
+    iconBg: { light: "#EEEDFE", dark: "#3C348933" },
+    iconColor: { light: "#534AB7", dark: "#AFA9EC" },
     skills: [
+      { name: "Git & GitHub", level: 88, proficiency: "Expert" },
       { name: "MongoDB", level: 82, proficiency: "Advanced" },
       { name: "MySQL", level: 80, proficiency: "Advanced" },
-      { name: "Git & GitHub", level: 88, proficiency: "Expert" },
       { name: "Docker", level: 75, proficiency: "Intermediate" },
     ],
   },
   {
+    id: "ai",
+    label: "AI / ML",
     title: "AI/ML & Analytics",
     icon: Brain,
     color: "from-orange-500 to-red-500",
     darkColor: "from-orange-400 to-red-400",
+    iconBg: { light: "#FAECE7", dark: "#71281333" },
+    iconColor: { light: "#993C1D", dark: "#F0997B" },
     skills: [
-      { name: "Machine Learning", level: 84, proficiency: "Advanced" },
-      { name: "Data Analysis", level: 88, proficiency: "Expert" },
+      { name: "Data analysis", level: 88, proficiency: "Expert" },
+      { name: "AI fundamentals", level: 82, proficiency: "Advanced" },
+      { name: "Machine learning", level: 84, proficiency: "Advanced" },
       { name: "Python", level: 85, proficiency: "Advanced" },
-      { name: "AI Fundamentals", level: 82, proficiency: "Advanced" },
     ],
   },
 ];
 
-const getProficiencyIcon = (proficiency) => {
-  switch (proficiency) {
-    case "Expert":
-      return <Star className="w-4 h-4" />;
-    case "Advanced":
-      return <TrendingUp className="w-4 h-4" />;
-    case "Intermediate":
-      return <CheckCircle2 className="w-4 h-4" />;
-    default:
-      return <CheckCircle2 className="w-4 h-4" />;
-  }
+const PROFICIENCY_CONFIG = {
+  Expert: {
+    icon: Star,
+    light: { bg: "#FAEEDA", text: "#854F0B" },
+    dark: { bg: "#41240244", text: "#FAC775" },
+    dot: "#BA7517",
+  },
+  Advanced: {
+    icon: TrendingUp,
+    light: { bg: "#E1F5EE", text: "#0F6E56" },
+    dark: { bg: "#04342C44", text: "#9FE1CB" },
+    dot: "#1D9E75",
+  },
+  Intermediate: {
+    icon: CheckCircle2,
+    light: { bg: "#E6F1FB", text: "#185FA5" },
+    dark: { bg: "#042C5344", text: "#85B7EB" },
+    dot: "#378ADD",
+  },
 };
 
-const getProficiencyColor = (proficiency, theme) => {
-  const colors = {
-    Expert: theme === "dark" ? "#fbbf24" : "#f59e0b",
-    Advanced: theme === "dark" ? "#34d399" : "#10b981", 
-    Intermediate: theme === "dark" ? "#60a5fa" : "#3b82f6"
-  };
-  return colors[proficiency] || colors.Intermediate;
-};
+function ProficiencyBadge({ proficiency, theme }) {
+  const config = PROFICIENCY_CONFIG[proficiency];
+  const colors = theme === "dark" ? config.dark : config.light;
+  const Icon = config.icon;
+  return (
+    <span
+      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold"
+      style={{ backgroundColor: colors.bg, color: colors.text }}
+    >
+      <Icon className="w-3 h-3" />
+      {proficiency}
+    </span>
+  );
+}
 
-export default function Skills({ theme }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
+function SkillRow({ name, level, proficiency, theme, skillIndex }) {
   const textColor = theme === "dark" ? "#f1f5f9" : "#0f172a";
-  const subTextColor = theme === "dark" ? "#cbd5e1" : "#475569";
-  const bgColor = theme === "dark" ? "#1e293b" : "#ffffff";
-  const borderColor = theme === "dark" ? "#334155" : "#cbd5e1";
-  const cardHoverBg = theme === "dark" ? "#0f172a" : "#f8fafc";
+  const subTextColor = theme === "dark" ? "#94a3b8" : "#64748b";
   const progressBg = theme === "dark" ? "#0f172a" : "#f1f5f9";
 
-  const container = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.15 } },
-  };
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut", delay: skillIndex * 0.07 }}
+      whileHover={{ x: 4 }}
+      className="group/skill"
+    >
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-2">
+          <span className="text-sm font-semibold" style={{ color: textColor }}>
+            {name}
+          </span>
+          <motion.div whileHover={{ scale: 1.05 }}>
+            <ProficiencyBadge proficiency={proficiency} theme={theme} />
+          </motion.div>
+        </div>
+        <motion.span
+          className="text-xs font-bold px-2 py-1 rounded-full"
+          style={{ backgroundColor: progressBg, color: textColor }}
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: skillIndex * 0.07 + 0.5, duration: 0.3 }}
+        >
+          {level}%
+        </motion.span>
+      </div>
 
-  const item = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
+      <div className="relative">
+        <div
+          className="w-full h-2 rounded-full overflow-hidden shadow-inner"
+          style={{ backgroundColor: progressBg }}
+        >
+          <motion.div
+            className="h-full rounded-full relative overflow-hidden"
+            initial={{ width: 0 }}
+            animate={{ width: `${level}%` }}
+            transition={{
+              duration: 1.5,
+              ease: "easeOut",
+              delay: skillIndex * 0.07,
+            }}
+          >
+            {/* We use a CSS var trick via inline style since Tailwind gradient classes need the tab color */}
+            <div className="absolute inset-0 gradient-fill" />
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+              initial={{ x: "-100%" }}
+              animate={{ x: "100%" }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatDelay: 3,
+                ease: "easeInOut",
+              }}
+            />
+          </motion.div>
+        </div>
+        <motion.div
+          className="absolute top-0 h-2 w-0.5 bg-white rounded-full"
+          initial={{ left: "0%" }}
+          animate={{ left: `${level}%` }}
+          transition={{
+            duration: 1.5,
+            ease: "easeOut",
+            delay: skillIndex * 0.07,
+          }}
+          style={{ transform: "translateX(-50%)" }}
+        />
+      </div>
+    </motion.div>
+  );
+}
 
-  const skillItem = {
-    hidden: { opacity: 0, x: -20 },
-    visible: (i) => ({
-      opacity: 1,
-      x: 0,
-      transition: { delay: i * 0.1, duration: 0.5, ease: "easeOut" },
-    }),
+// Wrapper that injects gradient color into skill rows via a style tag
+function SkillRowColored({ tab, theme, ...props }) {
+  const gradClass = theme === "dark" ? tab.darkColor : tab.color;
+  // Map Tailwind gradient class names to actual CSS for the fill div
+  const gradMap = {
+    "from-blue-500 to-cyan-500": "linear-gradient(to right,#3b82f6,#06b6d4)",
+    "from-blue-400 to-cyan-400": "linear-gradient(to right,#60a5fa,#22d3ee)",
+    "from-emerald-500 to-teal-500": "linear-gradient(to right,#10b981,#14b8a6)",
+    "from-emerald-400 to-teal-400": "linear-gradient(to right,#34d399,#2dd4bf)",
+    "from-purple-500 to-pink-500": "linear-gradient(to right,#a855f7,#ec4899)",
+    "from-purple-400 to-pink-400": "linear-gradient(to right,#c084fc,#f472b6)",
+    "from-orange-500 to-red-500": "linear-gradient(to right,#f97316,#ef4444)",
+    "from-orange-400 to-red-400": "linear-gradient(to right,#fb923c,#f87171)",
   };
+  const gradient =
+    gradMap[gradClass] || "linear-gradient(to right,#6366f1,#8b5cf6)";
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{
+        duration: 0.4,
+        ease: "easeOut",
+        delay: props.skillIndex * 0.07,
+      }}
+      whileHover={{ x: 4 }}
+    >
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-2">
+          <span
+            className="text-sm font-semibold"
+            style={{ color: theme === "dark" ? "#f1f5f9" : "#0f172a" }}
+          >
+            {props.name}
+          </span>
+          <motion.div whileHover={{ scale: 1.05 }}>
+            <ProficiencyBadge proficiency={props.proficiency} theme={theme} />
+          </motion.div>
+        </div>
+        <motion.span
+          className="text-xs font-bold px-2 py-1 rounded-full"
+          style={{
+            backgroundColor: theme === "dark" ? "#0f172a" : "#f1f5f9",
+            color: theme === "dark" ? "#f1f5f9" : "#0f172a",
+          }}
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: props.skillIndex * 0.07 + 0.5, duration: 0.3 }}
+        >
+          {props.level}%
+        </motion.span>
+      </div>
+
+      <div className="relative">
+        <div
+          className="w-full h-2 rounded-full overflow-hidden shadow-inner"
+          style={{ backgroundColor: theme === "dark" ? "#0f172a" : "#f1f5f9" }}
+        >
+          <motion.div
+            className="h-full rounded-full relative overflow-hidden"
+            style={{ background: gradient }}
+            initial={{ width: 0 }}
+            animate={{ width: `${props.level}%` }}
+            transition={{
+              duration: 1.5,
+              ease: "easeOut",
+              delay: props.skillIndex * 0.07,
+            }}
+          >
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+              initial={{ x: "-100%" }}
+              animate={{ x: "100%" }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatDelay: 3,
+                ease: "easeInOut",
+              }}
+            />
+          </motion.div>
+        </div>
+        <motion.div
+          className="absolute top-0 h-2 w-0.5 bg-white rounded-full"
+          initial={{ left: "0%" }}
+          animate={{ left: `${props.level}%` }}
+          transition={{
+            duration: 1.5,
+            ease: "easeOut",
+            delay: props.skillIndex * 0.07,
+          }}
+          style={{ transform: "translateX(-50%)" }}
+        />
+      </div>
+    </motion.div>
+  );
+}
+
+export default function Skills({ theme = "light" }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const [activeTab, setActiveTab] = useState("frontend");
+
+  const isDark = theme === "dark";
+  const textColor = isDark ? "#f1f5f9" : "#0f172a";
+  const subTextColor = isDark ? "#cbd5e1" : "#475569";
+  const bgColor = isDark ? "#1e293b" : "#ffffff";
+  const borderColor = isDark ? "#334155" : "#e2e8f0";
+  const cardHoverBg = isDark ? "#0f172a" : "#f8fafc";
+
+  const currentTab = TABS.find((t) => t.id === activeTab);
+  const avg = Math.round(
+    currentTab.skills.reduce((a, s) => a + s.level, 0) /
+      currentTab.skills.length,
+  );
+  const uniqueProficiencies = [
+    ...new Set(currentTab.skills.map((s) => s.proficiency)),
+  ];
 
   return (
     <section id="skills" className="py-20 md:py-24" ref={ref}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section header */}
+        <div className="text-center mb-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -142,232 +339,199 @@ export default function Skills({ theme }) {
               Tools & Technologies
             </h2>
             <p
-              className="text-base max-w-3xl mx-auto leading-relaxed font-medium"
+              className="text-base max-w-2xl mx-auto leading-relaxed font-medium"
               style={{ color: subTextColor }}
             >
-              A comprehensive overview of my technical expertise across frontend, backend, 
-              databases, and emerging technologies with proficiency levels.
+              A comprehensive overview of my technical expertise across
+              frontend, backend, databases, and emerging technologies with
+              proficiency levels.
             </p>
           </motion.div>
         </div>
 
-        {/* Skills Grid */}
+        {/* Tabs */}
         <motion.div
-          variants={container}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+          initial={{ opacity: 0, y: 12 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="flex justify-center gap-2 flex-wrap mb-8"
         >
-          {skillGroups.map(({ title, icon: Icon, color, darkColor, skills }, groupIndex) => (
-            <motion.div
-              key={title}
-              variants={item}
-              className="group relative"
-              whileHover={{ y: -4 }}
-              transition={{ duration: 0.3 }}
-            >
-              {/* Card Container */}
-              <div
-                className="relative p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 border-2 overflow-hidden"
+          {TABS.map((tab) => {
+            const Icon = tab.icon;
+            const isActive = activeTab === tab.id;
+            return (
+              <motion.button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.96 }}
+                className="flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full border-2 transition-colors duration-200 cursor-pointer"
                 style={{
-                  backgroundColor: bgColor,
-                  borderColor: borderColor,
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = cardHoverBg;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = bgColor;
+                  backgroundColor: isActive
+                    ? isDark
+                      ? "#f1f5f9"
+                      : "#0f172a"
+                    : bgColor,
+                  color: isActive
+                    ? isDark
+                      ? "#0f172a"
+                      : "#ffffff"
+                    : subTextColor,
+                  borderColor: isActive
+                    ? isDark
+                      ? "#f1f5f9"
+                      : "#0f172a"
+                    : borderColor,
                 }}
               >
-                {/* Background Gradient */}
-                <div 
-                  className={`absolute top-0 right-0 w-24 h-24 rounded-full opacity-10 blur-xl bg-gradient-to-br ${theme === "dark" ? darkColor : color} group-hover:opacity-20 transition-opacity duration-500`}
-                />
-                
-                {/* Header */}
-                <div className="flex items-center gap-3 mb-6 relative z-10">
-                  <motion.div 
-                    className={`p-3 rounded-xl bg-gradient-to-br ${theme === "dark" ? darkColor : color} shadow-md`}
+                <Icon className="w-4 h-4" />
+                {tab.label}
+              </motion.button>
+            );
+          })}
+        </motion.div>
+
+        {/* Skill card — AnimatePresence swaps on tab change */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
+            <div
+              className="relative p-6 rounded-2xl shadow-lg border-2 overflow-hidden transition-colors duration-300"
+              style={{ backgroundColor: bgColor, borderColor }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = cardHoverBg;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = bgColor;
+              }}
+            >
+              {/* Decorative blob */}
+              <div
+                className={`absolute top-0 right-0 w-28 h-28 rounded-full opacity-10 blur-2xl bg-gradient-to-br ${
+                  isDark ? currentTab.darkColor : currentTab.color
+                } group-hover:opacity-20 transition-opacity duration-500`}
+              />
+
+              {/* Card header */}
+              <div className="flex items-center justify-between mb-6 relative z-10">
+                <div className="flex items-center gap-3">
+                  <motion.div
+                    className={`p-3 rounded-xl bg-gradient-to-br ${
+                      isDark ? currentTab.darkColor : currentTab.color
+                    } shadow-md`}
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <Icon className="w-5 h-5 text-white" />
+                    {(() => {
+                      const Icon = currentTab.icon;
+                      return <Icon className="w-5 h-5 text-white" />;
+                    })()}
                   </motion.div>
                   <div>
                     <h3
                       className="text-lg font-bold"
                       style={{ color: textColor }}
                     >
-                      {title}
+                      {currentTab.title}
                     </h3>
                     <p
                       className="text-xs font-medium mt-0.5"
                       style={{ color: subTextColor }}
                     >
-                      {skills.length} Technologies
+                      {currentTab.skills.length} Technologies
                     </p>
                   </div>
                 </div>
-
-                {/* Skills List */}
-                <div className="space-y-4 relative z-10">
-                  {skills.map(({ name, level, proficiency }, skillIndex) => (
-                    <motion.div
-                      key={name}
-                      custom={skillIndex}
-                      variants={skillItem}
-                      initial="hidden"
-                      animate={isInView ? "visible" : "hidden"}
-                      className="group/skill"
-                      whileHover={{ x: 4 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      {/* Skill Header */}
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center gap-2">
-                          <span
-                            className="text-sm font-semibold"
-                            style={{ color: textColor }}
-                          >
-                            {name}
-                          </span>
-                          <motion.div 
-                            className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold"
-                            style={{ 
-                              backgroundColor: theme === "dark" ? "#334155" : "#e2e8f0",
-                              color: getProficiencyColor(proficiency, theme)
-                            }}
-                            whileHover={{ scale: 1.05 }}
-                            transition={{ duration: 0.2 }}
-                          >
-                            {getProficiencyIcon(proficiency)}
-                            <span className="text-xs">{proficiency}</span>
-                          </motion.div>
-                        </div>
-                        <motion.span
-                          className="text-xs font-bold px-2 py-1 rounded-full"
-                          style={{
-                            backgroundColor: theme === "dark" ? "#0f172a" : "#f1f5f9",
-                            color: textColor,
-                          }}
-                          initial={{ scale: 0 }}
-                          animate={isInView ? { scale: 1 } : { scale: 0 }}
-                          transition={{ delay: groupIndex * 0.2 + skillIndex * 0.1 + 0.5, duration: 0.3 }}
-                        >
-                          {level}%
-                        </motion.span>
-                      </div>
-
-                      {/* Progress Bar */}
-                      <div className="relative">
-                        <div
-                          className="w-full h-2 rounded-full overflow-hidden shadow-inner"
-                          style={{ backgroundColor: progressBg }}
-                        >
-                          <motion.div
-                            className={`h-full rounded-full bg-gradient-to-r ${theme === "dark" ? darkColor : color} shadow-sm relative overflow-hidden`}
-                            initial={{ width: 0 }}
-                            animate={isInView ? { width: `${level}%` } : { width: 0 }}
-                            transition={{ 
-                              duration: 1.5, 
-                              ease: "easeOut", 
-                              delay: groupIndex * 0.2 + skillIndex * 0.1 
-                            }}
-                            whileHover={{ scale: 1.02 }}
-                          >
-                            {/* Shimmer Effect */}
-                            <motion.div 
-                              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                              initial={{ x: "-100%" }}
-                              animate={{ x: "100%" }}
-                              transition={{ 
-                                duration: 2, 
-                                repeat: Infinity, 
-                                repeatDelay: 3,
-                                ease: "easeInOut"
-                              }}
-                            />
-                          </motion.div>
-                        </div>
-                        
-                        {/* Progress Indicator */}
-                        <motion.div
-                          className="absolute top-0 h-2 w-0.5 bg-white rounded-full shadow-md"
-                          initial={{ left: "0%" }}
-                          animate={isInView ? { left: `${level}%` } : { left: "0%" }}
-                          transition={{ 
-                            duration: 1.5, 
-                            ease: "easeOut", 
-                            delay: groupIndex * 0.2 + skillIndex * 0.1 
-                          }}
-                          style={{ transform: "translateX(-50%)" }}
-                        />
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* Card Footer */}
-                <div 
-                  className={`mt-6 pt-4 border-t-2 border-dashed opacity-50`}
-                  style={{ borderColor: borderColor }}
+                <motion.span
+                  className="text-xs font-bold px-3 py-1.5 rounded-full border-2"
+                  style={{
+                    borderColor,
+                    color: subTextColor,
+                    backgroundColor: bgColor,
+                  }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3 }}
                 >
-                  <div className="flex items-center justify-between text-xs font-medium">
-                    <span style={{ color: subTextColor }}>
-                      Avg. Proficiency
-                    </span>
-                    <motion.span 
-                      className="font-bold"
-                      style={{ color: textColor }}
-                      initial={{ opacity: 0 }}
-                      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                      transition={{ delay: groupIndex * 0.2 + 1, duration: 0.5 }}
-                    >
-                      {Math.round(skills.reduce((acc, skill) => acc + skill.level, 0) / skills.length)}%
-                    </motion.span>
-                  </div>
-                </div>
+                  Avg {avg}%
+                </motion.span>
               </div>
-            </motion.div>
-          ))}
-        </motion.div>
 
-        {/* Skills Summary */}
+              {/* Skills */}
+              <div className="space-y-4 relative z-10">
+                {currentTab.skills.map((skill, i) => (
+                  <SkillRowColored
+                    key={`${activeTab}-${skill.name}`}
+                    tab={currentTab}
+                    theme={theme}
+                    skillIndex={i}
+                    {...skill}
+                  />
+                ))}
+              </div>
+
+              {/* Footer */}
+              <div
+                className="mt-6 pt-4 border-t-2 border-dashed flex items-center justify-between text-xs font-medium opacity-60"
+                style={{ borderColor }}
+              >
+                <span style={{ color: subTextColor }}>Avg. Proficiency</span>
+                <motion.span
+                  className="font-bold"
+                  style={{ color: textColor }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.9 }}
+                >
+                  {avg}%
+                </motion.span>
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Legend */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-12 text-center"
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="mt-8 flex justify-center"
         >
-          <motion.div 
-            className="inline-flex items-center gap-4 px-6 py-3 rounded-xl border-2"
-            style={{
-              backgroundColor: theme === "dark" ? "#1e293b" : "#f8fafc",
-              borderColor: borderColor,
-            }}
-            whileHover={{ scale: 1.05 }}
+          <motion.div
+            className="inline-flex items-center gap-5 px-6 py-3 rounded-xl border-2"
+            style={{ backgroundColor: bgColor, borderColor }}
+            whileHover={{ scale: 1.04 }}
             transition={{ duration: 0.3 }}
           >
-            {[
-              { level: "Expert", icon: Star, color: getProficiencyColor("Expert", theme) },
-              { level: "Advanced", icon: TrendingUp, color: getProficiencyColor("Advanced", theme) },
-              { level: "Intermediate", icon: CheckCircle2, color: getProficiencyColor("Intermediate", theme) }
-            ].map(({ level, icon: Icon, color }, index) => (
-              <motion.div 
-                key={level}
-                className="flex items-center gap-1.5"
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                transition={{ delay: 1 + index * 0.1, duration: 0.3 }}
-                whileHover={{ scale: 1.1 }}
-              >
-                <Icon className="w-4 h-4" style={{ color }} />
-                <span className="text-xs font-semibold" style={{ color: textColor }}>
-                  {level}
-                </span>
-              </motion.div>
-            ))}
+            {uniqueProficiencies.map((p, i) => {
+              const Icon = PROFICIENCY_CONFIG[p].icon;
+              const colors = isDark
+                ? PROFICIENCY_CONFIG[p].dark
+                : PROFICIENCY_CONFIG[p].light;
+              return (
+                <motion.div
+                  key={p}
+                  className="flex items-center gap-1.5"
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.7 + i * 0.1 }}
+                  whileHover={{ scale: 1.1 }}
+                >
+                  <Icon className="w-4 h-4" style={{ color: colors.text }} />
+                  <span
+                    className="text-xs font-semibold"
+                    style={{ color: textColor }}
+                  >
+                    {p}
+                  </span>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </motion.div>
       </div>
