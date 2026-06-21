@@ -6,16 +6,16 @@ const experience = [
   {
     role: "Frontend Developer",
     company: "Metnee Systems PLC",
-    year: "Aug 2025 - Present",
+    year: "Feb 2025 - Jun 2026",
     details:
-      "Developing high-performance user interfaces using React, Next.js, and Tailwind CSS. Successfully translated 15+ Figma designs into pixel-perfect, accessible components. Optimized application performance by 40% through code splitting and lazy loading. Collaborated with backend teams to integrate RESTful APIs and improve user experience.",
+      "Designed, developed, and maintained modern web applications for clients in Ethiopia and South Korea. Built scalable, responsive, and production-ready user interfaces using React, Next.js, TypeScript, and Tailwind CSS while collaborating with cross-functional teams to deliver enterprise-grade solutions.",
   },
   {
     role: "Frontend Developer (Intern)",
     company: "Metnee Systems PLC",
-    year: "Nov 2024 - Feb 2025",
+    year: "Sep 2024 - Jan 2025",
     details:
-      "Built responsive UI components and integrated client-side APIs using React and Tailwind CSS. Resolved 25+ UI bugs and implemented mobile-first design principles. Gained hands-on experience with version control, code reviews, and agile development practices. Contributed to improving application accessibility and cross-browser compatibility.",
+      "Developed administrative dashboards, data management systems, and web application interfaces using modern frontend technologies. Integrated RESTful APIs, improved application responsiveness and usability, and collaborated with team members to deliver production-ready solutions.",
   },
 ];
 
@@ -113,16 +113,22 @@ function Experience({ theme }) {
               </div>
 
               {/* Details with check icon */}
-              <div className="flex items-start gap-3 p-4 rounded-xl" style={{
-                backgroundColor: theme === "dark" ? "#0f172a" : "#f1f5f9",
-                border: `1px solid ${borderColor}`
-              }}>
+              <div
+                className="flex items-start gap-3 p-4 rounded-xl"
+                style={{
+                  backgroundColor: theme === "dark" ? "#0f172a" : "#f1f5f9",
+                  border: `1px solid ${borderColor}`,
+                }}
+              >
                 <FaCheckCircle
                   size={18}
                   color={iconColor}
                   className="mt-0.5 flex-shrink-0"
                 />
-                <p className="text-sm leading-relaxed font-medium" style={{ color: subTextColor }}>
+                <p
+                  className="text-sm leading-relaxed font-medium"
+                  style={{ color: subTextColor }}
+                >
                   {details}
                 </p>
               </div>

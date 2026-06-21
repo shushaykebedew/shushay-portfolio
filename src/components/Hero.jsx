@@ -37,16 +37,34 @@ export default function Hero({ theme }) {
           initial="hidden"
           animate="visible"
         >
-          <motion.div
-            className={`inline-flex items-center gap-2 mb-4 rounded-full border px-3 py-1.5 text-xs font-semibold`}
-            style={{
-              backgroundColor: theme === "dark" ? "#0f172a" : "#ffffff",
-              color: theme === "dark" ? "#60a5fa" : "#1e40af",
-              borderColor: theme === "dark" ? "#334155" : "#cbd5e1",
-            }}
-            variants={itemVariants}
-          >
-            <FaGlobe size={14} aria-hidden="true" /> FULL STACK DEVELOPER
+          <motion.div className="flex flex-wrap items-center gap-3 mb-6" variants={itemVariants}>
+            {/* Availability Badge */}
+            <div
+              className="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-300 hover:scale-105"
+              style={{
+                backgroundColor: theme === "dark" ? "rgba(16, 185, 129, 0.1)" : "rgba(209, 250, 229, 0.4)",
+                color: theme === "dark" ? "#34d399" : "#047857",
+                borderColor: theme === "dark" ? "rgba(16, 185, 129, 0.25)" : "rgba(16, 185, 129, 0.3)",
+              }}
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              AVAILABLE FOR NEW OPPORTUNITIES
+            </div>
+
+            {/* Developer Title Badge */}
+            <div
+              className="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-300 hover:scale-105"
+              style={{
+                backgroundColor: theme === "dark" ? "#0f172a" : "#ffffff",
+                color: theme === "dark" ? "#60a5fa" : "#1e40af",
+                borderColor: theme === "dark" ? "#334155" : "#cbd5e1",
+              }}
+            >
+              <FaGlobe size={14} aria-hidden="true" /> FULL STACK DEVELOPER
+            </div>
           </motion.div>
 
           <motion.h1
@@ -77,10 +95,6 @@ export default function Hero({ theme }) {
             variants={itemVariants}
           >
             <div className="flex flex-wrap gap-4 items-center">
-              <span className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                Available for opportunities
-              </span>
               <span className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-blue-500" />
                 Remote & On-site
