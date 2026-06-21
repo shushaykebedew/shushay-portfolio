@@ -84,12 +84,23 @@ export default function Education({ theme }) {
                 >
                   <GraduationCap size={24} color={iconColor} />
                 </div>
-                <h3
-                  className="text-base sm:text-xl font-bold"
-                  style={{ color: textColor }}
-                >
-                  {degree}
-                </h3>
+                <div className="flex flex-col gap-1">
+                  <h3
+                    className="text-base sm:text-xl font-bold"
+                    style={{ color: textColor }}
+                  >
+                    {degree}
+                  </h3>
+                  <div className="flex items-center gap-4">
+                    {/* <Calendar size={16} color={iconColor} /> */}
+                    <p
+                      className="text-base font-semibold"
+                      style={{ color: subTextColor }}
+                    >
+                      {year}
+                    </p>
+                  </div>
+                </div>
               </div>
 
               {/* Institute & Year */}
@@ -102,18 +113,9 @@ export default function Education({ theme }) {
                   {institute}
                 </p>
               </div>
-              <div className="flex items-center gap-4">
-                <Calendar size={20} color={iconColor} />
-                <p
-                  className="text-base font-semibold"
-                  style={{ color: subTextColor }}
-                >
-                  {year}
-                </p>
-              </div>
 
               {/* Details with check icon */}
-              <div className="flex items-start gap-2 mt-4">
+              <div className="flex items-start gap-2">
                 <FaCheckCircle
                   size={20}
                   color={iconColor}

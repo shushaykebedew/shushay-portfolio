@@ -7,15 +7,22 @@ const experience = [
     role: "Frontend Developer",
     company: "Metnee Systems PLC",
     year: "Feb 2025 - Jun 2026",
-    details:
-      "Designed, developed, and maintained modern web applications for clients in Ethiopia and South Korea. Built scalable, responsive, and production-ready user interfaces using React, Next.js, TypeScript, and Tailwind CSS while collaborating with cross-functional teams to deliver enterprise-grade solutions.",
+    details: [
+      "Co-developed and deployed 4+ responsive web applications for international clients (Ethiopia and South Korea), boosting mobile responsiveness and user engagement.",
+      "Implemented state management using Redux Toolkit/Zustand, reducing redundant component re-renders by 35% and improving client-side responsiveness.",
+      "Designed reusable component libraries using React and TypeScript, accelerating development cycle speed by 20% for future feature launches.",
+      "Structured RESTful API integrations with secure JWT authentication and optimized payloads, reducing initial load latency by 15%.",
+    ],
   },
   {
     role: "Frontend Developer (Intern)",
     company: "Metnee Systems PLC",
     year: "Sep 2024 - Jan 2025",
-    details:
-      "Developed administrative dashboards, data management systems, and web application interfaces using modern frontend technologies. Integrated RESTful APIs, improved application responsiveness and usability, and collaborated with team members to deliver production-ready solutions.",
+    details: [
+      "Built administrative dashboards and data views supporting complex filtering, sorting, and pagination of large datasets.",
+      "Improved page accessibility (WCAG 2.1 AA) and SEO standards, raising web health metrics.",
+      "Resolved 40+ UI/UX tickets and collaborated in migrating legacy pages to modular React.",
+    ],
   },
 ];
 
@@ -76,19 +83,30 @@ function Experience({ theme }) {
               animate="visible"
             >
               {/* Header with Icon */}
-              <div className="flex flex-col md:flex-row items-start gap-4 text-left">
+              <div className="flex   items-start gap-4 text-left">
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md"
                   style={{ backgroundColor: iconBg }}
                 >
                   <Briefcase size={20} color={iconColor} />
                 </div>
-                <h3
-                  className="text-lg sm:text-xl font-bold leading-tight"
-                  style={{ color: textColor }}
-                >
-                  {role}
-                </h3>
+                <div className="flex flex-col gap-1">
+                  <h3
+                    className="text-lg sm:text-xl font-bold leading-tight"
+                    style={{ color: textColor }}
+                  >
+                    {role}
+                  </h3>
+                  <div className="flex items-center gap-3">
+                    {/* <Calendar size={16} color={iconColor} /> */}
+                    <p
+                      className="text-sm font-semibold"
+                      style={{ color: subTextColor }}
+                    >
+                      {year}
+                    </p>
+                  </div>
+                </div>
               </div>
 
               {/* Company & Year */}
@@ -101,36 +119,47 @@ function Experience({ theme }) {
                     {company}
                   </p>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Calendar size={18} color={iconColor} />
-                  <p
-                    className="text-sm font-semibold"
-                    style={{ color: subTextColor }}
-                  >
-                    {year}
-                  </p>
-                </div>
               </div>
 
               {/* Details with check icon */}
               <div
-                className="flex items-start gap-3 p-4 rounded-xl"
+                className="flex flex-col gap-3 p-4 rounded-xl"
                 style={{
                   backgroundColor: theme === "dark" ? "#0f172a" : "#f1f5f9",
                   border: `1px solid ${borderColor}`,
                 }}
               >
-                <FaCheckCircle
-                  size={18}
-                  color={iconColor}
-                  className="mt-0.5 flex-shrink-0"
-                />
-                <p
-                  className="text-sm leading-relaxed font-medium"
-                  style={{ color: subTextColor }}
-                >
-                  {details}
-                </p>
+                {Array.isArray(details) ? (
+                  details.map((detail, idx) => (
+                    <div key={idx} className="flex items-start gap-3">
+                      <FaCheckCircle
+                        size={18}
+                        color={iconColor}
+                        className="mt-0.5 flex-shrink-0"
+                      />
+                      <p
+                        className="text-sm leading-relaxed font-medium"
+                        style={{ color: subTextColor }}
+                      >
+                        {detail}
+                      </p>
+                    </div>
+                  ))
+                ) : (
+                  <div className="flex items-start gap-3">
+                    <FaCheckCircle
+                      size={18}
+                      color={iconColor}
+                      className="mt-0.5 flex-shrink-0"
+                    />
+                    <p
+                      className="text-sm leading-relaxed font-medium"
+                      style={{ color: subTextColor }}
+                    >
+                      {details}
+                    </p>
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}

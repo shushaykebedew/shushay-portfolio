@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 import sheqleeDashboard from "../assets/sheqlee-dashboard.png";
 import qrCodeScan from "../assets/qr-code-scan.png";
@@ -162,7 +163,7 @@ export default function Projects({ theme }) {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
           {projects.map(
-            ({ title, description, image, tech, demoUrl }, index) => (
+            ({ title, description, image, tech, demoUrl, githubUrl }, index) => (
               <motion.div
                 key={title}
                 className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-[1.02] flex flex-col h-full group"
@@ -200,23 +201,36 @@ export default function Projects({ theme }) {
                     {description}
                   </p>
 
-                  {demoUrl && (
-                    <div className="mb-4">
+                  <div className="flex gap-3 mb-6 mt-2">
+                    {demoUrl && (
                       <a
                         href={demoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center px-4 py-1 rounded-lg font-medium transition-all duration-300 hover:scale-105"
+                        className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105"
                         style={{
-                          backgroundColor:
-                            theme === "dark" ? "#3b82f6" : "#2563eb",
+                          backgroundColor: theme === "dark" ? "#3b82f6" : "#2563eb",
                           color: "#ffffff",
                         }}
                       >
-                        View Demo →
+                        <FaExternalLinkAlt size={14} /> View Demo
                       </a>
-                    </div>
-                  )}
+                    )}
+                    {githubUrl && (
+                      <a
+                        href={githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105"
+                        style={{
+                          backgroundColor: theme === "dark" ? "#334155" : "#e2e8f0",
+                          color: theme === "dark" ? "#f1f5f9" : "#0f172a",
+                        }}
+                      >
+                        <FaGithub size={16} /> GitHub
+                      </a>
+                    )}
+                  </div>
 
                   <div className="flex flex-wrap gap-2 mt-auto">
                     {tech.map((t) => (

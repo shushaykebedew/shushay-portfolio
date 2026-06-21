@@ -9,12 +9,7 @@ export default function About({ theme }) {
   const borderColor = theme === "dark" ? "#334155" : "#cbd5e1";
   const iconColor = theme === "dark" ? "#60a5fa" : "#1e40af";
 
-  const skills = [
-    "Building end-to-end web applications with modern tech stacks.",
-    "Designing and implementing RESTful APIs and backend systems.",
-    "Database architecture, optimization, and integration.",
-    "Writing clean, maintainable, and scalable code.",
-  ];
+
 
   // Variants for skill items
   const skillVariants = {

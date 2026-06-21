@@ -11,20 +11,20 @@ import {
   FaCertificate,
 } from "react-icons/fa";
 
+const links = [
+  { label: "Home", id: "home", icon: FaHome },
+  { label: "About", id: "about", icon: FaUser },
+  { label: "Skills", id: "skills", icon: FaTools },
+  { label: "Experience", id: "experience", icon: FaBriefcase },
+  { label: "Certifications", id: "certifications", icon: FaCertificate },
+  { label: "Projects", id: "projects", icon: FaProjectDiagram },
+  { label: "Education", id: "education", icon: FaGraduationCap },
+  { label: "Contact", id: "contact", icon: FaEnvelope },
+];
+
 export default function Navbar({ theme, setTheme }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-
-  const links = [
-    { label: "Home", id: "home", icon: FaHome },
-    { label: "About", id: "about", icon: FaUser },
-    { label: "Skills", id: "skills", icon: FaTools },
-    { label: "Experience", id: "experience", icon: FaBriefcase },
-    { label: "Certifications", id: "certifications", icon: FaCertificate },
-    { label: "Projects", id: "projects", icon: FaProjectDiagram },
-    { label: "Education", id: "education", icon: FaGraduationCap },
-    { label: "Contact", id: "contact", icon: FaEnvelope },
-  ];
 
   // Detect active section on scroll
   useEffect(() => {
@@ -48,7 +48,7 @@ export default function Navbar({ theme, setTheme }) {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("hashchange", handleScroll);
     };
-  }, [links]);
+  }, []);
 
   return (
     <header

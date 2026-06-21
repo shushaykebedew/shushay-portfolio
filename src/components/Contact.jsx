@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
-import { MapPin, Phone, Mail, CheckCircle, AlertCircle, Loader } from "lucide-react";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  CheckCircle,
+  AlertCircle,
+  Loader,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "@emailjs/browser";
 
@@ -22,47 +29,49 @@ export default function Contact({ theme }) {
     if (PUBLIC_KEY) {
       emailjs.init(PUBLIC_KEY);
     } else {
-      console.error("EmailJS Public Key is missing!");
+      console.warn(
+        "EmailJS Public Key is missing. Contact form will not work.",
+      );
     }
   }, [PUBLIC_KEY]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    
+
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: "" }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
     } else if (formData.name.trim().length < 2) {
       newErrors.name = "Name must be at least 2 characters";
     }
-    
+
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Please enter a valid email address";
     }
-    
+
     if (!formData.subject.trim()) {
       newErrors.subject = "Subject is required";
     } else if (formData.subject.trim().length < 5) {
       newErrors.subject = "Subject must be at least 5 characters";
     }
-    
+
     if (!formData.message.trim()) {
       newErrors.message = "Message is required";
     } else if (formData.message.trim().length < 10) {
       newErrors.message = "Message must be at least 10 characters";
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -71,8 +80,7 @@ export default function Contact({ theme }) {
     e.preventDefault();
 
     if (!validateForm()) {
-      setFeedback({ type: "error", message: "Please fix the errors below." });
-      setTimeout(() => setFeedback(null), 5000);
+      // Errors are shown inline below each field — no extra feedback banner needed
       return;
     }
 
@@ -91,18 +99,23 @@ export default function Contact({ theme }) {
       .send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
       .then(() => {
         setLoading(false);
-        setFeedback({ 
-          type: "success", 
-          message: "Thank you! Your message has been sent successfully. I'll get back to you within 24 hours." 
+        setFeedback({
+          type: "success",
+          message:
+            "Thank you! Your message has been sent successfully. I'll get back to you within 24 hours.",
         });
         setFormData({ name: "", email: "", subject: "", message: "" });
         setTimeout(() => setFeedback(null), 8000);
       })
       .catch((error) => {
         setLoading(false);
-        setFeedback({ 
-          type: "error", 
-          message: "Sorry, there was an error sending your message. Please try again or contact me directly." 
+        console.error("EmailJS error status:", error?.status);
+        console.error("EmailJS error text:", error?.text);
+        console.error("Full error:", error);
+        setFeedback({
+          type: "error",
+          message:
+            "Sorry, there was an error sending your message. Please try again or contact me directly.",
         });
         setTimeout(() => setFeedback(null), 8000);
       });
@@ -124,8 +137,14 @@ export default function Contact({ theme }) {
     }),
   };
 
-  const shouldBtnActive = Object.keys(errors).length === 0 && 
-    formData.name && formData.email && formData.subject && formData.message;
+  // Filter out cleared errors (empty strings) before checking
+  const hasErrors = Object.values(errors).some((e) => e !== "");
+  const shouldBtnActive =
+    !hasErrors &&
+    formData.name &&
+    formData.email &&
+    formData.subject &&
+    formData.message;
 
   return (
     <section id="contact" className="py-16 md:py-20">
@@ -148,25 +167,35 @@ export default function Contact({ theme }) {
             className="max-w-2xl mx-auto leading-relaxed text-lg font-medium mb-4"
             style={{ color: subTextColor }}
           >
-            Ready to bring your ideas to life? I'm available for full-stack development projects, 
-            consulting, and collaboration opportunities.
+            Ready to bring your ideas to life? I'm available for full-stack
+            development projects, consulting, and collaboration opportunities.
           </p>
-          
+
           {/* Enhanced CTA */}
           <div className="flex flex-wrap justify-center gap-4 text-sm">
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full" style={{
-              backgroundColor: theme === "dark" ? "#1e293b" : "#f1f5f9",
-              border: `1px solid ${borderColor}`
-            }}>
+            <div
+              className="flex items-center gap-2 px-4 py-2 rounded-full"
+              style={{
+                backgroundColor: theme === "dark" ? "#1e293b" : "#f1f5f9",
+                border: `1px solid ${borderColor}`,
+              }}
+            >
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span style={{ color: textColor }} className="font-medium">Available for opportunities</span>
+              <span style={{ color: textColor }} className="font-medium">
+                Available for opportunities
+              </span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full" style={{
-              backgroundColor: theme === "dark" ? "#1e293b" : "#f1f5f9",
-              border: `1px solid ${borderColor}`
-            }}>
+            <div
+              className="flex items-center gap-2 px-4 py-2 rounded-full"
+              style={{
+                backgroundColor: theme === "dark" ? "#1e293b" : "#f1f5f9",
+                border: `1px solid ${borderColor}`,
+              }}
+            >
               <div className="w-2 h-2 rounded-full bg-blue-500" />
-              <span style={{ color: textColor }} className="font-medium">Response within 24 hours</span>
+              <span style={{ color: textColor }} className="font-medium">
+                Response within 24 hours
+              </span>
             </div>
           </div>
         </div>
@@ -286,14 +315,14 @@ export default function Contact({ theme }) {
                 border: `1px solid ${borderColor}`,
               }}
             >
-              <form className="space-y-4" onSubmit={sendEmail}>
+              <form className="space-y-3" onSubmit={sendEmail}>
                 <div>
                   <label
                     className="mb-2 block text-sm font-semibold"
                     htmlFor="name"
                     style={{ color: textColor }}
                   >
-                    Your Name *
+                    Your Name <span className="text-red-400">*</span>
                   </label>
                   <input
                     id="name"
@@ -302,11 +331,10 @@ export default function Contact({ theme }) {
                     onChange={handleInputChange}
                     type="text"
                     required
-                    className={`w-full rounded-2xl border-2 px-4 py-3 text-base font-medium transition-all duration-300 focus:ring-4 focus:ring-indigo-200 dark:focus:ring-indigo-800 focus:border-indigo-500 ${
-                      errors.name ? 'border-red-500 focus:border-red-500' : ''
-                    }`}
+                    className={`w-full rounded-xl border-2 px-4 py-2 text-sm font-medium transition-all duration-300 focus:ring-4 focus:ring-indigo-200 dark:focus:ring-indigo-800 focus:border-indigo-500 ${errors.name ? "border-red-500 focus:border-red-500" : ""
+                      }`}
                     style={{
-                      borderColor: errors.name ? '#ef4444' : borderColor,
+                      borderColor: errors.name ? "#ef4444" : borderColor,
                       backgroundColor: inputBg,
                       color: textColor,
                     }}
@@ -330,7 +358,7 @@ export default function Contact({ theme }) {
                     htmlFor="email"
                     style={{ color: textColor }}
                   >
-                    Your Email *
+                    Your Email <span className="text-red-400">*</span>
                   </label>
                   <input
                     id="email"
@@ -339,11 +367,10 @@ export default function Contact({ theme }) {
                     onChange={handleInputChange}
                     type="email"
                     required
-                    className={`w-full rounded-2xl border-2 px-4 py-3 text-base font-medium transition-all duration-300 focus:ring-4 focus:ring-indigo-200 dark:focus:ring-indigo-800 focus:border-indigo-500 ${
-                      errors.email ? 'border-red-500 focus:border-red-500' : ''
-                    }`}
+                    className={`w-full rounded-xl border-2 px-4 py-2 text-sm font-medium transition-all duration-300 focus:ring-4 focus:ring-indigo-200 dark:focus:ring-indigo-800 focus:border-indigo-500 ${errors.email ? "border-red-500 focus:border-red-500" : ""
+                      }`}
                     style={{
-                      borderColor: errors.email ? '#ef4444' : borderColor,
+                      borderColor: errors.email ? "#ef4444" : borderColor,
                       backgroundColor: inputBg,
                       color: textColor,
                     }}
@@ -368,7 +395,7 @@ export default function Contact({ theme }) {
                     htmlFor="subject"
                     style={{ color: textColor }}
                   >
-                    Subject *
+                    Subject <span className="text-red-400">*</span>
                   </label>
                   <input
                     id="subject"
@@ -377,11 +404,12 @@ export default function Contact({ theme }) {
                     onChange={handleInputChange}
                     type="text"
                     required
-                    className={`w-full rounded-2xl border-2 px-4 py-3 text-base font-medium transition-all duration-300 focus:ring-4 focus:ring-indigo-200 dark:focus:ring-indigo-800 focus:border-indigo-500 ${
-                      errors.subject ? 'border-red-500 focus:border-red-500' : ''
-                    }`}
+                    className={`w-full rounded-xl border-2 px-4 py-2 text-sm font-medium transition-all duration-300 focus:ring-4 focus:ring-indigo-200 dark:focus:ring-indigo-800 focus:border-indigo-500 ${errors.subject
+                      ? "border-red-500 focus:border-red-500"
+                      : ""
+                      }`}
                     style={{
-                      borderColor: errors.subject ? '#ef4444' : borderColor,
+                      borderColor: errors.subject ? "#ef4444" : borderColor,
                       backgroundColor: inputBg,
                       color: textColor,
                     }}
@@ -405,20 +433,21 @@ export default function Contact({ theme }) {
                     htmlFor="message"
                     style={{ color: textColor }}
                   >
-                    Message *
+                    Message <span className="text-red-400">*</span>
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    rows={5}
+                    rows={4}
                     required
-                    className={`w-full resize-none rounded-2xl border-2 px-4 py-3 text-base font-medium transition-all duration-300 focus:ring-4 focus:ring-indigo-200 dark:focus:ring-indigo-800 focus:border-indigo-500 ${
-                      errors.message ? 'border-red-500 focus:border-red-500' : ''
-                    }`}
+                    className={`w-full resize-none rounded-xl border-2 px-4 py-2 text-sm font-medium transition-all duration-300 focus:ring-4 focus:ring-indigo-200 dark:focus:ring-indigo-800 focus:border-indigo-500 ${errors.message
+                      ? "border-red-500 focus:border-red-500"
+                      : ""
+                      }`}
                     style={{
-                      borderColor: errors.message ? '#ef4444' : borderColor,
+                      borderColor: errors.message ? "#ef4444" : borderColor,
                       backgroundColor: inputBg,
                       color: textColor,
                     }}
@@ -439,11 +468,10 @@ export default function Contact({ theme }) {
                 <button
                   type="submit"
                   disabled={loading || !shouldBtnActive}
-                  className={`w-full inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 ${
-                    loading || !shouldBtnActive
-                      ? "opacity-60 cursor-not-allowed bg-gray-400"
-                      : "bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 hover:scale-105 hover:shadow-xl"
-                  }`}
+                  className={`w-full inline-flex items-center justify-center gap-2 rounded-xl px-6 py-2 text-md font-semibold text-white shadow-lg transition-all duration-300 ${loading || !shouldBtnActive
+                    ? "opacity-60 cursor-not-allowed bg-gray-400"
+                    : "cursor-pointer bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 hover:shadow-xl"
+                    }`}
                   aria-label={loading ? "Sending message" : "Send message"}
                 >
                   {loading ? (
@@ -466,11 +494,10 @@ export default function Contact({ theme }) {
                       initial={{ opacity: 0, y: 20, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                      className={`mt-4 p-4 rounded-2xl border-2 ${
-                        feedback.type === "success"
-                          ? "bg-green-50 border-green-200 text-green-800 dark:bg-green-900/20 dark:border-green-700 dark:text-green-300"
-                          : "bg-red-50 border-red-200 text-red-800 dark:bg-red-900/20 dark:border-red-700 dark:text-red-300"
-                      }`}
+                      className={`mt-4 p-4 rounded-2xl border-2 ${feedback.type === "success"
+                        ? "bg-green-50 border-green-200 text-green-800 dark:bg-green-900/20 dark:border-green-700 dark:text-green-300"
+                        : "bg-red-50 border-red-200 text-red-800 dark:bg-red-900/20 dark:border-red-700 dark:text-red-300"
+                        }`}
                     >
                       <div className="flex items-start gap-3">
                         {feedback.type === "success" ? (
@@ -480,7 +507,9 @@ export default function Contact({ theme }) {
                         )}
                         <div>
                           <p className="font-semibold text-sm">
-                            {feedback.type === "success" ? "Message Sent!" : "Error"}
+                            {feedback.type === "success"
+                              ? "Message Sent!"
+                              : "Error"}
                           </p>
                           <p className="text-sm mt-1">{feedback.message}</p>
                         </div>

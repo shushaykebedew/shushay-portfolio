@@ -119,7 +119,7 @@ function ProficiencyBadge({ proficiency, theme }) {
 
 function SkillRow({ name, level, proficiency, theme, skillIndex }) {
   const textColor = theme === "dark" ? "#f1f5f9" : "#0f172a";
-  const subTextColor = theme === "dark" ? "#94a3b8" : "#64748b";
+
   const progressBg = theme === "dark" ? "#0f172a" : "#f1f5f9";
 
   return (

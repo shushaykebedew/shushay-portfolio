@@ -182,7 +182,7 @@ export default function Certifications({ theme }) {
                         borderColor: theme === "dark" ? "#374151" : "#e5e7eb",
                       }}
                     >
-                      <div className="flex items-start justify-between mb-2">
+                      <div className="flex flex-col sm:flex-row items-start justify-between mb-2">
                         <h4
                           className="font-semibold text-base"
                           style={{ color: textColor }}
