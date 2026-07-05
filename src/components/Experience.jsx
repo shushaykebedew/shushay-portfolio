@@ -5,13 +5,23 @@ import { motion } from "framer-motion";
 const experience = [
   {
     role: "Frontend Developer",
+    company: "Blih Marketing and Communications PLC",
+    year: "Jun 2026 - Present",
+    details: [
+      "Building and maintaining production features in Next.js and React, translating Figma designs into pixel-accurate, responsive UI.",
+      "Implementing state management solutions to keep client-side data flow predictable and maintainable across growing feature sets.",
+      "Collaborating closely with design and marketing stakeholders to ship polished, on-brand interfaces under real client timelines.",
+    ],
+  },
+  {
+    role: "Frontend Developer",
     company: "Metnee Systems PLC",
     year: "Feb 2025 - Jun 2026",
     details: [
-      "Co-developed and deployed 4+ responsive web applications for international clients (Ethiopia and South Korea), boosting mobile responsiveness and user engagement.",
-      "Implemented state management using Redux Toolkit/Zustand, reducing redundant component re-renders by 35% and improving client-side responsiveness.",
-      "Designed reusable component libraries using React and TypeScript, accelerating development cycle speed by 20% for future feature launches.",
-      "Structured RESTful API integrations with secure JWT authentication and optimized payloads, reducing initial load latency by 15%.",
+      "Co-developed and deployed responsive web applications for international clients in Ethiopia and South Korea.",
+      "Built pixel-perfect user interfaces from Figma designs with strong attention to detail, ensuring consistency across modern browsers and devices.",
+      "Implemented state management using Redux Toolkit and Zustand, along with secure RESTful API integration using JWT authentication.",
+      "Developed and maintained multilingual interfaces supporting both English and Korean while creating reusable React and TypeScript components.",
     ],
   },
   {
@@ -19,9 +29,9 @@ const experience = [
     company: "Metnee Systems PLC",
     year: "Sep 2024 - Jan 2025",
     details: [
-      "Built administrative dashboards and data views supporting complex filtering, sorting, and pagination of large datasets.",
-      "Improved page accessibility (WCAG 2.1 AA) and SEO standards, raising web health metrics.",
-      "Resolved 40+ UI/UX tickets and collaborated in migrating legacy pages to modular React.",
+      "Built administrative dashboards with filtering, sorting, and pagination for efficient data management.",
+      "Improved application accessibility following WCAG guidelines and enhanced SEO best practices.",
+      "Collaborated with the development team to refine UI/UX and migrate legacy pages to modern React architecture.",
     ],
   },
 ];
@@ -71,7 +81,7 @@ function Experience({ theme }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {experience.map(({ role, company, year, details }, index) => (
             <motion.div
-              key={role}
+              key={role + company}
               className="flex flex-col gap-4 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:scale-[1.02] relative overflow-hidden"
               style={{
                 backgroundColor: bgColor,
@@ -83,7 +93,7 @@ function Experience({ theme }) {
               animate="visible"
             >
               {/* Header with Icon */}
-              <div className="flex   items-start gap-4 text-left">
+              <div className="flex items-start gap-4 text-left">
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md"
                   style={{ backgroundColor: iconBg }}
@@ -168,4 +178,5 @@ function Experience({ theme }) {
     </section>
   );
 }
+
 export default Experience;

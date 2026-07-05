@@ -37,14 +37,23 @@ export default function Hero({ theme }) {
           initial="hidden"
           animate="visible"
         >
-          <motion.div className="flex flex-wrap items-center gap-3 mb-6" variants={itemVariants}>
+          <motion.div
+            className="flex flex-wrap items-center gap-3 mb-6"
+            variants={itemVariants}
+          >
             {/* Availability Badge */}
             <div
               className="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-300 hover:scale-105"
               style={{
-                backgroundColor: theme === "dark" ? "rgba(16, 185, 129, 0.1)" : "rgba(209, 250, 229, 0.4)",
+                backgroundColor:
+                  theme === "dark"
+                    ? "rgba(16, 185, 129, 0.1)"
+                    : "rgba(209, 250, 229, 0.4)",
                 color: theme === "dark" ? "#34d399" : "#047857",
-                borderColor: theme === "dark" ? "rgba(16, 185, 129, 0.25)" : "rgba(16, 185, 129, 0.3)",
+                borderColor:
+                  theme === "dark"
+                    ? "rgba(16, 185, 129, 0.25)"
+                    : "rgba(16, 185, 129, 0.3)",
               }}
             >
               <span className="relative flex h-2 w-2">
@@ -80,15 +89,21 @@ export default function Hero({ theme }) {
           <motion.p
             className={`${
               theme === "dark" ? "text-slate-300" : "text-slate-600"
-            } mb-6 max-w-xl leading-relaxed text-lg font-medium`}
+            } mb-6 max-w-xl text-lg font-medium leading-normal`}
             variants={itemVariants}
           >
-            Full Stack Developer crafting scalable web applications with modern technologies. 
-            I build end-to-end solutions from database architecture to intuitive user interfaces, 
-            delivering high-performance applications that solve real-world problems.
+            <strong>
+              {" "}
+              <em>Full Stack Developer</em>
+            </strong>{" "}
+            specializing in frontend development, with a focus on pixel-perfect
+            implementation, responsive design, and strong attention to detail. I
+            build scalable web applications using modern technologies,
+            delivering seamless experiences from the database to the user
+            interface.
           </motion.p>
 
-          <motion.div 
+          <motion.div
             className={`${
               theme === "dark" ? "text-slate-400" : "text-slate-500"
             } mb-8 text-sm`}
@@ -169,7 +184,9 @@ export default function Hero({ theme }) {
               <div className="w-3 h-3 rounded-full bg-red-500" />
               <div className="w-3 h-3 rounded-full bg-yellow-500" />
               <div className="w-3 h-3 rounded-full bg-green-500" />
-              <span className="ml-2 text-xs text-gray-500">fullstack-dev.js</span>
+              <span className="ml-2 text-xs text-gray-500">
+                fullstack-dev.js
+              </span>
             </div>
 
             {/* Code */}

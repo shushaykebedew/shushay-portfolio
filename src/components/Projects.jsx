@@ -46,9 +46,16 @@ const projects = [
   {
     title: "Katech Driver Data Platform",
     description:
-      "AI-driven driver data management platform for the Korean market. Handles large-scale driver datasets, validation workflows, video storage, and analytics insights for automotive and AI-focused organizations.",
+      "Data management platform for collecting, validating, and processing driving videos and related metadata. Built to help AI and automotive companies access high-quality human–vehicle interaction datasets for machine learning, autonomous driving research, and analytics.",
     image: katechImg,
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "AI Integration"],
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Zustand",
+      "Git/Github",
+      "i18n",
+    ],
     demoUrl: "https://katech-local.vercel.app/",
   },
   {
@@ -93,11 +100,11 @@ const projects = [
     demoUrl: "https://x-cafe-system.vercel.app/",
   },
   {
-    title: "QR-Code ID Verification System",
+    title: "Automated ID Verification System",
     description:
       "Enterprise-grade identity verification platform with QR code scanning. Features secure user authentication, real-time verification status, and comprehensive admin dashboard.",
     image: qrCodeScan,
-    tech: ["React", "Node.js", "MySQL", "JWT", "REST API"],
+    tech: ["React", "CSS Module", "Node.js", "MySQL", "JWT", "REST API"],
     demoUrl: "",
   },
 
@@ -163,7 +170,10 @@ export default function Projects({ theme }) {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
           {projects.map(
-            ({ title, description, image, tech, demoUrl, githubUrl }, index) => (
+            (
+              { title, description, image, tech, demoUrl, githubUrl },
+              index,
+            ) => (
               <motion.div
                 key={title}
                 className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-[1.02] flex flex-col h-full group"
@@ -209,7 +219,8 @@ export default function Projects({ theme }) {
                         rel="noopener noreferrer"
                         className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105"
                         style={{
-                          backgroundColor: theme === "dark" ? "#3b82f6" : "#2563eb",
+                          backgroundColor:
+                            theme === "dark" ? "#3b82f6" : "#2563eb",
                           color: "#ffffff",
                         }}
                       >
@@ -223,7 +234,8 @@ export default function Projects({ theme }) {
                         rel="noopener noreferrer"
                         className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105"
                         style={{
-                          backgroundColor: theme === "dark" ? "#334155" : "#e2e8f0",
+                          backgroundColor:
+                            theme === "dark" ? "#334155" : "#e2e8f0",
                           color: theme === "dark" ? "#f1f5f9" : "#0f172a",
                         }}
                       >
