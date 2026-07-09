@@ -52,9 +52,13 @@ const projects = [
       "Next.js",
       "TypeScript",
       "Tailwind CSS",
+      "clsx",
+      "next-intl",
+      "date-fns",
+      "Axios",
       "Zustand",
-      "Git/Github",
-      "i18n",
+      "TanStack Table",
+      "React Hook Form",
     ],
     demoUrl: "https://katech-local.vercel.app/",
   },
@@ -63,7 +67,15 @@ const projects = [
     description:
       "Modern taxi fare calculation system with GPS tracking and dynamic pricing. Built with server-side rendering for optimal performance and real-time location updates.",
     image: machaImg,
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Geolocation API"],
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Geolocation API",
+      "react-hook-form",
+      "react-datepicker",
+      "ck-editor",
+    ],
     demoUrl: "https://macha-taximeter.vercel.app/",
   },
   {
@@ -71,7 +83,15 @@ const projects = [
     description:
       "Full-stack admin platform for freelancer marketplace management. Includes user management, project tracking, payment processing, and analytics dashboard with real-time data synchronization.",
     image: sheqleeDashboard,
-    tech: ["React", "CSS Module", "Node.js", "MongoDB", "REST API"],
+    tech: [
+      "React",
+      "CSS Module",
+      "Node.js",
+      "MongoDB",
+      "REST API",
+      "react-datetime",
+      "quill",
+    ],
     demoUrl: " https://sheqlee-admin-panel.vercel.app/",
   },
   {
@@ -79,7 +99,14 @@ const projects = [
     description:
       "Internationalized web platform with English and Korean support. Features server-side rendering, dynamic content management, and optimized SEO performance.",
     image: glitchImg,
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "i18n"],
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "clsx",
+      "next-intl",
+      "nodemailer",
+    ],
     demoUrl: "https://glitch-ui.vercel.app/",
   },
 
@@ -88,7 +115,7 @@ const projects = [
     description:
       "Built delivery system with smooth, interactive animations that visually track each step of the delivery process—from request to pickup, transit, and drop-off—providing real-time status updates and a clear, engaging user experience.",
     image: bellboy,
-    tech: ["Svelte", "SvelteKit", "TypeScript", "Tailwind CSS"],
+    tech: ["Svelte", "SvelteKit", "TypeScript", "Tailwind CSS", "gsap", "clsx"],
     demoUrl: "https://bellboy-delivery.vercel.app/",
   },
   {
@@ -96,7 +123,17 @@ const projects = [
     description:
       "Built an admin dashboard for a QR-based café ordering system with real-time order updates, menu management, and order tracking. Enabled customers to place orders via QR scan while staff manage and monitor incoming orders efficiently. Focused on real-time sync and streamlined café operations.",
     image: xCafe,
-    tech: ["React", "TypeScript", "Tailwind CSS"],
+    tech: [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "React Query",
+      "date-fns",
+      "framer-motion",
+      "i18next",
+      "recharts",
+      "zustand",
+    ],
     demoUrl: "https://x-cafe-system.vercel.app/",
   },
   {
@@ -104,7 +141,17 @@ const projects = [
     description:
       "Enterprise-grade identity verification platform with QR code scanning. Features secure user authentication, real-time verification status, and comprehensive admin dashboard.",
     image: qrCodeScan,
-    tech: ["React", "CSS Module", "Node.js", "MySQL", "JWT", "REST API"],
+    tech: [
+      "React",
+      "CSS",
+      "Bootstrap",
+      "Node.js",
+      "MySQL",
+      "Axios",
+      "html5-qrcode",
+      "joi-browser",
+      "sweetalert2",
+    ],
     demoUrl: "",
   },
 
