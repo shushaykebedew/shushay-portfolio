@@ -40,7 +40,7 @@ const logoVariants = {
   visible: {
     scale: 1,
     opacity: 1,
-    transition: { duration: 0.4, ease: "easeOut", delay: 0.1 },
+    transition: { duration: 0.4, ease: "easeOut" },
   },
 };
 
@@ -49,7 +49,7 @@ const navItemVariants = {
   visible: (i) => ({
     y: 0,
     opacity: 1,
-    transition: { delay: 0.2 + i * 0.05, duration: 0.4, ease: "easeOut" },
+    transition: { delay: i * 0.05, duration: 0.4, ease: "easeOut" },
   }),
 };
 

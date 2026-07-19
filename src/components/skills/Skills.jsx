@@ -26,7 +26,7 @@ export default function Skills() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
           >
             <p className="text-xs uppercase tracking-widest mb-3 font-bold text-slate-500 dark:text-slate-400">
               My Skills
@@ -45,7 +45,7 @@ export default function Skills() {
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.15 }}
+          transition={{ duration: 0.3, delay: 0.05 }}
           className="flex justify-center gap-2 flex-wrap mb-8"
           role="tablist"
           aria-label="Skill categories"
@@ -148,7 +148,7 @@ export default function Skills() {
                   className="font-bold text-slate-800 dark:text-slate-100"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.9 }}
+                  transition={{ delay: 0.3 }}
                 >
                   {avg}%
                 </motion.span>

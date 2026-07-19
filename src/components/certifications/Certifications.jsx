@@ -5,7 +5,7 @@ import { certifications } from "./constants";
 export default function Certifications() {
   const containerVariants = {
     hidden: {},
-    visible: { transition: { staggerChildren: 0.1 } },
+    visible: { transition: { staggerChildren: 0.05 } },
   };
 
   const itemVariants = {
@@ -13,7 +13,7 @@ export default function Certifications() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
+      transition: { duration: 0.4, ease: "easeOut" },
     },
   };
 
@@ -22,7 +22,7 @@ export default function Certifications() {
     visible: (i) => ({
       opacity: 1,
       x: 0,
-      transition: { delay: i * 0.1, duration: 0.5, ease: "easeOut" },
+      transition: { delay: i * 0.05, duration: 0.3, ease: "easeOut" },
     }),
   };
 

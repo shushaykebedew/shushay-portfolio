@@ -5,7 +5,7 @@ import TypingCode from "./TypingCode";
 export default function Hero() {
   const containerVariants = {
     hidden: {},
-    visible: { transition: { staggerChildren: 0.2 } },
+    visible: { transition: { staggerChildren: 0.05 } },
   };
 
   const itemVariants = {
@@ -124,7 +124,7 @@ export default function Hero() {
           className="relative mt-12 lg:mt-0"
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           whileHover={{
             scale: 1.02,
             y: -8,

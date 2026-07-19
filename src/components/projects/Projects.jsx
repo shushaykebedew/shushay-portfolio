@@ -8,7 +8,7 @@ export default function Projects() {
     visible: (i) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: i * 0.15, duration: 0.9, ease: "easeOut" },
+      transition: { delay: i * 0.05, duration: 0.4, ease: "easeOut" },
     }),
   };
 
