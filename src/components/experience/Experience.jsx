@@ -23,14 +23,20 @@ export default function Experience() {
     >
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           <p className="text-sm uppercase tracking-widest mb-3 font-semibold text-slate-500 dark:text-slate-400">
             Experience
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
             Professional Background
           </h2>
-        </div>
+        </motion.div>
 
         {/* Experience Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -41,16 +47,21 @@ export default function Experience() {
               custom={index}
               variants={cardVariants}
               initial="hidden"
-              animate="visible"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
             >
               {/* Header with Icon */}
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm bg-indigo-50 dark:bg-indigo-950/50">
+                <motion.div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm bg-indigo-50 dark:bg-indigo-950/50"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ duration: 0.3 }}
+                >
                   <Briefcase
                     className={`${headerIconClass} text-indigo-600 dark:text-indigo-400`}
                     aria-hidden="true"
                   />
-                </div>
+                </motion.div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-lg font-bold leading-tight text-slate-900 dark:text-white">
                     {role}

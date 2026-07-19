@@ -17,17 +17,20 @@ export default function ProjectCard({
 
   return (
     <motion.article
-      className="rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 flex flex-col h-full group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
+      className="rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500 flex flex-col h-full group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
+      whileHover={{ y: -6 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
       custom={index}
       variants={projectVariants}
       initial="hidden"
-      animate="visible"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
     >
       <div className="relative overflow-hidden">
         <LazyImage
           src={image}
           alt={`${title} project screenshot`}
-          className="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-110"
+          className="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>

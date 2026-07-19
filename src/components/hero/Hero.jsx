@@ -1,5 +1,6 @@
 import { Globe, Github, Linkedin, FileText } from "lucide-react";
 import { motion } from "framer-motion";
+import TypingCode from "./TypingCode";
 
 export default function Hero() {
   const containerVariants = {
@@ -142,65 +143,7 @@ export default function Hero() {
               </span>
             </div>
 
-            <div className="font-mono text-sm sm:text-base space-y-3">
-              <div className="text-pink-500 dark:text-pink-400">
-                const{" "}
-                <span className="text-blue-600 dark:text-blue-400">
-                  developer
-                </span>{" "}
-                ={" "}
-                <span className="text-yellow-600 dark:text-yellow-300">
-                  {"{"}
-                </span>
-              </div>
-
-              <div className="pl-6 text-slate-800 dark:text-slate-200">
-                name:{" "}
-                <span className="text-emerald-600 dark:text-emerald-400">
-                  'Shushay Kebedew'
-                </span>
-                ,
-              </div>
-
-              <div className="pl-6 text-slate-800 dark:text-slate-200">
-                role:{" "}
-                <span className="text-emerald-600 dark:text-emerald-400">
-                  'Full Stack Developer'
-                </span>
-                ,
-              </div>
-
-              <div className="pl-6 text-slate-800 dark:text-slate-200">
-                skills:{" "}
-                <span className="text-purple-600 dark:text-purple-400">[</span>
-                <span className="text-emerald-600 dark:text-emerald-400">
-                  'React'
-                </span>
-                ,{" "}
-                <span className="text-emerald-600 dark:text-emerald-400">
-                  'Next.js'
-                </span>
-                ,{" "}
-                <span className="text-emerald-600 dark:text-emerald-400">
-                  'Node.js'
-                </span>
-                ,{" "}
-                <span className="text-emerald-600 dark:text-emerald-400">
-                  'Tailwind CSS'
-                </span>
-                <span className="text-purple-600 dark:text-purple-400">]</span>,
-              </div>
-
-              <div className="pl-6 text-slate-800 dark:text-slate-200 flex items-center">
-                status:{" "}
-                <span className="text-emerald-600 dark:text-emerald-400 ml-2">
-                  'Open to Work'
-                </span>
-                <span className="ml-2 animate-ping h-2 w-2 rounded-full bg-emerald-500"></span>
-              </div>
-
-              <div className="text-yellow-600 dark:text-yellow-300">{"}"}</div>
-            </div>
+            <TypingCode />
           </div>
         </motion.div>
       </div>

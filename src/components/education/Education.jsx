@@ -23,34 +23,47 @@ export default function Education() {
     >
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           <p className="text-sm uppercase tracking-widest mb-3 font-semibold text-slate-500 dark:text-slate-400">
             Education
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
             Academic Background
           </h2>
-        </div>
+        </motion.div>
 
         {/* Education Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {education.map(({ degree, institute, year, details }, index) => (
             <motion.div
               key={degree}
-              className="flex flex-col gap-5 p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
+              className="flex flex-col gap-5 p-6 rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
               custom={index}
               variants={cardVariants}
               initial="hidden"
-              animate="visible"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
             >
               {/* Header with Icon */}
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-blue-50 dark:bg-blue-950/50">
+                <motion.div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-blue-50 dark:bg-blue-950/50"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ duration: 0.3 }}
+                >
                   <GraduationCap
                     className={`${headerIconClass} text-blue-600 dark:text-blue-400`}
                     aria-hidden="true"
                   />
-                </div>
+                </motion.div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-snug">
                     {degree}

@@ -9,7 +9,8 @@ export default function ContactInfo({ cardVariants }) {
       custom={0}
       variants={cardVariants}
       initial="hidden"
-      animate="visible"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
       className="h-full"
     >
       <div className="rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow h-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
@@ -19,12 +20,16 @@ export default function ContactInfo({ cardVariants }) {
         <div className="space-y-5">
           {/* Address */}
           <div className="flex items-start gap-4">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-indigo-50 dark:bg-indigo-950/50">
+            <motion.div
+              className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-indigo-50 dark:bg-indigo-950/50"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              transition={{ duration: 0.3 }}
+            >
               <MapPin
                 className={`${iconClass} text-indigo-600 dark:text-indigo-400`}
                 aria-hidden="true"
               />
-            </div>
+            </motion.div>
             <div>
               <p className="text-xs uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 mb-0.5">
                 Location
@@ -37,12 +42,16 @@ export default function ContactInfo({ cardVariants }) {
 
           {/* Phone */}
           <div className="flex items-start gap-4">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-indigo-50 dark:bg-indigo-950/50">
+            <motion.div
+              className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-indigo-50 dark:bg-indigo-950/50"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              transition={{ duration: 0.3 }}
+            >
               <Phone
                 className={`${iconClass} text-indigo-600 dark:text-indigo-400`}
                 aria-hidden="true"
               />
-            </div>
+            </motion.div>
             <div>
               <p className="text-xs uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 mb-0.5">
                 Phone
@@ -59,12 +68,16 @@ export default function ContactInfo({ cardVariants }) {
 
           {/* Email */}
           <div className="flex items-start gap-4">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-indigo-50 dark:bg-indigo-950/50">
+            <motion.div
+              className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-indigo-50 dark:bg-indigo-950/50"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              transition={{ duration: 0.3 }}
+            >
               <Mail
                 className={`${iconClass} text-indigo-600 dark:text-indigo-400`}
                 aria-hidden="true"
               />
-            </div>
+            </motion.div>
             <div>
               <p className="text-xs uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 mb-0.5">
                 Email

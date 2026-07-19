@@ -10,7 +10,7 @@ import {
   Github,
   ArrowUp,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const socialLinks = [
   {
@@ -80,7 +80,8 @@ export default function Footer() {
           custom={0}
           variants={sectionVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
         >
           <h2 className="text-lg font-extrabold tracking-wide uppercase mb-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
             Shushay Kebedew
@@ -131,7 +132,8 @@ export default function Footer() {
           custom={1}
           variants={sectionVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
           aria-label="Footer Navigation"
         >
           <h3 className="font-bold mb-4 uppercase tracking-wide text-sm text-slate-900 dark:text-slate-100">
@@ -155,7 +157,8 @@ export default function Footer() {
           custom={2}
           variants={sectionVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
         >
           <h3 className="font-bold uppercase tracking-wide text-sm mb-2 text-slate-900 dark:text-slate-100">
             Connect
@@ -185,25 +188,30 @@ export default function Footer() {
         custom={3}
         variants={sectionVariants}
         initial="hidden"
-        animate="visible"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
         className="mt-12 border-t border-slate-200 dark:border-slate-800 pt-6 text-center text-sm text-slate-500 dark:text-slate-400"
       >
         © {year} Shushay Kebedew. All rights reserved.
       </motion.div>
 
       {/* Back to Top */}
-      {showTop && (
-        <motion.a
-          href="#home"
-          aria-label="Scroll back to top"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          className="fixed bottom-6 right-6 inline-flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 p-3 shadow-xl transition-all duration-300 hover:border-transparent hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 hover:text-white hover:scale-110 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300"
-        >
-          <ArrowUp className={socialIconClass} aria-hidden="true" />
-        </motion.a>
-      )}
+      <AnimatePresence>
+        {showTop && (
+          <motion.a
+            href="#home"
+            aria-label="Scroll back to top"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.3 }}
+            className="fixed bottom-6 right-6 inline-flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 p-3 shadow-xl transition-colors duration-300 hover:border-transparent hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300"
+          >
+            <ArrowUp className={socialIconClass} aria-hidden="true" />
+          </motion.a>
+        )}
+      </AnimatePresence>
     </footer>
   );
 }

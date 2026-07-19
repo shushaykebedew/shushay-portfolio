@@ -11,7 +11,7 @@ export default function Skills() {
   const currentTab = TABS.find((t) => t.id === activeTab);
   const avg = Math.round(
     currentTab.skills.reduce((a, s) => a + s.level, 0) /
-    currentTab.skills.length,
+      currentTab.skills.length,
   );
 
   return (
@@ -62,13 +62,21 @@ export default function Skills() {
                 role="tab"
                 aria-selected={isActive}
                 aria-controls={`skillpanel-${tab.id}`}
-                className={`flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full border-2 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 ${isActive
-                  ? "bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 border-slate-900 dark:border-slate-100"
-                  : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-500"
-                  }`}
+                className={`relative flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full border-2 transition-colors duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+                  isActive
+                    ? "text-white dark:text-slate-900 border-slate-900 dark:border-slate-100"
+                    : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-500"
+                }`}
               >
-                <Icon className="w-4 h-4" aria-hidden="true" />
-                {tab.label}
+                {isActive && (
+                  <motion.span
+                    layoutId="activeSkillTabBg"
+                    className="absolute inset-0 rounded-full bg-slate-900 dark:bg-slate-100"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <Icon className="relative w-4 h-4" aria-hidden="true" />
+                <span className="relative">{tab.label}</span>
               </motion.button>
             );
           })}
@@ -83,6 +91,7 @@ export default function Skills() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
+            whileHover={{ y: -4 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
             <div className="relative p-6 sm:p-8 rounded-2xl shadow-lg border-2 overflow-hidden bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 transition-colors duration-300">
@@ -101,7 +110,12 @@ export default function Skills() {
                   >
                     {(() => {
                       const Icon = currentTab.icon;
-                      return <Icon className="w-5 h-5 text-white" aria-hidden="true" />;
+                      return (
+                        <Icon
+                          className="w-5 h-5 text-white"
+                          aria-hidden="true"
+                        />
+                      );
                     })()}
                   </motion.div>
                   <div>
@@ -113,7 +127,6 @@ export default function Skills() {
                     </p>
                   </div>
                 </div>
-
               </div>
 
               {/* Skills */}
