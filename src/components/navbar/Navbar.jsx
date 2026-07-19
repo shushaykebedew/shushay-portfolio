@@ -51,47 +51,42 @@ export default function Navbar({ theme, setTheme }) {
   }, []);
 
   return (
-    <header
-      className={`sticky top-0 z-50 border-b-2 transition-all duration-300 ${
-        theme === "dark"
-          ? "border-slate-700 bg-slate-900/95"
-          : "border-slate-200 bg-white/95"
-      } backdrop-blur-lg shadow-lg`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
+    <header className="sticky top-0 z-50 border-b-2 transition-all duration-300 border-slate-200 bg-white/80 dark:border-slate-800 dark:bg-slate-950/80 backdrop-blur-xl shadow-sm dark:shadow-slate-900/50">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 flex h-16 items-center justify-between">
         {/* Logo */}
-        <a 
-          href="#home" 
-          className="font-bold text-lg flex items-center gap-1"
+        <a
+          href="#home"
+          className="font-bold text-lg flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-sm"
+          aria-label="Go to home section"
         >
           <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white px-2 py-1 rounded">
             SHUSHAY
           </span>
-          <span className="hidden lg:inline">KEBEDEW</span>
+          <span className="hidden xl:inline text-slate-900 dark:text-slate-100">
+            KEBEDEW
+          </span>
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex gap-8 items-center text-sm lg:text-base font-medium">
+        <nav
+          className="hidden lg:flex gap-8 items-center text-sm lg:text-base font-medium"
+          aria-label="Main Navigation"
+        >
           {links.map(({ label, id }) => (
             <a
               key={id}
               href={`#${id}`}
-              className="relative py-2 group"
+              className="relative py-2 group focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-sm"
               onClick={() => setMenuOpen(false)}
             >
-              <span
-                className={`${
-                  theme === "dark" ? "text-slate-200" : "text-slate-700"
-                } group-hover:bg-gradient-to-r transition-all duration-300 font-semibold`}
-              >
+              <span className="text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors duration-300 font-semibold">
                 {label}
               </span>
 
-              {/* Active & Hover Bottom Border - NO WHITE FLASH */}
+              {/* Active & Hover Bottom Border */}
               <span
-                className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 transition-all duration-300 ${
-                  activeSection === id ? "w-full" : "w-0 group-hover:w-full"
-                }`}
+                className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 transition-all duration-300 ${activeSection === id ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
               />
             </a>
           ))}
@@ -99,32 +94,28 @@ export default function Navbar({ theme, setTheme }) {
           {/* Dark Mode Toggle */}
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className={`p-2 rounded-xl border cursor-pointer ${
-              theme === "dark"
-                ? "border-gray-800 hover:bg-gray-900"
-                : "border-gray-200 hover:bg-gray-100"
-            }`}
+            aria-label="Toggle Dark Mode"
+            className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer"
           >
-            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
           </button>
         </nav>
 
         {/* Mobile Actions */}
-        <div className="md:hidden flex items-center gap-2">
+        <div className="lg:hidden flex items-center gap-2">
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className={`p-2 rounded-xl border ${
-              theme === "dark"
-                ? "border-gray-800 hover:bg-gray-900"
-                : "border-gray-200 hover:bg-gray-100"
-            }`}
+            aria-label="Toggle Dark Mode"
+            className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
             {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
           </button>
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="p-2 rounded-xl border"
+            aria-expanded={menuOpen}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -134,11 +125,8 @@ export default function Navbar({ theme, setTheme }) {
       {/* Mobile Menu */}
       {menuOpen && (
         <nav
-          className={`${
-            theme === "dark"
-              ? "bg-gray-950 border-gray-800"
-              : "bg-white border-gray-200"
-          } md:hidden border-t`}
+          className="md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950"
+          aria-label="Mobile Navigation"
         >
           <div className="flex flex-col gap-2 px-4 py-3">
             {links.map(({ label, id, icon: Icon }) => (
@@ -146,18 +134,13 @@ export default function Navbar({ theme, setTheme }) {
                 key={id}
                 href={`#${id}`}
                 onClick={() => setMenuOpen(false)}
-                className={`flex items-center gap-5 px-2 py-2 rounded-md ${
-                  activeSection === id
-                    ? "bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10"
-                    : ""
-                } ${
-                  theme === "dark" ? "text-gray-300" : "text-gray-700"
-                } hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 hover:bg-clip-text hover:text-transparent transition`}
+                className={`flex items-center gap-5 px-3 py-2.5 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 ${activeSection === id
+                  ? "bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 font-semibold"
+                  : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900"
+                  }`}
               >
                 <Icon size={18} />
-                <span className={activeSection === id ? "font-semibold" : ""}>
-                  {label}
-                </span>
+                <span>{label}</span>
               </a>
             ))}
           </div>

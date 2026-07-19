@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
 
 /* Performance optimizations */
 * {
@@ -7,6 +8,33 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
+  /* Base font size */
+}
+
+/* Scale up UI on very large screens to balance proportions */
+@media (min-width: 1536px) {
+  html {
+    font-size: 1.1vw;
+  }
+
+  /* ~17px at 1536px */
+}
+
+@media (min-width: 1920px) {
+  html {
+    font-size: 1.15vw;
+  }
+
+  /* ~22px at 1920px */
+}
+
+@media (min-width: 2560px) {
+  html {
+    font-size: 1.2vw;
+  }
+
+  /* ~30px at 2560px */
 }
 
 body {
@@ -16,7 +44,7 @@ body {
   color: #0f172a;
   transition: background-color 0.3s ease, color 0.3s ease;
   line-height: 1.7;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 /* Dark mode with improved contrast */
@@ -113,7 +141,15 @@ button:focus-visible {
 }
 
 /* Allow text selection for content */
-p, span, h1, h2, h3, h4, h5, h6, li {
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li {
   -webkit-user-select: text;
   -khtml-user-select: text;
   -moz-user-select: text;
@@ -128,7 +164,7 @@ p, span, h1, h2, h3, h4, h5, h6, li {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
+
   html {
     scroll-behavior: auto;
   }
@@ -190,6 +226,7 @@ html.dark .mobile-menu a:hover {
   .desktop-menu {
     display: none;
   }
+
   .mobile-menu {
     display: flex;
   }
@@ -205,20 +242,21 @@ html.dark .mobile-menu a:hover {
 .theme-transition {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
+
 /* Personal Brand Colors & Utilities */
 :root {
   --brand-primary: #6366f1;
   --brand-secondary: #8b5cf6;
   --brand-accent: #ec4899;
   --brand-gradient: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
-  
+
   /* Light theme colors */
   --bg-primary-light: #ffffff;
   --bg-secondary-light: #f8fafc;
   --text-primary-light: #0f172a;
   --text-secondary-light: #475569;
   --border-light: #cbd5e1;
-  
+
   /* Dark theme colors */
   --bg-primary-dark: #0f172a;
   --bg-secondary-dark: #1e293b;
@@ -252,8 +290,13 @@ html.dark .mobile-menu a:hover {
 
 /* Loading animation */
 @keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 .shimmer {

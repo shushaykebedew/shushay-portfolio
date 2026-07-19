@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
-import Education from "./components/Education";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-import Experience from "./components/Experience";
-import Certifications from "./components/Certifications";
+import Navbar from "./components/navbar/Navbar";
+import Hero from "./components/hero/Hero";
+import About from "./components/about/About";
+import Skills from "./components/skills/Skills";
+import Projects from "./components/projects/Projects";
+import Education from "./components/education/Education";
+import Contact from "./components/contact/Contact";
+import Footer from "./components/footer/Footer";
+import Experience from "./components/experience/Experience";
+import Certifications from "./components/certifications/Certifications";
 
 export default function App() {
   // Initialize theme from localStorage or default to dark
@@ -35,19 +35,19 @@ export default function App() {
   }, [theme]);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-300 text-slate-900 dark:text-slate-100">
       <Navbar theme={theme} setTheme={setTheme} />
       <main id="main-content">
-        <Hero theme={theme} />
-        <About theme={theme} />
-        <Skills theme={theme} />
-        <Experience theme={theme} />
-        <Certifications theme={theme} />
-        <Projects theme={theme} />
-        <Education theme={theme} />
-        <Contact theme={theme} />
+        <Hero />
+        <About />
+        <Skills />
+        <Experience />
+        <Certifications />
+        <Projects />
+        <Education />
+        <Contact />
       </main>
-      <Footer theme={theme} />
+      <Footer />
     </div>
   );
 }
