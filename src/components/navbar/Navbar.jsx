@@ -27,7 +27,7 @@ const links = [
 ];
 
 const navVariants = {
-  hidden: { y: -20, opacity: 0 },
+  hidden: { y: -10, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
@@ -45,7 +45,7 @@ const logoVariants = {
 };
 
 const navItemVariants = {
-  hidden: { y: -10, opacity: 0 },
+  hidden: { y: -5, opacity: 0 },
   visible: (i) => ({
     y: 0,
     opacity: 1,
@@ -54,7 +54,7 @@ const navItemVariants = {
 };
 
 const mobileMenuVariants = {
-  hidden: { opacity: 0, y: -10 },
+  hidden: { opacity: 0, y: -5 },
   visible: {
     opacity: 1,
     y: 0,
@@ -62,13 +62,13 @@ const mobileMenuVariants = {
   },
   exit: {
     opacity: 0,
-    y: -10,
+    y: -5,
     transition: { duration: 0.2, ease: "easeIn" },
   },
 };
 
 const mobileItemVariants = {
-  hidden: { x: -20, opacity: 0 },
+  hidden: { x: -10, opacity: 0 },
   visible: (i) => ({
     x: 0,
     opacity: 1,

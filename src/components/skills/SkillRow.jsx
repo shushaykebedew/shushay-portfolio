@@ -21,7 +21,7 @@ function ProgressBar({ level, skillIndex, gradient }) {
           style={{ background: gradient }}
           initial={{ width: 0 }}
           animate={{ width: `${level}%` }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: skillIndex * 0.03 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: skillIndex * 0.03 }}
         >
           <motion.div
             className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
@@ -43,9 +43,9 @@ export function SkillRowColored({ tab, name, level, proficiency, skillIndex }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: -20 }}
+      initial={{ opacity: 0, x: -10 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.3, ease: "easeOut", delay: skillIndex * 0.03 }}
+      transition={{ duration: 0.5, ease: "easeOut", delay: skillIndex * 0.03 }}
       whileHover={{ x: 4 }}
     >
       <div className="flex items-center justify-between mb-2">

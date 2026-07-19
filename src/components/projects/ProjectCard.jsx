@@ -24,7 +24,7 @@ export default function ProjectCard({
       variants={projectVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 0.2 }}
     >
       <div className="relative overflow-hidden">
         <LazyImage

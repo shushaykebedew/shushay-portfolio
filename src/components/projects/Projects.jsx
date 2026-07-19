@@ -4,11 +4,11 @@ import ProjectCard from "./ProjectCard";
 
 export default function Projects() {
   const projectVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 150 },
     visible: (i) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: i * 0.05, duration: 0.4, ease: "easeOut" },
+      transition: { delay: i * 0.05, duration: 1.2, ease: [0.22, 1, 0.36, 1] },
     }),
   };
 

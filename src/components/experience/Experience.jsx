@@ -4,11 +4,11 @@ import { experience } from "./constants";
 
 export default function Experience() {
   const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 80 },
     visible: (i) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: i * 0.05, duration: 0.4, ease: "easeOut" },
+      transition: { delay: i * 0.05, duration: 0.8, ease: "easeOut" },
     }),
   };
 
