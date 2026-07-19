@@ -1,5 +1,4 @@
-import { Briefcase } from "lucide-react";
-import { FaCheckCircle } from "react-icons/fa";
+import { Briefcase, CircleCheck, Calendar } from "lucide-react";
 import { motion } from "framer-motion";
 import { experience } from "./constants";
 
@@ -12,6 +11,10 @@ export default function Experience() {
       transition: { delay: i * 0.15, duration: 0.6, ease: "easeOut" },
     }),
   };
+
+  const headerIconClass = "w-4 h-4 sm:w-5 sm:h-5";
+  const metaIconClass = "w-3.5 h-3.5 sm:w-4 sm:h-4";
+  const detailIconClass = "w-3.5 h-3.5 sm:w-4 sm:h-4";
 
   return (
     <section
@@ -43,7 +46,10 @@ export default function Experience() {
               {/* Header with Icon */}
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm bg-indigo-50 dark:bg-indigo-950/50">
-                  <Briefcase size={20} className="text-indigo-600 dark:text-indigo-400" aria-hidden="true" />
+                  <Briefcase
+                    className={`${headerIconClass} text-indigo-600 dark:text-indigo-400`}
+                    aria-hidden="true"
+                  />
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-lg font-bold leading-tight text-slate-900 dark:text-white">
@@ -52,9 +58,16 @@ export default function Experience() {
                   <p className="text-indigo-600 dark:text-indigo-400 font-bold mt-1">
                     {company}
                   </p>
-                  <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 mt-1">
-                    {year}
-                  </p>
+
+                  <div className="flex items-center gap-3 mt-1.5">
+                    <Calendar
+                      className={`${metaIconClass} text-slate-400 mt-1 dark:text-slate-500 flex-shrink-0`}
+                      aria-hidden="true"
+                    />
+                    <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 mt-1">
+                      {year}
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -63,9 +76,8 @@ export default function Experience() {
                 {Array.isArray(details) ? (
                   details.map((detail, idx) => (
                     <div key={idx} className="flex items-start gap-3">
-                      <FaCheckCircle
-                        size={18}
-                        className="mt-1.5 flex-shrink-0 text-indigo-500 dark:text-indigo-400"
+                      <CircleCheck
+                        className={`${detailIconClass} mt-1.5 flex-shrink-0 text-indigo-500 dark:text-indigo-400`}
                         aria-hidden="true"
                       />
                       <p className="text-sm leading-relaxed font-medium text-slate-600 dark:text-slate-300">
@@ -75,9 +87,8 @@ export default function Experience() {
                   ))
                 ) : (
                   <div className="flex items-start gap-3">
-                    <FaCheckCircle
-                      size={18}
-                      className="mt-1.5 flex-shrink-0 text-indigo-500 dark:text-indigo-400"
+                    <CircleCheck
+                      className={`${detailIconClass} mt-1.5 flex-shrink-0 text-indigo-500 dark:text-indigo-400`}
                       aria-hidden="true"
                     />
                     <p className="text-sm leading-relaxed font-medium text-slate-600 dark:text-slate-300">

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { Github, ExternalLink } from "lucide-react";
 import LazyImage from "./LazyImage";
 
 export default function ProjectCard({
@@ -12,6 +12,9 @@ export default function ProjectCard({
   index,
   projectVariants,
 }) {
+  const linkIconClass = "w-3 h-3 sm:w-3.5 sm:h-3.5";
+  const githubIconClass = "w-3.5 h-3.5 sm:w-4 sm:h-4";
+
   return (
     <motion.article
       className="rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 flex flex-col h-full group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
@@ -48,7 +51,8 @@ export default function ProjectCard({
                 className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-500 dark:hover:bg-blue-400"
                 aria-label={`View live demo for ${title}`}
               >
-                <FaExternalLinkAlt size={13} aria-hidden="true" /> Live Demo
+                <ExternalLink className={linkIconClass} aria-hidden="true" />{" "}
+                Live Demo
               </a>
             )}
             {githubUrl && (
@@ -59,7 +63,7 @@ export default function ProjectCard({
                 className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-slate-400 bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-600"
                 aria-label={`View GitHub repository for ${title}`}
               >
-                <FaGithub size={16} aria-hidden="true" /> GitHub
+                <Github className={githubIconClass} aria-hidden="true" /> GitHub
               </a>
             )}
           </div>

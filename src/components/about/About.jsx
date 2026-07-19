@@ -1,5 +1,5 @@
 import AboutImg from "../../assets/profile.png";
-import { CheckCircle } from "lucide-react";
+import { CircleCheck } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function About() {
@@ -13,8 +13,13 @@ export default function About() {
     }),
   };
 
+  const iconClass = "w-3.5 h-3.5 sm:w-4 sm:h-4";
+
   return (
-    <section id="about" className="py-16 md:py-20 bg-white dark:bg-slate-900 transition-colors duration-300">
+    <section
+      id="about"
+      className="py-16 md:py-20 bg-white dark:bg-slate-900 transition-colors duration-300"
+    >
       <div className="max-w-6xl mx-auto px-6 lg:px-8 grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* Image */}
         <motion.div
@@ -52,17 +57,22 @@ export default function About() {
           </h2>
           <div className="space-y-5 text-slate-600 dark:text-slate-300">
             <p className="text-md sm:text-lg leading-relaxed font-medium">
-              I'm <strong className="text-slate-900 dark:text-white font-bold">Shushay Kebedew</strong>, a passionate Full Stack Developer
-              with expertise in building modern, scalable web applications. I specialize
-              in React, Next.js, Node.js, and database technologies, delivering complete
-              solutions from concept to deployment.
+              I'm{" "}
+              <strong className="text-slate-900 dark:text-white font-bold">
+                Shushay Kebedew
+              </strong>
+              , a passionate Full Stack Developer with expertise in building
+              modern, scalable web applications. I specialize in React, Next.js,
+              Node.js, and database technologies, delivering complete solutions
+              from concept to deployment.
             </p>
 
             <p className="leading-relaxed">
-              My approach combines strong technical skills with business understanding,
-              enabling me to create applications that not only function flawlessly but
-              also drive real value. I excel at translating complex requirements into
-              clean, maintainable code and user-friendly interfaces.
+              My approach combines strong technical skills with business
+              understanding, enabling me to create applications that not only
+              function flawlessly but also drive real value. I excel at
+              translating complex requirements into clean, maintainable code and
+              user-friendly interfaces.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 my-8 p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 shadow-sm">
@@ -71,7 +81,11 @@ export default function About() {
                   Frontend Expertise
                 </h3>
                 <ul className="space-y-3 text-sm font-medium">
-                  {["React & Next.js Apps", "Responsive UI/UX", "TypeScript & ES6+"].map((skill, index) => (
+                  {[
+                    "React & Next.js Apps",
+                    "Responsive UI/UX",
+                    "TypeScript & ES6+",
+                  ].map((skill, index) => (
                     <motion.li
                       key={index}
                       className="flex items-start gap-3"
@@ -80,7 +94,10 @@ export default function About() {
                       initial="hidden"
                       animate="visible"
                     >
-                      <CheckCircle size={18} className="mt-1 text-indigo-500 dark:text-blue-400 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                      <CircleCheck
+                        className={`${iconClass} mt-0.5 text-indigo-500 dark:text-blue-400 flex-shrink-0`}
+                        aria-hidden="true"
+                      />
                       <span>{skill}</span>
                     </motion.li>
                   ))}
@@ -91,7 +108,11 @@ export default function About() {
                   Backend & Database
                 </h3>
                 <ul className="space-y-3 text-sm font-medium">
-                  {["RESTful APIs", "Database Design", "Server Architecture"].map((skill, index) => (
+                  {[
+                    "RESTful APIs",
+                    "Database Design",
+                    "Server Architecture",
+                  ].map((skill, index) => (
                     <motion.li
                       key={index}
                       className="flex items-start gap-3"
@@ -100,7 +121,10 @@ export default function About() {
                       initial="hidden"
                       animate="visible"
                     >
-                      <CheckCircle size={18} className="mt-1 text-purple-500 dark:text-purple-400 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                      <CircleCheck
+                        className={`${iconClass} text-purple-500 dark:text-purple-400 mt-0.5 flex-shrink-0`}
+                        aria-hidden="true"
+                      />
                       <span>{skill}</span>
                     </motion.li>
                   ))}
@@ -115,8 +139,14 @@ export default function About() {
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {[
-                  { skill: "Problem-Solving", desc: "Breaking complex challenges into manageable solutions." },
-                  { skill: "Team Collaboration", desc: "Effective communication in cross-functional teams." }
+                  {
+                    skill: "Problem-Solving",
+                    desc: "Breaking complex challenges into manageable solutions.",
+                  },
+                  {
+                    skill: "Team Collaboration",
+                    desc: "Effective communication in cross-functional teams.",
+                  },
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -126,7 +156,10 @@ export default function About() {
                     initial="hidden"
                     animate="visible"
                   >
-                    <CheckCircle size={18} className="mt-1 text-amber-500 dark:text-amber-400 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                    <CircleCheck
+                      className={`${iconClass} text-amber-500 dark:text-amber-400 mt-0.5 flex-shrink-0`}
+                      aria-hidden="true"
+                    />
                     <div>
                       <span className="block font-semibold text-sm text-slate-900 dark:text-white mb-1">
                         {item.skill}

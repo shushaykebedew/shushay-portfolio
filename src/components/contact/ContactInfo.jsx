@@ -2,6 +2,8 @@ import { MapPin, Phone, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function ContactInfo({ cardVariants }) {
+  const iconClass = "w-4 h-4 sm:w-5 sm:h-5";
+
   return (
     <motion.div
       custom={0}
@@ -18,7 +20,10 @@ export default function ContactInfo({ cardVariants }) {
           {/* Address */}
           <div className="flex items-start gap-4">
             <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-indigo-50 dark:bg-indigo-950/50">
-              <MapPin size={24} className="text-indigo-600 dark:text-indigo-400" aria-hidden="true" />
+              <MapPin
+                className={`${iconClass} text-indigo-600 dark:text-indigo-400`}
+                aria-hidden="true"
+              />
             </div>
             <div>
               <p className="text-xs uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 mb-0.5">
@@ -33,7 +38,10 @@ export default function ContactInfo({ cardVariants }) {
           {/* Phone */}
           <div className="flex items-start gap-4">
             <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-indigo-50 dark:bg-indigo-950/50">
-              <Phone size={24} className="text-indigo-600 dark:text-indigo-400" aria-hidden="true" />
+              <Phone
+                className={`${iconClass} text-indigo-600 dark:text-indigo-400`}
+                aria-hidden="true"
+              />
             </div>
             <div>
               <p className="text-xs uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 mb-0.5">
@@ -52,7 +60,10 @@ export default function ContactInfo({ cardVariants }) {
           {/* Email */}
           <div className="flex items-start gap-4">
             <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-indigo-50 dark:bg-indigo-950/50">
-              <Mail size={24} className="text-indigo-600 dark:text-indigo-400" aria-hidden="true" />
+              <Mail
+                className={`${iconClass} text-indigo-600 dark:text-indigo-400`}
+                aria-hidden="true"
+              />
             </div>
             <div>
               <p className="text-xs uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 mb-0.5">

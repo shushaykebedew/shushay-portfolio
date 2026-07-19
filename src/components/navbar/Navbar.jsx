@@ -1,30 +1,37 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Sun, Moon } from "lucide-react";
 import {
-  FaUser,
-  FaTools,
-  FaBriefcase,
-  FaProjectDiagram,
-  FaGraduationCap,
-  FaEnvelope,
-  FaHome,
-  FaCertificate,
-} from "react-icons/fa";
+  Menu,
+  X,
+  Sun,
+  Moon,
+  Home,
+  User,
+  Wrench,
+  Briefcase,
+  Award,
+  FolderKanban,
+  GraduationCap,
+  Mail,
+} from "lucide-react";
 
 const links = [
-  { label: "Home", id: "home", icon: FaHome },
-  { label: "About", id: "about", icon: FaUser },
-  { label: "Skills", id: "skills", icon: FaTools },
-  { label: "Experience", id: "experience", icon: FaBriefcase },
-  { label: "Certifications", id: "certifications", icon: FaCertificate },
-  { label: "Projects", id: "projects", icon: FaProjectDiagram },
-  { label: "Education", id: "education", icon: FaGraduationCap },
-  { label: "Contact", id: "contact", icon: FaEnvelope },
+  { label: "Home", id: "home", icon: Home },
+  { label: "About", id: "about", icon: User },
+  { label: "Skills", id: "skills", icon: Wrench },
+  { label: "Experience", id: "experience", icon: Briefcase },
+  { label: "Certifications", id: "certifications", icon: Award },
+  { label: "Projects", id: "projects", icon: FolderKanban },
+  { label: "Education", id: "education", icon: GraduationCap },
+  { label: "Contact", id: "contact", icon: Mail },
 ];
 
 export default function Navbar({ theme, setTheme }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+
+  const toggleIconClass = "w-4 h-4 sm:w-5 sm:h-5";
+  const menuIconClass = "w-4 h-4 sm:w-5 sm:h-5";
+  const navItemIconClass = "w-4 h-4 sm:w-[18px] sm:h-[18px]";
 
   // Detect active section on scroll
   useEffect(() => {
@@ -85,8 +92,9 @@ export default function Navbar({ theme, setTheme }) {
 
               {/* Active & Hover Bottom Border */}
               <span
-                className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 transition-all duration-300 ${activeSection === id ? "w-full" : "w-0 group-hover:w-full"
-                  }`}
+                className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 transition-all duration-300 ${
+                  activeSection === id ? "w-full" : "w-0 group-hover:w-full"
+                }`}
               />
             </a>
           ))}
@@ -97,7 +105,11 @@ export default function Navbar({ theme, setTheme }) {
             aria-label="Toggle Dark Mode"
             className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer"
           >
-            {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+            {theme === "dark" ? (
+              <Sun className={toggleIconClass} />
+            ) : (
+              <Moon className={toggleIconClass} />
+            )}
           </button>
         </nav>
 
@@ -108,7 +120,11 @@ export default function Navbar({ theme, setTheme }) {
             aria-label="Toggle Dark Mode"
             className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
-            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            {theme === "dark" ? (
+              <Sun className={toggleIconClass} />
+            ) : (
+              <Moon className={toggleIconClass} />
+            )}
           </button>
 
           <button
@@ -117,7 +133,11 @@ export default function Navbar({ theme, setTheme }) {
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+            {menuOpen ? (
+              <X className={menuIconClass} />
+            ) : (
+              <Menu className={menuIconClass} />
+            )}
           </button>
         </div>
       </div>
@@ -134,12 +154,13 @@ export default function Navbar({ theme, setTheme }) {
                 key={id}
                 href={`#${id}`}
                 onClick={() => setMenuOpen(false)}
-                className={`flex items-center gap-5 px-3 py-2.5 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 ${activeSection === id
-                  ? "bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 font-semibold"
-                  : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900"
-                  }`}
+                className={`flex items-center gap-5 px-3 py-2.5 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+                  activeSection === id
+                    ? "bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 font-semibold"
+                    : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900"
+                }`}
               >
-                <Icon size={18} />
+                <Icon className={navItemIconClass} />
                 <span>{label}</span>
               </a>
             ))}

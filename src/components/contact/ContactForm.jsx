@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { CheckCircle, AlertCircle, Loader, Mail } from "lucide-react";
+import { CircleCheck, AlertCircle, Loader, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "@emailjs/browser";
 
@@ -18,6 +18,8 @@ export default function ContactForm({ cardVariants }) {
   const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
   const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 
+  const errorIconClass = "w-3 h-3 sm:w-3.5 sm:h-3.5";
+
   useEffect(() => {
     if (PUBLIC_KEY) emailjs.init(PUBLIC_KEY);
   }, [PUBLIC_KEY]);
@@ -33,16 +35,20 @@ export default function ContactForm({ cardVariants }) {
   const validateForm = () => {
     const newErrors = {};
     if (!formData.name.trim()) newErrors.name = "Name is required";
-    else if (formData.name.trim().length < 2) newErrors.name = "Name must be at least 2 characters";
+    else if (formData.name.trim().length < 2)
+      newErrors.name = "Name must be at least 2 characters";
 
     if (!formData.email.trim()) newErrors.email = "Email is required";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = "Please enter a valid email";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
+      newErrors.email = "Please enter a valid email";
 
     if (!formData.subject.trim()) newErrors.subject = "Subject is required";
-    else if (formData.subject.trim().length < 5) newErrors.subject = "Subject must be at least 5 characters";
+    else if (formData.subject.trim().length < 5)
+      newErrors.subject = "Subject must be at least 5 characters";
 
     if (!formData.message.trim()) newErrors.message = "Message is required";
-    else if (formData.message.trim().length < 10) newErrors.message = "Message must be at least 10 characters";
+    else if (formData.message.trim().length < 10)
+      newErrors.message = "Message must be at least 10 characters";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -69,7 +75,8 @@ export default function ContactForm({ cardVariants }) {
         setLoading(false);
         setFeedback({
           type: "success",
-          message: "Thank you! Your message was sent successfully. I'll get back to you within 24 hours.",
+          message:
+            "Thank you! Your message was sent successfully. I'll get back to you within 24 hours.",
         });
         setFormData({ name: "", email: "", subject: "", message: "" });
         setTimeout(() => setFeedback(null), 8000);
@@ -79,14 +86,16 @@ export default function ContactForm({ cardVariants }) {
         console.error("EmailJS error:", error);
         setFeedback({
           type: "error",
-          message: "Sorry, there was an error sending your message. Please try again or reach out directly.",
+          message:
+            "Sorry, there was an error sending your message. Please try again or reach out directly.",
         });
         setTimeout(() => setFeedback(null), 8000);
       });
   };
 
   const hasErrors = Object.values(errors).some((e) => e !== "");
-  const isFormFilled = formData.name && formData.email && formData.subject && formData.message;
+  const isFormFilled =
+    formData.name && formData.email && formData.subject && formData.message;
   const shouldBtnActive = !hasErrors && isFormFilled;
 
   const inputClass = (field) =>
@@ -105,12 +114,20 @@ export default function ContactForm({ cardVariants }) {
       className="h-full"
     >
       <div className="rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow h-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-        <h3 className="text-lg font-bold mb-5 text-slate-900 dark:text-white">Send a Message</h3>
+        <h3 className="text-lg font-bold mb-5 text-slate-900 dark:text-white">
+          Send a Message
+        </h3>
         <form className="space-y-4" onSubmit={sendEmail} noValidate>
           {/* Name */}
           <div>
-            <label className="block text-sm font-semibold mb-1.5 text-slate-700 dark:text-slate-300" htmlFor="name">
-              Your Name <span className="text-red-500" aria-hidden="true">*</span>
+            <label
+              className="block text-sm font-semibold mb-1.5 text-slate-700 dark:text-slate-300"
+              htmlFor="name"
+            >
+              Your Name{" "}
+              <span className="text-red-500" aria-hidden="true">
+                *
+              </span>
             </label>
             <input
               id="name"
@@ -135,7 +152,8 @@ export default function ContactForm({ cardVariants }) {
                   exit={{ opacity: 0, y: -8 }}
                   className="mt-1.5 text-xs text-red-500 flex items-center gap-1"
                 >
-                  <AlertCircle size={12} aria-hidden="true" /> {errors.name}
+                  <AlertCircle className={errorIconClass} aria-hidden="true" />{" "}
+                  {errors.name}
                 </motion.p>
               )}
             </AnimatePresence>
@@ -143,8 +161,14 @@ export default function ContactForm({ cardVariants }) {
 
           {/* Email */}
           <div>
-            <label className="block text-sm font-semibold mb-1.5 text-slate-700 dark:text-slate-300" htmlFor="email">
-              Your Email <span className="text-red-500" aria-hidden="true">*</span>
+            <label
+              className="block text-sm font-semibold mb-1.5 text-slate-700 dark:text-slate-300"
+              htmlFor="email"
+            >
+              Your Email{" "}
+              <span className="text-red-500" aria-hidden="true">
+                *
+              </span>
             </label>
             <input
               id="email"
@@ -169,7 +193,8 @@ export default function ContactForm({ cardVariants }) {
                   exit={{ opacity: 0, y: -8 }}
                   className="mt-1.5 text-xs text-red-500 flex items-center gap-1"
                 >
-                  <AlertCircle size={12} aria-hidden="true" /> {errors.email}
+                  <AlertCircle className={errorIconClass} aria-hidden="true" />{" "}
+                  {errors.email}
                 </motion.p>
               )}
             </AnimatePresence>
@@ -177,8 +202,14 @@ export default function ContactForm({ cardVariants }) {
 
           {/* Subject */}
           <div>
-            <label className="block text-sm font-semibold mb-1.5 text-slate-700 dark:text-slate-300" htmlFor="subject">
-              Subject <span className="text-red-500" aria-hidden="true">*</span>
+            <label
+              className="block text-sm font-semibold mb-1.5 text-slate-700 dark:text-slate-300"
+              htmlFor="subject"
+            >
+              Subject{" "}
+              <span className="text-red-500" aria-hidden="true">
+                *
+              </span>
             </label>
             <input
               id="subject"
@@ -203,7 +234,8 @@ export default function ContactForm({ cardVariants }) {
                   exit={{ opacity: 0, y: -8 }}
                   className="mt-1.5 text-xs text-red-500 flex items-center gap-1"
                 >
-                  <AlertCircle size={12} aria-hidden="true" /> {errors.subject}
+                  <AlertCircle className={errorIconClass} aria-hidden="true" />{" "}
+                  {errors.subject}
                 </motion.p>
               )}
             </AnimatePresence>
@@ -211,8 +243,14 @@ export default function ContactForm({ cardVariants }) {
 
           {/* Message */}
           <div>
-            <label className="block text-sm font-semibold mb-1.5 text-slate-700 dark:text-slate-300" htmlFor="message">
-              Message <span className="text-red-500" aria-hidden="true">*</span>
+            <label
+              className="block text-sm font-semibold mb-1.5 text-slate-700 dark:text-slate-300"
+              htmlFor="message"
+            >
+              Message{" "}
+              <span className="text-red-500" aria-hidden="true">
+                *
+              </span>
             </label>
             <textarea
               id="message"
@@ -237,7 +275,8 @@ export default function ContactForm({ cardVariants }) {
                   exit={{ opacity: 0, y: -8 }}
                   className="mt-1.5 text-xs text-red-500 flex items-center gap-1"
                 >
-                  <AlertCircle size={12} aria-hidden="true" /> {errors.message}
+                  <AlertCircle className={errorIconClass} aria-hidden="true" />{" "}
+                  {errors.message}
                 </motion.p>
               )}
             </AnimatePresence>
@@ -251,7 +290,9 @@ export default function ContactForm({ cardVariants }) {
                 ? "opacity-50 cursor-not-allowed bg-slate-400 dark:bg-slate-600"
                 : "cursor-pointer bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 hover:shadow-lg hover:scale-[1.02]"
             }`}
-            aria-label={loading ? "Sending your message, please wait" : "Send message"}
+            aria-label={
+              loading ? "Sending your message, please wait" : "Send message"
+            }
           >
             {loading ? (
               <>
@@ -281,15 +322,25 @@ export default function ContactForm({ cardVariants }) {
               >
                 <div className="flex items-start gap-3">
                   {feedback.type === "success" ? (
-                    <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                    <CircleCheck
+                      className="w-5 h-5 mt-0.5 flex-shrink-0"
+                      aria-hidden="true"
+                    />
                   ) : (
-                    <AlertCircle className="w-5 h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                    <AlertCircle
+                      className="w-5 h-5 mt-0.5 flex-shrink-0"
+                      aria-hidden="true"
+                    />
                   )}
                   <div>
                     <p className="font-bold">
-                      {feedback.type === "success" ? "Message Sent!" : "Something went wrong"}
+                      {feedback.type === "success"
+                        ? "Message Sent!"
+                        : "Something went wrong"}
                     </p>
-                    <p className="mt-0.5 text-xs leading-relaxed">{feedback.message}</p>
+                    <p className="mt-0.5 text-xs leading-relaxed">
+                      {feedback.message}
+                    </p>
                   </div>
                 </div>
               </motion.div>
