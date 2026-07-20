@@ -4,11 +4,11 @@ import ProjectCard from "./ProjectCard";
 
 export default function Projects() {
   const projectVariants = {
-    hidden: { opacity: 0, y: 150 },
+    hidden: { opacity: 0, y: 30 },
     visible: (i) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: i * 0.05, duration: 1.2, ease: [0.22, 1, 0.36, 1] },
+      transition: { delay: i * 0.05, duration: 0.5, ease: "easeOut" },
     }),
   };
 
@@ -23,8 +23,8 @@ export default function Projects() {
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
         >
           <p className="text-sm uppercase tracking-widest mb-3 font-semibold text-slate-500 dark:text-slate-400">
             My Projects

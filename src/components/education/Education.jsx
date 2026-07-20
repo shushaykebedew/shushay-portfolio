@@ -4,11 +4,11 @@ import { education } from "./constants";
 
 export default function Education() {
   const cardVariants = {
-    hidden: { opacity: 0, y: 80 },
+    hidden: { opacity: 0, y: 30 },
     visible: (i) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: i * 0.05, duration: 0.8, ease: "easeOut" },
+      transition: { delay: i * 0.05, duration: 0.5, ease: "easeOut" },
     }),
   };
 
@@ -27,8 +27,8 @@ export default function Education() {
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
         >
           <p className="text-sm uppercase tracking-widest mb-3 font-semibold text-slate-500 dark:text-slate-400">
             Education
@@ -48,7 +48,7 @@ export default function Education() {
               variants={cardVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0 }}
               whileHover={{ y: -6 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
             >

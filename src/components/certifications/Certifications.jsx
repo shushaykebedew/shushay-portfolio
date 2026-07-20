@@ -9,20 +9,20 @@ export default function Certifications() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
   const courseVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     visible: (i) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: i * 0.03, duration: 0.5, ease: "easeOut" },
+      transition: { delay: i * 0.05, duration: 0.5, ease: "easeOut" },
     }),
   };
 
@@ -40,8 +40,8 @@ export default function Certifications() {
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
         >
           <p className="text-sm uppercase tracking-widest mb-3 font-semibold text-slate-500 dark:text-slate-400">
             Certifications
@@ -56,7 +56,7 @@ export default function Certifications() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
+          viewport={{ once: true, amount: 0 }}
           className="grid grid-cols-1 lg:grid-cols-2 gap-8"
         >
           {certifications.map(({ provider, courses }) => (
@@ -100,7 +100,7 @@ export default function Certifications() {
                       variants={courseVariants}
                       initial="hidden"
                       whileInView="visible"
-                      viewport={{ once: true, amount: 0.3 }}
+                      viewport={{ once: true, amount: 0 }}
                       className="p-4 rounded-xl border bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-600 transition-colors duration-200"
                     >
                       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-2">

@@ -115,7 +115,7 @@ export default function Navbar({ theme, setTheme }) {
       animate="visible"
       className="sticky top-0 z-50 border-b-2 transition-all duration-300 border-slate-200 bg-white/80 dark:border-slate-800 dark:bg-slate-950/80 backdrop-blur-xl shadow-sm dark:shadow-slate-900/50"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 flex h-16 items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 flex h-20 items-center justify-between">
         {/* Logo */}
         <motion.a
           href="#home"
@@ -146,7 +146,7 @@ export default function Navbar({ theme, setTheme }) {
               variants={navItemVariants}
               whileHover={{ y: -2 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="relative py-2 group focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-sm"
+              className="relative py-1.5 group focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-sm"
               onClick={() => setMenuOpen(false)}
             >
               <span className="text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors duration-300 font-semibold">

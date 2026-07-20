@@ -104,7 +104,7 @@ export default function ContactForm({ cardVariants }) {
       variants={cardVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 0 }}
       className="h-full"
     >
       <div className="rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow h-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
