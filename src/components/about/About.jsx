@@ -30,7 +30,7 @@ export default function About() {
           className="flex justify-center"
           initial={{ scale: 0.9, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true, amount: 0.4 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
           <motion.div
@@ -89,7 +89,7 @@ export default function About() {
               className="grid grid-cols-1 sm:grid-cols-2 gap-6 my-8 p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 shadow-sm"
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0 }}
               variants={cardContainerVariants}
               whileHover={{ scale: 1.015, y: -4 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
@@ -149,7 +149,7 @@ export default function About() {
               className="mt-8 p-6 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm"
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0 }}
               variants={cardContainerVariants}
               whileHover={{ scale: 1.015, y: -4 }}
               transition={{ duration: 0.3, ease: "easeOut" }}

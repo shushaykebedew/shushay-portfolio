@@ -21,7 +21,7 @@ function ProgressBar({ level, skillIndex, gradient }) {
           style={{ background: gradient }}
           initial={{ width: 0 }}
           animate={{ width: `${level}%` }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: skillIndex * 0.03 }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: skillIndex * 0.03 }}
         >
           <motion.div
             className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
