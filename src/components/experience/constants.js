@@ -1,12 +1,14 @@
 export const experience = [
   {
-    role: "Frontend Developer",
+    role: "Full-Stack Developer",
     company: "Blih Marketing and Communications PLC",
     year: "Jun 2026 - Present",
     details: [
-      "Building and maintaining production features in Next.js and React, translating Figma designs into pixel-accurate, responsive UI.",
-      "Implementing state management solutions to keep client-side data flow predictable and maintainable across growing feature sets.",
-      "Collaborating closely with design and marketing stakeholders to ship polished, on-brand interfaces under real client timelines.",
+      "Building and maintaining production web applications using Next.js, React, TypeScript, Node.js, and modern backend technologies.",
+      "Developing responsive user interfaces and implementing the supporting APIs and backend functionality.",
+      "Designing and developing scalable frontend architectures with reusable components and maintainable code.",
+      "Integrating frontend applications with backend services, APIs, databases, and third-party services.",
+      "Implementing state management, form handling, authentication, and other core application functionality.",
     ],
   },
   {

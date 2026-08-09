@@ -11,7 +11,7 @@ export default function Skills() {
   const currentTab = TABS.find((t) => t.id === activeTab);
   const avg = Math.round(
     currentTab.skills.reduce((a, s) => a + s.level, 0) /
-      currentTab.skills.length,
+    currentTab.skills.length,
   );
 
   return (
@@ -62,11 +62,10 @@ export default function Skills() {
                 role="tab"
                 aria-selected={isActive}
                 aria-controls={`skillpanel-${tab.id}`}
-                className={`relative flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full border-2 transition-colors duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
-                  isActive
-                    ? "text-white dark:text-slate-900 border-slate-900 dark:border-slate-100"
-                    : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-500"
-                }`}
+                className={`relative flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full border-2 transition-colors duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 ${isActive
+                  ? "text-white dark:text-slate-900 border-slate-900 dark:border-slate-100"
+                  : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-500"
+                  }`}
               >
                 {isActive && (
                   <motion.span
