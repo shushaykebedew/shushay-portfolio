@@ -1,37 +1,32 @@
 import ContactInfo from "./ContactInfo";
 import ContactForm from "./ContactForm";
+import SectionHeader from "../ui/SectionHeader";
 
 export default function Contact() {
   const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 25 },
     visible: (i) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: i * 0.05, duration: 0.5, ease: "easeOut" },
+      transition: { delay: i * 0.08, duration: 0.45, ease: "easeOut" },
     }),
   };
 
   return (
-    <section id="contact" className="py-20 md:py-24 bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <p className="text-sm uppercase tracking-widest mb-3 font-semibold text-slate-500 dark:text-slate-400">
-            Get In Touch
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-slate-900 dark:text-white">
-            Let's Work Together
-          </h2>
-          <p className="max-w-2xl mx-auto leading-relaxed text-lg font-medium mb-8 text-slate-600 dark:text-slate-300">
-            Ready to bring your ideas to life? I'm available for full-stack
-            development projects, consulting, and collaboration opportunities.
-          </p>
-
-
-        </div>
+    <section id="contact" className="section-padding relative overflow-hidden">
+      <div className="max-w-6xl 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12">
+        <SectionHeader
+          subtitle="Get In Touch"
+          title={
+            <>
+              Let's Build Something <span className="brand-gradient-text">Great</span>
+            </>
+          }
+          description="Ready to bring your ideas to life? I'm available for full-stack engineering roles, freelance builds, consulting, and ambitious collaborations."
+        />
 
         {/* Equal height grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 2xl:gap-10 items-stretch">
           <ContactInfo cardVariants={cardVariants} />
           <ContactForm cardVariants={cardVariants} />
         </div>

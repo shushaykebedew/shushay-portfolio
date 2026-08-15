@@ -27,11 +27,11 @@ const links = [
 ];
 
 const navVariants = {
-  hidden: { y: -10, opacity: 0 },
+  hidden: { y: -20, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
-    transition: { duration: 0.5, ease: "easeOut" },
+    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
   },
 };
 
@@ -40,56 +40,84 @@ const logoVariants = {
   visible: {
     scale: 1,
     opacity: 1,
-    transition: { duration: 0.4, ease: "easeOut" },
+    transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] },
   },
 };
 
 const navItemVariants = {
-  hidden: { y: -5, opacity: 0 },
+  hidden: { y: -8, opacity: 0 },
   visible: (i) => ({
     y: 0,
     opacity: 1,
-    transition: { delay: i * 0.05, duration: 0.4, ease: "easeOut" },
+    transition: { delay: i * 0.04, duration: 0.35, ease: [0.4, 0, 0.2, 1] },
   }),
 };
 
-const mobileMenuVariants = {
-  hidden: { opacity: 0, y: -5 },
+const drawerVariants = {
+  hidden: { x: "100%" },
   visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.3, ease: "easeOut" },
+    x: 0,
+    transition: {
+      duration: 0.52,
+      ease: [0.16, 1, 0.3, 1],
+      staggerChildren: 0.055,
+      delayChildren: 0.12,
+    },
   },
   exit: {
-    opacity: 0,
-    y: -5,
-    transition: { duration: 0.2, ease: "easeIn" },
+    x: "100%",
+    transition: {
+      duration: 0.38,
+      ease: [0.4, 0, 0.2, 1],
+    },
   },
 };
 
-const mobileItemVariants = {
-  hidden: { x: -10, opacity: 0 },
-  visible: (i) => ({
+const drawerItemVariants = {
+  hidden: { x: 45, opacity: 0 },
+  visible: {
     x: 0,
     opacity: 1,
-    transition: { delay: i * 0.05, duration: 0.3, ease: "easeOut" },
-  }),
+    transition: {
+      duration: 0.45,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+  exit: {
+    x: 20,
+    opacity: 0,
+    transition: { duration: 0.2, ease: "easeIn" },
+  },
 };
 
 export default function Navbar({ theme, setTheme }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
 
-  const toggleIconClass = "w-4 h-4 sm:w-5 sm:h-5";
-  const menuIconClass = "w-4 h-4 sm:w-5 sm:h-5";
-  const navItemIconClass = "w-4 h-4 sm:w-[18px] sm:h-[18px]";
+  const toggleIconClass = "w-4 h-4 sm:w-[18px] sm:h-[18px]";
+  const menuIconClass = "w-5 h-5";
+  const navItemIconClass = "w-4 h-4 sm:w-5 sm:h-5";
 
-  // Detect active section on scroll
+  // Prevent background scroll when mobile menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [menuOpen]);
+
+  // Detect scroll for navbar shrink & active section
   useEffect(() => {
     const handleScroll = () => {
-      const sections = links.map((link) => document.getElementById(link.id));
-      const scrollPosition = window.scrollY + 120;
+      setScrolled(window.scrollY > 30);
 
+      const sections = links.map((link) => document.getElementById(link.id));
+      const scrollPosition = window.scrollY + 140;
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
         if (section && section.offsetTop <= scrollPosition) {
@@ -100,8 +128,8 @@ export default function Navbar({ theme, setTheme }) {
     };
 
     handleScroll();
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("hashchange", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("hashchange", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("hashchange", handleScroll);
@@ -113,29 +141,36 @@ export default function Navbar({ theme, setTheme }) {
       variants={navVariants}
       initial="hidden"
       animate="visible"
-      className="sticky top-0 z-50 border-b-2 transition-all duration-300 border-slate-200 bg-white/80 dark:border-slate-800 dark:bg-slate-950/80 backdrop-blur-xl shadow-sm dark:shadow-slate-900/50"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full ${scrolled
+          ? "bg-white/90 dark:bg-slate-950/90 backdrop-blur-2xl shadow-md shadow-black/5 dark:shadow-black/25 border-b border-slate-200/60 dark:border-slate-800/60"
+          : "bg-white/65 dark:bg-slate-950/50 backdrop-blur-xl border-b border-slate-200/20 dark:border-slate-800/20"
+        }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 flex h-20 items-center justify-between">
+      <div className="max-w-7xl 2xl:max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12 flex h-16 sm:h-18 2xl:h-22 items-center justify-between">
         {/* Logo */}
         <motion.a
           href="#home"
           variants={logoVariants}
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.98 }}
           transition={{ duration: 0.2, ease: "easeOut" }}
-          className="font-bold text-lg flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-sm"
+          className="font-bold text-base sm:text-lg 2xl:text-xl flex items-center gap-1.5 2xl:gap-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg p-1"
           aria-label="Go to home section"
         >
-          <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white px-2 py-1 rounded">
+          <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-fuchsia-500 text-white px-2.5 py-1 2xl:px-3.5 2xl:py-1.5 rounded-lg text-xs sm:text-sm 2xl:text-base font-extrabold tracking-wide shadow-sm">
+            SK
+          </span>
+          <span className="hidden sm:inline text-slate-900 dark:text-slate-100 font-extrabold tracking-tight text-sm sm:text-base 2xl:text-lg">
             SHUSHAY
           </span>
-          <span className="hidden xl:inline text-slate-900 dark:text-slate-100">
+          <span className="hidden xl:inline text-slate-500 dark:text-slate-400 font-medium text-xs 2xl:text-sm tracking-normal">
             KEBEDEW
           </span>
         </motion.a>
 
         {/* Desktop Navigation */}
         <nav
-          className="hidden lg:flex gap-8 items-center text-sm lg:text-base font-medium"
+          className="hidden lg:flex items-center gap-0.5 xl:gap-1 2xl:gap-2 text-sm font-medium"
           aria-label="Main Navigation"
         >
           {links.map(({ label, id }, index) => (
@@ -144,50 +179,59 @@ export default function Navbar({ theme, setTheme }) {
               href={`#${id}`}
               custom={index}
               variants={navItemVariants}
-              whileHover={{ y: -2 }}
+              whileHover={{ y: -1 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="relative py-1.5 group focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-sm"
+              className="relative px-2.5 xl:px-3 2xl:px-4 py-1.5 2xl:py-2 rounded-lg group focus:outline-none focus:ring-2 focus:ring-indigo-500"
               onClick={() => setMenuOpen(false)}
             >
-              <span className="text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors duration-300 font-semibold">
+              <span
+                className={`relative z-10 transition-colors duration-200 font-semibold text-xs xl:text-[13px] 2xl:text-base ${activeSection === id
+                    ? "text-indigo-600 dark:text-indigo-400 font-bold"
+                    : "text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white"
+                  }`}
+              >
                 {label}
               </span>
 
-              {/* Active & Hover Bottom Border */}
-              <span
-                className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 transition-all duration-300 ${
-                  activeSection === id ? "w-full" : "w-0 group-hover:w-full"
-                }`}
-              />
+              {/* Active background pill */}
+              {activeSection === id && (
+                <motion.span
+                  layoutId="activeNavBg"
+                  className="absolute inset-0 rounded-lg bg-indigo-50/80 dark:bg-indigo-950/60 border border-indigo-200/50 dark:border-indigo-800/40"
+                  transition={{ type: "spring", stiffness: 420, damping: 32 }}
+                />
+              )}
             </motion.a>
           ))}
 
           {/* Dark Mode Toggle */}
-          <motion.button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            whileHover={{ scale: 1.1, rotate: 15 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            aria-label="Toggle Dark Mode"
-            className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer"
-          >
-            {theme === "dark" ? (
-              <Sun className={toggleIconClass} />
-            ) : (
-              <Moon className={toggleIconClass} />
-            )}
-          </motion.button>
+          <div className="ml-2 pl-2 2xl:ml-4 2xl:pl-4 border-l border-slate-200 dark:border-slate-800">
+            <motion.button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              whileHover={{ scale: 1.08, rotate: 12 }}
+              whileTap={{ scale: 0.94 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              aria-label="Toggle Dark Mode"
+              className="p-2 2xl:p-2.5 rounded-xl bg-slate-100/80 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-colors cursor-pointer border border-slate-200/50 dark:border-slate-700/50"
+            >
+              {theme === "dark" ? (
+                <Sun className="w-4 h-4 sm:w-[18px] sm:h-[18px] 2xl:w-5 2xl:h-5" />
+              ) : (
+                <Moon className="w-4 h-4 sm:w-[18px] sm:h-[18px] 2xl:w-5 2xl:h-5" />
+              )}
+            </motion.button>
+          </div>
         </nav>
 
         {/* Mobile Actions */}
-        <div className="lg:hidden flex items-center gap-2">
+        <div className="lg:hidden flex items-center gap-1.5">
           <motion.button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            whileHover={{ scale: 1.1, rotate: 15 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.06 }}
+            whileTap={{ scale: 0.92 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
             aria-label="Toggle Dark Mode"
-            className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors border border-slate-200/60 dark:border-slate-700/60"
           >
             {theme === "dark" ? (
               <Sun className={toggleIconClass} />
@@ -198,12 +242,12 @@ export default function Navbar({ theme, setTheme }) {
 
           <motion.button
             onClick={() => setMenuOpen(!menuOpen)}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.06 }}
+            whileTap={{ scale: 0.92 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
             aria-expanded={menuOpen}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors border border-slate-200/60 dark:border-slate-700/60"
           >
             {menuOpen ? (
               <X className={menuIconClass} />
@@ -214,40 +258,90 @@ export default function Navbar({ theme, setTheme }) {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Drawer & Backdrop */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.nav
-            variants={mobileMenuVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className="md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950"
-            aria-label="Mobile Navigation"
-          >
-            <div className="flex flex-col gap-2 px-4 py-3">
-              {links.map(({ label, id, icon: Icon }, index) => (
-                <motion.a
-                  key={id}
-                  href={`#${id}`}
-                  custom={index}
-                  variants={mobileItemVariants}
-                  whileHover={{ x: 4 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
+          <>
+            {/* Backdrop Overlay */}
+            <motion.div
+              key="drawer-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              onClick={() => setMenuOpen(false)}
+              className="lg:hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-md"
+              aria-hidden="true"
+            />
+
+            {/* Slide-over Full-Width Screen from Right to Left with 100% Solid Background */}
+            <motion.aside
+              key="drawer-panel"
+              variants={drawerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              style={{ backgroundColor: theme === "dark" ? "#020617" : "#ffffff" }}
+              className="lg:hidden fixed inset-0 w-full h-[100dvh] z-50 shadow-2xl flex flex-col justify-between overflow-y-auto p-5 xs:p-6 sm:p-8"
+              aria-label="Mobile Navigation"
+            >
+              {/* Drawer Top Bar */}
+              <div className="flex items-center justify-between pb-4 border-b border-slate-200/80 dark:border-slate-800/80">
+                <div className="flex items-center gap-2">
+                  <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-fuchsia-500 text-white px-2 py-0.5 rounded-lg text-xs font-extrabold tracking-wide">
+                    SK
+                  </span>
+                  <span className="font-bold text-sm text-slate-900 dark:text-white">
+                    Navigation Menu
+                  </span>
+                </div>
+                <button
                   onClick={() => setMenuOpen(false)}
-                  className={`flex items-center gap-5 px-3 py-2.5 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
-                    activeSection === id
-                      ? "bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 font-semibold"
-                      : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900"
-                  }`}
+                  className="p-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
+                  aria-label="Close menu"
                 >
-                  <Icon className={navItemIconClass} />
-                  <span>{label}</span>
-                </motion.a>
-              ))}
-            </div>
-          </motion.nav>
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Navigation Links — Animated Stagger from Right to Left */}
+              <div className="flex flex-col gap-1.5 my-auto py-4">
+                {links.map(({ label, id, icon: Icon }) => (
+                  <motion.a
+                    key={id}
+                    href={`#${id}`}
+                    variants={drawerItemVariants}
+                    onClick={() => setMenuOpen(false)}
+                    className={`flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all duration-200 ${
+                      activeSection === id
+                        ? "bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-bold border border-indigo-200/60 dark:border-indigo-800/50 shadow-sm"
+                        : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900/60 hover:text-slate-900 dark:hover:text-white font-medium"
+                    }`}
+                  >
+                    <Icon className="w-4 h-4 flex-shrink-0" />
+                    <span className="text-sm font-semibold">{label}</span>
+                  </motion.a>
+                ))}
+              </div>
+
+              {/* Drawer Footer */}
+              <div className="pt-4 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col gap-3">
+                <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                  <span>Appearance</span>
+                  <button
+                    onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium cursor-pointer"
+                  >
+                    {theme === "dark" ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
+                    <span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
+                  </button>
+                </div>
+                <p className="text-[11px] text-center text-slate-400">
+                  Shushay Kebedew • Portfolio
+                </p>
+              </div>
+            </motion.aside>
+          </>
         )}
       </AnimatePresence>
     </motion.header>

@@ -27,7 +27,7 @@ export const TABS = [
       { name: "Tailwind CSS", level: 94, proficiency: "Expert" },
       { name: "Svelte", level: 85, proficiency: "Advanced" },
       { name: "SvelteKit", level: 85, proficiency: "Advanced" },
-      { name: "Framer Motion", level: 82, proficiency: "Advanced" },
+
     ],
   },
   {

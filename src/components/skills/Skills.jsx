@@ -1,52 +1,34 @@
-import { motion, useInView, AnimatePresence } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { TABS } from "./constants";
 import { SkillRowColored } from "./SkillRow";
+import SectionHeader from "../ui/SectionHeader";
 
 export default function Skills() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [activeTab, setActiveTab] = useState("frontend");
 
-  const currentTab = TABS.find((t) => t.id === activeTab);
+  const currentTab = TABS.find((t) => t.id === activeTab) || TABS[0];
   const avg = Math.round(
     currentTab.skills.reduce((a, s) => a + s.level, 0) /
-    currentTab.skills.length,
+    currentTab.skills.length
   );
 
   return (
-    <section
-      id="skills"
-      className="py-20 md:py-24 bg-white dark:bg-slate-900 transition-colors duration-300"
-      ref={ref}
-    >
-      <div className="max-w-4xl mx-auto px-6 lg:px-8">
-        {/* Section header */}
-        <div className="text-center mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.4 }}
-          >
-            <p className="text-xs uppercase tracking-widest mb-3 font-bold text-slate-500 dark:text-slate-400">
-              My Skills
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-slate-900 dark:text-white">
-              Tools & Technologies
-            </h2>
-            <p className="text-base max-w-2xl mx-auto leading-relaxed font-medium text-slate-600 dark:text-slate-300">
-              A comprehensive overview of my technical expertise across
-              frontend, backend, databases, and emerging technologies.
-            </p>
-          </motion.div>
-        </div>
+    <section id="skills" className="section-padding relative overflow-hidden">
+      <div className="max-w-5xl 2xl:max-w-[1550px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12">
+        <SectionHeader
+          subtitle="My Skills"
+          title={
+            <>
+              Tools & <span className="brand-gradient-text">Technologies</span>
+            </>
+          }
+          description="A comprehensive overview of my technical expertise across frontend, backend, databases, and emerging technologies."
+        />
 
-        {/* Tabs */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.3, delay: 0.05 }}
-          className="flex justify-center gap-2 flex-wrap mb-8"
+        {/* Tab Controls */}
+        <div
+          className="flex justify-center gap-1.5 sm:gap-2.5 2xl:gap-3 flex-wrap mb-8 sm:mb-10 2xl:mb-14"
           role="tablist"
           aria-label="Skill categories"
         >
@@ -62,74 +44,78 @@ export default function Skills() {
                 role="tab"
                 aria-selected={isActive}
                 aria-controls={`skillpanel-${tab.id}`}
-                className={`relative flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full border-2 transition-colors duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 ${isActive
-                  ? "text-white dark:text-slate-900 border-slate-900 dark:border-slate-100"
-                  : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-500"
-                  }`}
+                className={`relative flex items-center gap-1.5 sm:gap-2 2xl:gap-2.5 text-xs sm:text-sm 2xl:text-base font-semibold px-3 sm:px-4 2xl:px-6 py-2 sm:py-2.5 2xl:py-3 rounded-full transition-all duration-300 cursor-pointer ${
+                  isActive
+                    ? "text-white shadow-lg shadow-indigo-500/20"
+                    : "glass-card text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                }`}
               >
                 {isActive && (
                   <motion.span
                     layoutId="activeSkillTabBg"
-                    className="absolute inset-0 rounded-full bg-slate-900 dark:bg-slate-100"
+                    className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
-                <Icon className="relative w-4 h-4" aria-hidden="true" />
-                <span className="relative">{tab.label}</span>
+                <Icon className="relative z-10 w-3.5 h-3.5 sm:w-4 sm:h-4 2xl:w-5 2xl:h-5 flex-shrink-0" aria-hidden="true" />
+                <span className="relative z-10 whitespace-nowrap">{tab.label}</span>
               </motion.button>
             );
           })}
-        </motion.div>
+        </div>
 
-        {/* Skill card */}
+        {/* Skill Card Container */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
             id={`skillpanel-${activeTab}`}
             role="tabpanel"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            whileHover={{ y: -4 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           >
-            <div className="relative p-6 sm:p-8 rounded-2xl shadow-lg border-2 overflow-hidden bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 transition-colors duration-300">
-              {/* Decorative blob */}
+            <div className="relative glass-card p-4 sm:p-6 md:p-8 2xl:p-12 rounded-2xl sm:rounded-3xl 2xl:rounded-4xl glow-hover overflow-hidden">
+              {/* Decorative radial gradient in corner */}
               <div
-                className={`absolute top-0 right-0 w-40 h-40 rounded-full opacity-10 blur-2xl bg-gradient-to-br ${currentTab.color} dark:${currentTab.darkColor}`}
+                className={`absolute top-0 right-0 w-48 sm:w-64 2xl:w-96 h-48 sm:h-64 2xl:h-96 rounded-full opacity-20 dark:opacity-15 blur-3xl bg-gradient-to-br ${currentTab.color} pointer-events-none`}
               />
 
-              {/* Card header */}
-              <div className="flex items-center justify-between mb-8 relative z-10">
-                <div className="flex items-center gap-4">
+              {/* Card Header */}
+              <div className="flex items-center justify-between mb-6 sm:mb-8 2xl:mb-10 relative z-10 gap-3">
+                <div className="flex items-center gap-3 sm:gap-4 2xl:gap-5 min-w-0">
                   <motion.div
-                    className={`p-3 rounded-xl bg-gradient-to-br ${currentTab.color} shadow-md`}
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ duration: 0.3 }}
+                    className={`p-2.5 sm:p-3.5 2xl:p-4 rounded-xl sm:rounded-2xl 2xl:rounded-3xl bg-gradient-to-br ${currentTab.color} text-white shadow-md flex-shrink-0`}
+                    whileHover={{ scale: 1.08, rotate: 4 }}
+                    transition={{ duration: 0.25 }}
                   >
                     {(() => {
                       const Icon = currentTab.icon;
-                      return (
-                        <Icon
-                          className="w-5 h-5 text-white"
-                          aria-hidden="true"
-                        />
-                      );
+                      return <Icon className="w-4 h-4 sm:w-5 sm:h-5 2xl:w-6 2xl:h-6" aria-hidden="true" />;
                     })()}
                   </motion.div>
-                  <div>
-                    <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+                  <div className="min-w-0">
+                    <h3 className="text-base sm:text-lg md:text-xl 2xl:text-2xl font-bold text-slate-900 dark:text-white truncate">
                       {currentTab.title}
                     </h3>
-                    <p className="text-xs font-medium mt-0.5 text-slate-500 dark:text-slate-400">
+                    <p className="text-[11px] sm:text-xs 2xl:text-sm font-medium text-slate-500 dark:text-slate-400 mt-0.5">
                       {currentTab.skills.length} Technologies
                     </p>
                   </div>
                 </div>
+
+                <div className="flex flex-col items-end flex-shrink-0">
+                  <span className="text-[10px] sm:text-[11px] 2xl:text-xs uppercase tracking-wider font-semibold text-slate-400">
+                    Avg Level
+                  </span>
+                  <span className="text-base sm:text-lg 2xl:text-2xl font-bold font-mono text-indigo-600 dark:text-indigo-400">
+                    {avg}%
+                  </span>
+                </div>
               </div>
 
-              {/* Skills */}
-              <div className="space-y-5 relative z-10">
+              {/* Skills List - 2 columns on 2xl screens */}
+              <div className="space-y-2 sm:space-y-3 2xl:grid 2xl:grid-cols-2 2xl:gap-x-10 2xl:gap-y-3.5 2xl:space-y-0 relative z-10">
                 {currentTab.skills.map((skill, i) => (
                   <SkillRowColored
                     key={`${activeTab}-${skill.name}`}
@@ -141,16 +127,11 @@ export default function Skills() {
               </div>
 
               {/* Footer */}
-              <div className="mt-8 pt-4 border-t-2 border-dashed border-slate-200 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
-                <span>Avg. Proficiency</span>
-                <motion.span
-                  className="font-bold text-slate-800 dark:text-slate-100"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  {avg}%
-                </motion.span>
+              <div className="mt-6 sm:mt-8 pt-3.5 sm:pt-4 border-t border-slate-200/50 dark:border-slate-800/80 flex items-center justify-between text-xs font-medium text-slate-500 dark:text-slate-400 relative z-10">
+                <span>Proficiency scale: 0 - 100%</span>
+                <span className="font-mono font-bold text-indigo-600 dark:text-indigo-400">
+                  {currentTab.skills.length} skills listed
+                </span>
               </div>
             </div>
           </motion.div>

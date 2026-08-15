@@ -40,7 +40,7 @@ export default function ContactForm({ cardVariants }) {
 
     if (!formData.email.trim()) newErrors.email = "Email is required";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
-      newErrors.email = "Please enter a valid email";
+      newErrors.email = "Please enter a valid email address";
 
     if (!formData.subject.trim()) newErrors.subject = "Subject is required";
     else if (formData.subject.trim().length < 5)
@@ -104,65 +104,66 @@ export default function ContactForm({ cardVariants }) {
       variants={cardVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0 }}
+      viewport={{ once: true, amount: 0.08 }}
       className="h-full"
     >
-      <div className="rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow h-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-        <h3 className="text-lg font-bold mb-5 text-slate-900 dark:text-white">
-          Send a Message
-        </h3>
-        <form className="space-y-4" onSubmit={sendEmail} noValidate>
-          <FormField
-            id="name"
-            label="Your Name"
-            type="text"
-            value={formData.name}
-            onChange={handleInputChange}
-            error={errors.name}
-            placeholder="Enter your full name"
-            disabled={loading}
-          />
+      <div className="glass-card p-5 sm:p-7 md:p-8 2xl:p-10 rounded-2xl sm:rounded-3xl 2xl:rounded-4xl glow-hover h-full flex flex-col justify-between">
+        <div>
+          <h3 className="text-xl sm:text-2xl 2xl:text-3xl font-bold mb-5 sm:mb-6 2xl:mb-8 text-slate-900 dark:text-white">
+            Send a Message
+          </h3>
+          <form className="space-y-3.5 sm:space-y-4 2xl:space-y-5" onSubmit={sendEmail} noValidate>
+            <FormField
+              id="name"
+              label="Your Name"
+              type="text"
+              value={formData.name}
+              onChange={handleInputChange}
+              error={errors.name}
+              placeholder="e.g. Alex Johnson"
+              disabled={loading}
+            />
 
-          <FormField
-            id="email"
-            label="Your Email"
-            type="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            error={errors.email}
-            placeholder="your.email@example.com"
-            disabled={loading}
-          />
+            <FormField
+              id="email"
+              label="Your Email"
+              type="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              error={errors.email}
+              placeholder="alex@company.com"
+              disabled={loading}
+            />
 
-          <FormField
-            id="subject"
-            label="Subject"
-            type="text"
-            value={formData.subject}
-            onChange={handleInputChange}
-            error={errors.subject}
-            placeholder="Project inquiry, collaboration, etc."
-            disabled={loading}
-          />
+            <FormField
+              id="subject"
+              label="Subject"
+              type="text"
+              value={formData.subject}
+              onChange={handleInputChange}
+              error={errors.subject}
+              placeholder="Project inquiry, consulting, etc."
+              disabled={loading}
+            />
 
-          <FormField
-            id="message"
-            label="Message"
-            value={formData.message}
-            onChange={handleInputChange}
-            error={errors.message}
-            placeholder="Tell me about your project, timeline, and any specific requirements..."
-            disabled={loading}
-            rows={4}
-          />
+            <FormField
+              id="message"
+              label="Message"
+              value={formData.message}
+              onChange={handleInputChange}
+              error={errors.message}
+              placeholder="Tell me about your project, timeline, and goals..."
+              disabled={loading}
+              rows={4}
+            />
 
-          <SubmitButton
-            loading={loading}
-            disabled={!shouldBtnActive}
-          />
+            <div className="pt-1.5 sm:pt-2">
+              <SubmitButton loading={loading} disabled={!shouldBtnActive} />
+            </div>
 
-          <FeedbackMessage feedback={feedback} />
-        </form>
+            <FeedbackMessage feedback={feedback} />
+          </form>
+        </div>
       </div>
     </motion.div>
   );
