@@ -23,7 +23,7 @@ export default function Certifications() {
 
   return (
     <section id="certifications" className="section-padding relative overflow-hidden">
-      <div className="max-w-6xl 2xl:max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12">
+      <div className="max-w-6xl 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-8">
         <SectionHeader
           subtitle="Certifications"
           title={

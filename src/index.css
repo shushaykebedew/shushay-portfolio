@@ -201,6 +201,13 @@ html.dark .glass-card:hover {
   }
 }
 
+@media (min-width: 1920px) {
+  .section-padding {
+    padding-top: 9rem;
+    padding-bottom: 9rem;
+  }
+}
+
 /* ---------- Scrollbar ---------- */
 ::-webkit-scrollbar {
   width: 6px;
@@ -362,32 +369,7 @@ li {
   background: var(--bg-primary);
 }
 
-.loading-bar {
-  width: 120px;
-  height: 3px;
-  border-radius: 3px;
-  overflow: hidden;
-  background: var(--border-color);
-  margin-top: 1.5rem;
-}
 
-.loading-bar-inner {
-  height: 100%;
-  width: 40%;
-  border-radius: 3px;
-  background: var(--brand-gradient);
-  animation: loading-slide 1s ease-in-out infinite;
-}
-
-@keyframes loading-slide {
-  0% {
-    transform: translateX(-100%);
-  }
-
-  100% {
-    transform: translateX(350%);
-  }
-}
 
 /* ---------- Reduced Motion ---------- */
 @media (prefers-reduced-motion: reduce) {

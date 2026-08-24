@@ -146,7 +146,7 @@ export default function Navbar({ theme, setTheme }) {
           : "bg-white/65 dark:bg-slate-950/50 backdrop-blur-xl border-b border-slate-200/20 dark:border-slate-800/20"
         }`}
     >
-      <div className="max-w-7xl 2xl:max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12 flex h-16 sm:h-18 2xl:h-22 items-center justify-between">
+      <div className="max-w-7xl 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-8 flex h-16 sm:h-18 2xl:h-22 items-center justify-between">
         {/* Logo */}
         <motion.a
           href="#home"

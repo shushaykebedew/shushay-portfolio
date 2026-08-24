@@ -56,7 +56,7 @@ export default function Hero() {
       {/* Background orbs */}
       <GradientOrbs orbs={HERO_ORBS} />
 
-      <div className="relative z-10 max-w-7xl 2xl:max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12 grid lg:grid-cols-12 gap-10 sm:gap-14 lg:gap-16 2xl:gap-24 items-center w-full">
+      <div className="relative z-10 max-w-7xl 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-8 grid lg:grid-cols-12 gap-10 sm:gap-14 lg:gap-16 2xl:gap-20 items-center w-full">
         {/* Left Column — Text & CTAs */}
         <motion.div
           className="lg:col-span-7 2xl:col-span-7 flex flex-col justify-center"

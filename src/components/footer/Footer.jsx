@@ -75,7 +75,7 @@ export default function Footer() {
 
   return (
     <footer className="relative pt-12 sm:pt-16 2xl:pt-20 pb-8 sm:pb-12 2xl:pb-16 border-t border-slate-200/50 dark:border-slate-800/80 bg-slate-50/50 dark:bg-slate-950/50 backdrop-blur-lg">
-      <div className="max-w-6xl 2xl:max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12">
+      <div className="max-w-6xl 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-8 2xl:gap-12 pb-8 sm:pb-12 2xl:pb-16">
           {/* Brand & Contact */}
           <motion.div

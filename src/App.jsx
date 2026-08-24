@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+import LoadingScreen from "./components/ui/LoadingScreen";
 import Navbar from "./components/navbar/Navbar";
 import Hero from "./components/hero/Hero";
 import About from "./components/about/About";
@@ -39,7 +40,8 @@ export default function App() {
 
   // Loading screen
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1200);
+    // Increased duration slightly to let the animation play out beautifully
+    const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -48,23 +50,7 @@ export default function App() {
       {/* Loading Screen */}
       <AnimatePresence>
         {loading && (
-          <motion.div
-            className="loading-screen"
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
-            <motion.span
-              className="text-2xl font-bold brand-gradient-text"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4 }}
-            >
-              SK
-            </motion.span>
-            <div className="loading-bar">
-              <div className="loading-bar-inner" />
-            </div>
-          </motion.div>
+          <LoadingScreen />
         )}
       </AnimatePresence>
 
