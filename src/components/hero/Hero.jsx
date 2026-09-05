@@ -85,7 +85,7 @@ export default function Hero() {
 
           {/* Main heading */}
           <motion.h1
-            className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-extrabold mb-4 sm:mb-6 2xl:mb-8 leading-[1.1] tracking-tight text-slate-900 dark:text-white"
+            className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl  2xl:text-8xl font-extrabold mb-4 sm:mb-6 2xl:mb-8 leading-[1.1] tracking-tight text-slate-900 dark:text-white"
             variants={itemVariants}
           >
             Hi, I'm{" "}
