@@ -114,8 +114,8 @@ export default function Skills() {
                 </div>
               </div>
 
-              {/* Skills List - 2 columns on 2xl screens */}
-              <div className="space-y-2 sm:space-y-3 2xl:grid 2xl:grid-cols-2 2xl:gap-x-10 2xl:gap-y-3.5 2xl:space-y-0 relative z-10">
+              {/* Skills List - 2 columns on xl screens */}
+              <div className="space-y-2 sm:space-y-3 xl:grid xl:grid-cols-2 xl:gap-x-10 xl:gap-y-3.5 xl:space-y-0 relative z-10">
                 {currentTab.skills.map((skill, i) => (
                   <SkillRowColored
                     key={`${activeTab}-${skill.name}`}

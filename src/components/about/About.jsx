@@ -19,7 +19,7 @@ const cardItemVariants = {
 
 const STATS = [
   { label: "Years Experience", value: "2+", icon: Briefcase },
-  { label: "Projects Built", value: "8+", icon: Code },
+  { label: "Projects Built", value: "20+", icon: Code },
   { label: "Certifications", value: "8+", icon: Award },
 ];
 
@@ -107,9 +107,8 @@ export default function About() {
                 );
               })}
             </div>
-          </motion.div>
 
-          {/* Text Column */}
+          </motion.div>
           <motion.div
             className="lg:col-span-7 2xl:col-span-7 space-y-4 sm:space-y-6 2xl:space-y-8"
             initial={{ x: 25, opacity: 0 }}

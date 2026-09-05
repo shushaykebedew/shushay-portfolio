@@ -7,9 +7,17 @@ import bellboy from "../../assets/bellboy.png";
 import xCafe from "../../assets/x-cafe.png";
 import AI_Powered_Fraud_Detection from "../../assets/AI_Powered_Fraud_Detection.png";
 
+export const PROJECT_CATEGORIES = [
+  { id: "all", label: "All" },
+  { id: "frontend", label: "Frontend" },
+  { id: "fullstack", label: "Full Stack" },
+  { id: "ai", label: "AI / ML" },
+];
+
 export const projects = [
   {
     title: "Katech Driver Data Platform",
+    category: "frontend",
     description:
       "Data management platform for collecting, validating, and processing driving videos and related metadata. Built to help AI and automotive companies access high-quality human–vehicle interaction datasets for machine learning, autonomous driving research, and analytics.",
     image: katechImg,
@@ -29,6 +37,7 @@ export const projects = [
   },
   {
     title: "Macha Taximeter Platform",
+    category: "frontend",
     description:
       "Modern taxi fare calculation system with GPS tracking and dynamic pricing. Built with server-side rendering for optimal performance and real-time location updates.",
     image: machaImg,
@@ -45,6 +54,7 @@ export const projects = [
   },
   {
     title: "Sheqlee Admin Dashboard",
+    category: "fullstack",
     description:
       "Full-stack admin platform for freelancer marketplace management. Includes user management, project tracking, payment processing, and analytics dashboard with real-time data synchronization.",
     image: sheqleeDashboard,
@@ -61,6 +71,7 @@ export const projects = [
   },
   {
     title: "Glitch Multilingual Platform",
+    category: "frontend",
     description:
       "Internationalized web platform with English and Korean support. Features server-side rendering, dynamic content management, and optimized SEO performance.",
     image: glitchImg,
@@ -76,6 +87,7 @@ export const projects = [
   },
   {
     title: "Bellboy Delivery",
+    category: "frontend",
     description:
       "Built delivery system with smooth, interactive animations that visually track each step of the delivery process—from request to pickup, transit, and drop-off—providing real-time status updates and a clear, engaging user experience.",
     image: bellboy,
@@ -84,6 +96,7 @@ export const projects = [
   },
   {
     title: "X Cafe",
+    category: "fullstack",
     description:
       "Built an admin dashboard for a QR-based café ordering system with real-time order updates, menu management, and order tracking. Enabled customers to place orders via QR scan while staff manage and monitor incoming orders efficiently. Focused on real-time sync and streamlined café operations.",
     image: xCafe,
@@ -102,6 +115,7 @@ export const projects = [
   },
   {
     title: "Automated ID Verification System",
+    category: "fullstack",
     description:
       "Enterprise-grade identity verification platform with QR code scanning. Features secure user authentication, real-time verification status, and comprehensive admin dashboard.",
     image: qrCodeScan,
@@ -120,6 +134,7 @@ export const projects = [
   },
   {
     title: "AI-Powered Fraud Detection",
+    category: "ai",
     description:
       "Advanced fraud detection platform for Ethiopian banking and mobile payment systems. Utilizes AI and machine learning to identify suspicious transactions in real-time, ensure secure payments, and provide actionable analytics through an intuitive admin dashboard.",
     image: AI_Powered_Fraud_Detection,

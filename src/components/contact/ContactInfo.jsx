@@ -2,8 +2,6 @@ import { MapPin, Phone, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function ContactInfo({ cardVariants }) {
-  const iconClass = "w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0";
-
   return (
     <motion.div
       custom={0}
@@ -13,7 +11,9 @@ export default function ContactInfo({ cardVariants }) {
       viewport={{ once: true, amount: 0.08 }}
       className="h-full"
     >
-      <div className="glass-card p-5 sm:p-7 md:p-8 rounded-2xl sm:rounded-3xl glow-hover h-full flex flex-col justify-between">
+      <div className="glass-card p-5 sm:p-7 md:p-8 rounded-2xl sm:rounded-3xl glow-hover h-full flex flex-col gap-6 sm:gap-7">
+
+        {/* ── Contact Details ── */}
         <div>
           <h3 className="text-xl sm:text-2xl 2xl:text-3xl font-bold mb-5 sm:mb-6 2xl:mb-8 text-slate-900 dark:text-white">
             Contact Details
@@ -26,11 +26,14 @@ export default function ContactInfo({ cardVariants }) {
                 <MapPin className="w-5 h-5 2xl:w-6 2xl:h-6 flex-shrink-0" aria-hidden="true" />
               </div>
               <div className="min-w-0">
-                <p className="text-xs sm:text-xs 2xl:text-sm uppercase tracking-wider font-bold text-slate-400 dark:text-slate-500 mb-1">
+                <p className="text-xs 2xl:text-sm uppercase tracking-wider font-bold text-slate-400 dark:text-slate-500 mb-1">
                   Location
                 </p>
                 <p className="text-sm sm:text-base 2xl:text-lg font-semibold text-slate-800 dark:text-slate-200">
                   Addis Ababa, Ethiopia
+                </p>
+                <p className="text-[11px] sm:text-xs text-slate-400 dark:text-slate-500 mt-0.5">
+                  EAT · UTC+3 · Remote-friendly
                 </p>
               </div>
             </div>
@@ -41,7 +44,7 @@ export default function ContactInfo({ cardVariants }) {
                 <Phone className="w-5 h-5 2xl:w-6 2xl:h-6 flex-shrink-0" aria-hidden="true" />
               </div>
               <div className="min-w-0">
-                <p className="text-xs sm:text-xs 2xl:text-sm uppercase tracking-wider font-bold text-slate-400 dark:text-slate-500 mb-1">
+                <p className="text-xs 2xl:text-sm uppercase tracking-wider font-bold text-slate-400 dark:text-slate-500 mb-1">
                   Phone
                 </p>
                 <a
@@ -60,7 +63,7 @@ export default function ContactInfo({ cardVariants }) {
                 <Mail className="w-5 h-5 2xl:w-6 2xl:h-6 flex-shrink-0" aria-hidden="true" />
               </div>
               <div className="min-w-0">
-                <p className="text-xs sm:text-xs 2xl:text-sm uppercase tracking-wider font-bold text-slate-400 dark:text-slate-500 mb-1">
+                <p className="text-xs 2xl:text-sm uppercase tracking-wider font-bold text-slate-400 dark:text-slate-500 mb-1">
                   Email
                 </p>
                 <a
@@ -72,13 +75,16 @@ export default function ContactInfo({ cardVariants }) {
                 >
                   shusaykebedew12@gmail.com
                 </a>
+                <p className="text-[11px] sm:text-xs text-slate-400 dark:text-slate-500 mt-0.5">
+                  Preferred contact method
+                </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Map */}
-        <div className="relative w-full aspect-[16/9] min-h-[160px] rounded-xl sm:rounded-2xl overflow-hidden mt-6 sm:mt-8 border border-slate-200/50 dark:border-slate-800 shadow-inner">
+        {/* ── Map ── */}
+        <div className="relative w-full aspect-[16/9] min-h-[160px] rounded-xl sm:rounded-2xl overflow-hidden border border-slate-200/50 dark:border-slate-800 shadow-inner mt-auto">
           <iframe
             title="Map of Addis Ababa, Ethiopia"
             src="https://www.openstreetmap.org/export/embed.html?bbox=38.70%2C8.95%2C38.80%2C9.05&layer=mapnik&marker=9.03%2C38.74"
@@ -88,6 +94,7 @@ export default function ContactInfo({ cardVariants }) {
             referrerPolicy="no-referrer-when-downgrade"
           />
         </div>
+
       </div>
     </motion.div>
   );

@@ -1,11 +1,13 @@
-import { motion } from "framer-motion";
-import { Github, ExternalLink, ArrowUpRight } from "lucide-react";
+import { useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Github, ExternalLink, ArrowUpRight, Play } from "lucide-react";
 import LazyImage from "./LazyImage";
 
 export default function ProjectCard({
   title,
   description,
   image,
+  videoUrl,
   tech,
   demoUrl,
   githubUrl,
@@ -13,8 +15,25 @@ export default function ProjectCard({
   projectVariants,
   isFeatured = false,
 }) {
-  const linkIconClass = "w-3.5 h-3.5 flex-shrink-0";
-  const githubIconClass = "w-3.5 h-3.5 flex-shrink-0";
+  const videoRef = useRef(null);
+  const [videoReady, setVideoReady] = useState(false);
+  const [hovered, setHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setHovered(true);
+    if (videoRef.current && videoReady) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch(() => {});
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
 
   return (
     <motion.article
@@ -28,13 +47,33 @@ export default function ProjectCard({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.08 }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {/* Index Number Badge */}
       <div className="absolute top-3 sm:top-4 2xl:top-5 left-3 sm:left-4 2xl:left-5 z-20 glass-card-strong px-2.5 sm:px-3 2xl:px-3.5 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-[11px] 2xl:text-xs font-mono font-extrabold text-indigo-600 dark:text-indigo-400 shadow-md">
         #{String(index + 1).padStart(2, "0")}
       </div>
 
-      {/* Image Preview Container */}
+      {/* Video preview badge — only shown when videoUrl exists */}
+      {videoUrl && (
+        <AnimatePresence>
+          {!hovered && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.85 }}
+              transition={{ duration: 0.2 }}
+              className="absolute top-3 sm:top-4 right-3 sm:right-4 z-20 flex items-center gap-1.5 glass-card-strong px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-semibold text-indigo-600 dark:text-indigo-400 shadow-md pointer-events-none"
+            >
+              <Play className="w-2.5 h-2.5 fill-current" />
+              <span>Preview</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      )}
+
+      {/* Image / Video Preview Container */}
       <div
         className={`relative overflow-hidden w-full ${
           isFeatured
@@ -42,12 +81,41 @@ export default function ProjectCard({
             : "h-48 xs:h-56 sm:h-60 2xl:h-72"
         }`}
       >
-        <LazyImage
-          src={image}
-          alt={`${title} project screenshot`}
-          className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
-        />
-        {/* Subtle gradient overlay */}
+        {/* Static image — always rendered, fades out when video is playing */}
+        <motion.div
+          className="absolute inset-0"
+          animate={{ opacity: videoUrl && hovered && videoReady ? 0 : 1 }}
+          transition={{ duration: 0.3 }}
+        >
+          <LazyImage
+            src={image}
+            alt={`${title} project screenshot`}
+            className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+          />
+        </motion.div>
+
+        {/* Video element — lazy loaded, plays on hover */}
+        {videoUrl && (
+          <video
+            ref={videoRef}
+            src={videoUrl}
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            onCanPlay={() => {
+              setVideoReady(true);
+              // If already hovered when ready, start playing immediately
+              if (hovered) {
+                videoRef.current?.play().catch(() => {});
+              }
+            }}
+            className="absolute inset-0 w-full h-full object-cover object-top"
+            style={{ opacity: hovered && videoReady ? 1 : 0, transition: "opacity 0.3s ease" }}
+          />
+        )}
+
+        {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none" />
       </div>
 
