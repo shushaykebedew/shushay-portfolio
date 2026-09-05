@@ -18,9 +18,6 @@ export default function Certifications() {
     },
   };
 
-  const providerIconClass = "w-4 h-4 sm:w-5 sm:h-5";
-  const metaIconClass = "w-3 h-3 flex-shrink-0";
-
   return (
     <section id="certifications" className="section-padding relative overflow-hidden">
       <div className="max-w-6xl 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-8">
@@ -48,7 +45,7 @@ export default function Certifications() {
               variants={itemVariants}
               whileHover={{ y: -4 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="glass-card p-5 sm:p-6 lg:p-7 rounded-2xl sm:rounded-3xl glow-hover flex flex-col h-full"
+              className="glass-card p-5 sm:p-6 lg:p-7 rounded-2xl sm:rounded-3xl 2xl:rounded-4xl glow-hover flex flex-col h-full"
             >
               {/* Provider Header */}
               <div className="flex items-center gap-3 2xl:gap-4 mb-5 2xl:mb-6 pb-3.5 2xl:pb-4 border-b border-slate-200/50 dark:border-slate-800/80">

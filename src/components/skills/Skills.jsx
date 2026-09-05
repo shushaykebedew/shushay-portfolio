@@ -15,7 +15,7 @@ export default function Skills() {
 
   return (
     <section id="skills" className="section-padding relative overflow-hidden">
-      <div className="max-w-5xl 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-8">
+      <div className="max-w-6xl 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-8">
         <SectionHeader
           subtitle="My Skills"
           title={
@@ -53,7 +53,7 @@ export default function Skills() {
                 {isActive && (
                   <motion.span
                     layoutId="activeSkillTabBg"
-                    className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600"
+                    className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}

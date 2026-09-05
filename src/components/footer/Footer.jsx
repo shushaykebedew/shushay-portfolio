@@ -12,6 +12,7 @@ import {
   Heart,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { sectionVariants } from "../../lib/animations";
 
 const socialLinks = [
   {
@@ -51,21 +52,9 @@ const quickLinks = [
   "Contact",
 ];
 
-const sectionVariants = {
-  hidden: { opacity: 0, y: 15 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.07, duration: 0.45, ease: "easeOut" },
-  }),
-};
-
 export default function Footer() {
   const [showTop, setShowTop] = useState(false);
   const year = new Date().getFullYear();
-
-  const contactIconClass = "w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0";
-  const socialIconClass = "w-4 h-4 sm:w-4.5 sm:h-4.5";
 
   useEffect(() => {
     const handleScroll = () => setShowTop(window.scrollY > window.innerHeight);

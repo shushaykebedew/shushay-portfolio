@@ -11,7 +11,7 @@ export default function ContactInfo({ cardVariants }) {
       viewport={{ once: true, amount: 0.08 }}
       className="h-full"
     >
-      <div className="glass-card p-5 sm:p-7 md:p-8 rounded-2xl sm:rounded-3xl glow-hover h-full flex flex-col gap-6 sm:gap-7">
+      <div className="glass-card p-5 sm:p-7 md:p-8 rounded-2xl sm:rounded-3xl 2xl:rounded-4xl glow-hover h-full flex flex-col gap-6 sm:gap-7">
 
         {/* ── Contact Details ── */}
         <div>

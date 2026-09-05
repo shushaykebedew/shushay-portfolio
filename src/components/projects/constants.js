@@ -1,11 +1,11 @@
 import sheqleeDashboard from "../../assets/sheqlee-dashboard.png";
-import qrCodeScan from "../../assets/qr-code-scan.png";
+import qrCodeScan from "../../assets/qr-code-scan.jpg";
 import machaImg from "../../assets/macha.png";
-import glitchImg from "../../assets/glitch.png";
-import katechImg from "../../assets/katech.png";
+import glitchImg from "../../assets/glitch.jpg";
+import katechImg from "../../assets/katech.jpg";
 import bellboy from "../../assets/bellboy.png";
 import xCafe from "../../assets/x-cafe.png";
-import AI_Powered_Fraud_Detection from "../../assets/AI_Powered_Fraud_Detection.png";
+import AI_Powered_Fraud_Detection from "../../assets/AI_Powered_Fraud_Detection.jpg";
 
 export const PROJECT_CATEGORIES = [
   { id: "all", label: "All" },
@@ -67,7 +67,7 @@ export const projects = [
       "react-datetime",
       "quill",
     ],
-    demoUrl: " https://sheqlee-admin-panel.vercel.app/",
+    demoUrl: "https://sheqlee-admin-panel.vercel.app/",
   },
   {
     title: "Glitch Multilingual Platform",

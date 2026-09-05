@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { projects, PROJECT_CATEGORIES } from "./constants";
 import ProjectCard from "./ProjectCard";
 import SectionHeader from "../ui/SectionHeader";
+import { cardVariants } from "../../lib/animations";
 
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -13,7 +14,7 @@ export default function Projects() {
       : projects.filter((p) => p.category === activeCategory);
 
   const projectVariants = {
-    hidden: { opacity: 0, y: 25 },
+    hidden: cardVariants.hidden,
     visible: (i) => ({
       opacity: 1,
       y: 0,
@@ -63,7 +64,7 @@ export default function Projects() {
                 {isActive && (
                   <motion.span
                     layoutId="activeProjCategoryBg"
-                    className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600"
+                    className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}

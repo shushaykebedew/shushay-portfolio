@@ -2,24 +2,12 @@ import { Briefcase, CircleCheck, Calendar } from "lucide-react";
 import { motion } from "framer-motion";
 import { experience } from "./constants";
 import SectionHeader from "../ui/SectionHeader";
+import { cardVariants } from "../../lib/animations";
 
 export default function Experience() {
-  const cardVariants = {
-    hidden: { opacity: 0, y: 25 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: i * 0.08, duration: 0.45, ease: "easeOut" },
-    }),
-  };
-
-  const headerIconClass = "w-4 h-4 sm:w-5 sm:h-5";
-  const metaIconClass = "w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0";
-  const detailIconClass = "w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0";
-
   return (
     <section id="experience" className="section-padding relative overflow-hidden">
-      <div className="max-w-5xl 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-8">
+      <div className="max-w-6xl 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-8">
         <SectionHeader
           subtitle="Experience"
           title={
@@ -49,7 +37,7 @@ export default function Experience() {
 
               {/* Experience Card */}
               <div className="glass-card p-4 sm:p-6 md:p-7 2xl:p-9 rounded-2xl sm:rounded-3xl 2xl:rounded-4xl glow-hover relative overflow-hidden">
-                {/* Header with Role & Company and Aligned Year */}
+                {/* Header */}
                 <div className="flex items-start gap-3.5 sm:gap-4 2xl:gap-5 mb-4 sm:mb-6 2xl:mb-8 pb-3.5 sm:pb-4 2xl:pb-6 border-b border-slate-200/50 dark:border-slate-800/80">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 2xl:w-14 2xl:h-14 rounded-xl sm:rounded-2xl 2xl:rounded-3xl flex items-center justify-center flex-shrink-0 bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 mt-0.5">
                     <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 2xl:w-6 2xl:h-6" aria-hidden="true" />
@@ -63,8 +51,6 @@ export default function Experience() {
                         {company}
                       </p>
                     </div>
-
-                    {/* Year Pill — Aligned with title and company */}
                     <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 2xl:px-4 py-1 2xl:py-1.5 rounded-full text-[11px] sm:text-xs 2xl:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200/50 dark:border-slate-700/50 self-start sm:self-center flex-shrink-0">
                       <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 2xl:w-4 2xl:h-4 flex-shrink-0" aria-hidden="true" />
                       <span>{year}</span>

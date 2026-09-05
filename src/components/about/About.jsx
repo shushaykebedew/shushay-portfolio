@@ -2,30 +2,18 @@ import AboutImg from "../../assets/profile.png";
 import { CircleCheck, Sparkles, Code, Briefcase, Award } from "lucide-react";
 import { motion } from "framer-motion";
 import SectionHeader from "../ui/SectionHeader";
+import { staggerContainer, slideInLeft } from "../../lib/animations";
 
-const cardContainerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } },
-};
-
-const cardItemVariants = {
-  hidden: { opacity: 0, x: -10 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.4, ease: "easeOut" },
-  },
-};
+const cardContainerVariants = staggerContainer;
+const cardItemVariants = slideInLeft;
 
 const STATS = [
   { label: "Years Experience", value: "2+", icon: Briefcase },
-  { label: "Projects Built", value: "20+", icon: Code },
+  { label: "Projects Delivered", value: "20+", icon: Code },
   { label: "Certifications", value: "8+", icon: Award },
 ];
 
 export default function About() {
-  const iconClass = "w-3.5 h-3.5 sm:w-4 sm:h-4";
-
   return (
     <section id="about" className="section-padding relative overflow-hidden">
       <div className="max-w-6xl 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-8">
