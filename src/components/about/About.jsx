@@ -1,6 +1,7 @@
-import AboutImg from "../../assets/profile.png";
+import AboutImg from "../../assets/profile.jpg";
 import { CircleCheck, Sparkles, Code, Briefcase, Award } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
 import SectionHeader from "../ui/SectionHeader";
 import { staggerContainer, slideInLeft } from "../../lib/animations";
 
@@ -8,10 +9,32 @@ const cardContainerVariants = staggerContainer;
 const cardItemVariants = slideInLeft;
 
 const STATS = [
-  { label: "Years Experience", value: "2+", icon: Briefcase },
-  { label: "Projects Delivered", value: "20+", icon: Code },
-  { label: "Certifications", value: "8+", icon: Award },
+  { label: "Years Experience", value: 2, suffix: "+", icon: Briefcase },
+  { label: "Projects Delivered", value: 20, suffix: "+", icon: Code },
+  { label: "Certifications", value: 8, suffix: "", icon: Award },
 ];
+
+function CountUp({ target, suffix, duration = 1200 }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const [display, setDisplay] = useState(0);
+  const rafRef = useRef(null);
+
+  useEffect(() => {
+    if (!inView) return;
+    const start = performance.now();
+    const tick = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplay(Math.round(target * eased));
+      if (progress < 1) rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [inView, target, duration]);
+
+  return <span ref={ref}>{display}{suffix}</span>;
+}
 
 export default function About() {
   return (
@@ -86,7 +109,7 @@ export default function About() {
                   >
                     <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 2xl:w-6 2xl:h-6 text-indigo-500 mb-1 2xl:mb-2" />
                     <span className="text-base sm:text-xl 2xl:text-3xl font-extrabold text-slate-900 dark:text-white">
-                      {stat.value}
+                      <CountUp target={stat.value} suffix={stat.suffix} />
                     </span>
                     <span className="text-[9px] xs:text-[10px] sm:text-xs 2xl:text-sm text-slate-500 dark:text-slate-400 font-medium leading-tight mt-0.5">
                       {stat.label}

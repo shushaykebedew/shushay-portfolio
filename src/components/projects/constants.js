@@ -3,8 +3,8 @@ import qrCodeScan from "../../assets/qr-code-scan.jpg";
 import machaImg from "../../assets/macha.png";
 import glitchImg from "../../assets/glitch.jpg";
 import katechImg from "../../assets/katech.jpg";
-import bellboy from "../../assets/bellboy.png";
-import xCafe from "../../assets/x-cafe.png";
+import bellboy from "../../assets/bellboy.jpg";
+import xCafe from "../../assets/x-cafe.jpg";
 import AI_Powered_Fraud_Detection from "../../assets/AI_Powered_Fraud_Detection.jpg";
 
 export const PROJECT_CATEGORIES = [

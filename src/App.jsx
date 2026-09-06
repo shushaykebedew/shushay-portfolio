@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import LoadingScreen from "./components/ui/LoadingScreen";
+import ScrollProgressBar from "./components/ui/ScrollProgressBar";
 import Navbar from "./components/navbar/Navbar";
 import Hero from "./components/hero/Hero";
 import About from "./components/about/About";
@@ -47,6 +48,9 @@ export default function App() {
 
   return (
     <>
+      {/* Scroll Progress Bar */}
+      <ScrollProgressBar />
+
       {/* Loading Screen */}
       <AnimatePresence>
         {loading && (

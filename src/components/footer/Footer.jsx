@@ -10,9 +10,14 @@ import {
   Github,
   ArrowUp,
   Heart,
+  Copy,
+  Check,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { sectionVariants } from "../../lib/animations";
+import { useCopyToClipboard } from "../../hooks/useCopyToClipboard";
+
+const EMAIL = "shusaykebedew12@gmail.com";
 
 const socialLinks = [
   {
@@ -54,6 +59,7 @@ const quickLinks = [
 
 export default function Footer() {
   const [showTop, setShowTop] = useState(false);
+  const [copied, copy] = useCopyToClipboard();
   const year = new Date().getFullYear();
 
   useEffect(() => {
@@ -107,14 +113,24 @@ export default function Footer() {
               <div className="flex items-center gap-2.5 2xl:gap-3">
                 <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4 2xl:w-5 2xl:h-5 text-indigo-500 flex-shrink-0" aria-hidden="true" />
                 <a
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=shusaykebedew12@gmail.com"
+                  href={`https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors break-all"
-                  aria-label="Send email to shusaykebedew12@gmail.com"
+                  aria-label={`Send email to ${EMAIL}`}
                 >
-                  shusaykebedew12@gmail.com
+                  {EMAIL}
                 </a>
+                <button
+                  onClick={() => copy(EMAIL)}
+                  aria-label={copied ? "Copied!" : "Copy email address"}
+                  className="flex-shrink-0 p-1 rounded-md hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-400 hover:text-indigo-500 transition-all duration-200 focus:outline-none"
+                >
+                  {copied
+                    ? <Check className="w-3 h-3 text-emerald-500" aria-hidden="true" />
+                    : <Copy className="w-3 h-3" aria-hidden="true" />
+                  }
+                </button>
               </div>
             </div>
           </motion.div>

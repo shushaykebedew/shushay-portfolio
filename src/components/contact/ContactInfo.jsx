@@ -1,7 +1,11 @@
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail, Copy, Check } from "lucide-react";
 import { motion } from "framer-motion";
+import { useCopyToClipboard } from "../../hooks/useCopyToClipboard";
+
+const EMAIL = "shusaykebedew12@gmail.com";
 
 export default function ContactInfo({ cardVariants }) {
+  const [copied, copy] = useCopyToClipboard();
   return (
     <motion.div
       custom={0}
@@ -66,15 +70,37 @@ export default function ContactInfo({ cardVariants }) {
                 <p className="text-xs 2xl:text-sm uppercase tracking-wider font-bold text-slate-400 dark:text-slate-500 mb-1">
                   Email
                 </p>
-                <a
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=shusaykebedew12@gmail.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm sm:text-base 2xl:text-lg font-semibold text-slate-800 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors break-all focus:outline-none"
-                  aria-label="Send email to shusaykebedew12@gmail.com"
-                >
-                  shusaykebedew12@gmail.com
-                </a>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <a
+                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm sm:text-base 2xl:text-lg font-semibold text-slate-800 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors break-all focus:outline-none"
+                    aria-label={`Send email to ${EMAIL}`}
+                  >
+                    {EMAIL}
+                  </a>
+                  <button
+                    onClick={() => copy(EMAIL)}
+                    aria-label={copied ? "Copied!" : "Copy email address"}
+                    className="flex-shrink-0 p-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-200 focus:outline-none"
+                  >
+                    {copied
+                      ? <Check className="w-3.5 h-3.5 text-emerald-500" aria-hidden="true" />
+                      : <Copy className="w-3.5 h-3.5" aria-hidden="true" />
+                    }
+                  </button>
+                </div>
+                {copied && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className="text-[11px] text-emerald-500 font-semibold mt-1"
+                  >
+                    Copied to clipboard!
+                  </motion.p>
+                )}
                 <p className="text-[11px] sm:text-xs text-slate-400 dark:text-slate-500 mt-0.5">
                   Preferred contact method
                 </p>

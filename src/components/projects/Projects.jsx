@@ -37,7 +37,7 @@ export default function Projects() {
 
         {/* Category Filter */}
         <div
-          className="flex justify-center gap-2 sm:gap-3 flex-wrap mb-8 sm:mb-10 2xl:mb-14"
+          className="flex justify-center gap-2 sm:gap-3 flex-wrap mb-4 sm:mb-5 2xl:mb-6"
           role="tablist"
           aria-label="Project categories"
         >
@@ -82,6 +82,25 @@ export default function Projects() {
             );
           })}
         </div>
+
+        {/* Showing X of Y indicator */}
+        <motion.p
+          key={activeCategory}
+          className="text-center text-xs sm:text-sm text-slate-400 dark:text-slate-500 font-medium mb-8 sm:mb-10 2xl:mb-14"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+        >
+          Showing{" "}
+          <span className="font-bold text-indigo-500 dark:text-indigo-400">
+            {filtered.length}
+          </span>{" "}
+          of{" "}
+          <span className="font-bold text-slate-600 dark:text-slate-300">
+            {projects.length}
+          </span>{" "}
+          projects
+        </motion.p>
 
         {/* Projects Grid */}
         <AnimatePresence mode="wait">
