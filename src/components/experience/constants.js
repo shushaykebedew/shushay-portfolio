@@ -2,7 +2,7 @@ export const experience = [
   {
     role: "Full-Stack Developer",
     company: "Blih Marketing and Communications PLC",
-    year: "Jun 2025 - Present",
+    year: "Jun 2026 - Present",
     details: [
       "Building and maintaining production web applications using Next.js, React, TypeScript, Node.js, and modern backend technologies.",
       "Developing responsive user interfaces and implementing the supporting APIs and backend functionality.",
@@ -14,7 +14,7 @@ export const experience = [
   {
     role: "Frontend Developer",
     company: "Metnee Systems PLC",
-    year: "Feb 2025 - Jun 2025",
+    year: "Feb 2025 - Jun 2026",
     details: [
       "Co-developed and deployed responsive web applications for international clients in Ethiopia and South Korea.",
       "Built pixel-perfect user interfaces from Figma designs with strong attention to detail, ensuring consistency across modern browsers and devices.",

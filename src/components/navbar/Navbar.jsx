@@ -53,26 +53,28 @@ const navItemVariants = {
   }),
 };
 
-// Panel itself — plain slide, no stagger here anymore. Top bar/footer no
-// longer listen to this parent's variants, so they can't inherit motion.
+// Panel no longer translates on x at all — it just fades/scales into place.
+// This is the key fix: since the panel itself isn't moving, nothing inside
+// it (top bar, footer) gets dragged along or overlaps during the motion.
 const drawerVariants = {
-  hidden: { x: "100%" },
+  hidden: { opacity: 0, scale: 0.98 },
   visible: {
-    x: 0,
-    transition: { duration: 0.42, ease: [0.16, 1, 0.3, 1] },
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.25, ease: [0.4, 0, 0.2, 1] },
   },
   exit: {
-    x: "100%",
-    transition: { duration: 0.3, ease: [0.4, 0, 1, 1] },
+    opacity: 0,
+    scale: 0.98,
+    transition: { duration: 0.2, ease: [0.4, 0, 1, 1] },
   },
 };
 
-// Only the links list owns this — a real right-to-left slide, independent
-// of the panel and of the top bar/footer.
+// Only this wrapper (and its children) actually translates on x.
 const linksListVariants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.05, delayChildren: 0.18 },
+    transition: { staggerChildren: 0.05, delayChildren: 0.1 },
   },
   exit: {
     transition: { staggerChildren: 0.02, staggerDirection: -1 },
@@ -95,8 +97,8 @@ const linkItemVariants = {
 
 const backdropVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.35, ease: [0.4, 0, 0.2, 1] } },
-  exit: { opacity: 0, transition: { duration: 0.25, ease: [0.4, 0, 1, 1] } },
+  visible: { opacity: 1, transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] } },
+  exit: { opacity: 0, transition: { duration: 0.22, ease: [0.4, 0, 1, 1] } },
 };
 
 const menuIconVariants = {
@@ -122,16 +124,29 @@ export default function Navbar({ theme, setTheme }) {
 
   const toggleIconClass = "w-4 h-4 sm:w-[18px] sm:h-[18px]";
   const menuIconClass = "w-5 h-5";
-  const navItemIconClass = "w-4 h-4 sm:w-5 sm:h-5";
 
   useEffect(() => {
     if (menuOpen) {
+      const scrollY = window.scrollY;
       document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
     } else {
-      document.body.style.overflow = "unset";
+      const scrollY = parseInt(document.body.style.top || "0", 10);
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      window.scrollTo(0, -scrollY);
     }
     return () => {
-      document.body.style.overflow = "unset";
+      const scrollY = parseInt(document.body.style.top || "0", 10);
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      window.scrollTo(0, -scrollY);
     };
   }, [menuOpen]);
 
@@ -170,26 +185,26 @@ export default function Navbar({ theme, setTheme }) {
         }`}
     >
       <div className="relative z-[60] max-w-7xl 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-8 flex h-16 sm:h-18 2xl:h-22 items-center justify-between">
-        {/* Logo */}
-        <motion.a
-          href="#home"
-          variants={logoVariants}
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.98 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-          className="font-bold text-base sm:text-lg 2xl:text-xl flex items-center gap-1.5 2xl:gap-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg p-1"
-          aria-label="Go to home section"
-        >
-          <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-fuchsia-500 text-white px-2.5 py-1 2xl:px-3.5 2xl:py-1.5 rounded-lg text-xs sm:text-sm 2xl:text-base font-extrabold tracking-wide shadow-sm">
-            SK
-          </span>
-          <span className="hidden sm:inline text-slate-900 dark:text-slate-100 font-extrabold tracking-tight text-sm sm:text-base 2xl:text-lg">
-            SHUSHAY
-          </span>
-          <span className="hidden xl:inline text-slate-500 dark:text-slate-400 font-medium text-xs 2xl:text-sm tracking-normal">
-            KEBEDEW
-          </span>
-        </motion.a>
+       {/* Logo — name now visible on mobile too, not just sm+ */}
+<motion.a
+  href="#home"
+  variants={logoVariants}
+  whileHover={{ scale: 1.04 }}
+  whileTap={{ scale: 0.98 }}
+  transition={{ duration: 0.2, ease: "easeOut" }}
+  className="font-bold text-base sm:text-lg 2xl:text-xl flex items-center gap-1.5 2xl:gap-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg p-1"
+  aria-label="Go to home section"
+>
+  <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600 text-white px-2.5 py-1 2xl:px-3.5 2xl:py-1.5 rounded-lg text-xs sm:text-sm 2xl:text-base font-extrabold tracking-wide shadow-sm">
+    SK
+  </span>
+  <span className="inline text-slate-900 dark:text-slate-100 font-extrabold tracking-tight text-sm sm:text-base 2xl:text-lg">
+    Shushay
+  </span>
+  <span className="hidden xl:inline text-slate-500 dark:text-slate-400 font-medium text-xs 2xl:text-sm tracking-normal">
+    Kebedew
+  </span>
+</motion.a>
 
         {/* Desktop Navigation */}
         <nav
@@ -316,6 +331,8 @@ export default function Navbar({ theme, setTheme }) {
               aria-hidden="true"
             />
 
+            {/* Panel fades/scales in — it does NOT translate on x, so its
+                content (top bar, footer) never rides along or overlaps. */}
             <motion.aside
               key="drawer-panel"
               variants={drawerVariants}
@@ -323,20 +340,16 @@ export default function Navbar({ theme, setTheme }) {
               animate="visible"
               exit="exit"
               style={{ backgroundColor: theme === "dark" ? "#020617" : "#ffffff" }}
-              className="lg:hidden fixed inset-0 w-full h-[100dvh] z-50 shadow-2xl flex flex-col justify-between overflow-y-auto p-5 xs:p-6 sm:p-8 will-change-transform"
+              className="lg:hidden fixed inset-0 w-full h-[100dvh] z-50 shadow-2xl flex flex-col justify-between overflow-y-auto p-5 xs:p-6 sm:p-8 will-change-[opacity,transform]"
               aria-label="Mobile Navigation"
             >
-              {/* Drawer Top Bar — plain div, no motion/variants at all, so it
-                  can't inherit any transform from the panel or siblings. It
-                  simply appears the moment the panel is visible. */}
+              {/* Top bar — plain, static, appears exactly when the panel does */}
               <div className="flex items-center justify-between pb-4 border-b border-slate-200/80 dark:border-slate-800/80">
                 <div className="flex items-center gap-2">
-                  <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-fuchsia-500 text-white px-2 py-0.5 rounded-lg text-xs font-extrabold tracking-wide">
+                  <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600 text-white px-2 py-0.5 rounded-lg text-xs font-extrabold tracking-wide">
                     SK
                   </span>
-                  <span className="font-bold text-sm text-slate-900 dark:text-white">
-                    Shushay
-                  </span>
+                 
                 </div>
                 <button
                   onClick={() => setMenuOpen(false)}
@@ -353,7 +366,7 @@ export default function Navbar({ theme, setTheme }) {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="flex flex-col gap-1.5 my-auto py-4"
+                className="flex flex-col gap-1.5 my-auto py-4 overflow-hidden"
               >
                 {links.map(({ label, id, icon: Icon }) => (
                   <motion.a
@@ -374,14 +387,12 @@ export default function Navbar({ theme, setTheme }) {
                 ))}
               </motion.div>
 
-              {/* Drawer Footer — plain div, no animation */}
+              {/* Footer — plain, static */}
               <div className="pt-4 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col gap-1.5">
                 <p className="text-xs text-center font-semibold text-slate-500 dark:text-slate-400">
                   Full Stack Developer
                 </p>
-                <p className="text-[11px] text-center text-slate-400">
-                  Shushay Kebedew • Portfolio
-                </p>
+          
               </div>
             </motion.aside>
           </>
