@@ -7,7 +7,7 @@ export default function LazyImage({ src, alt, className }) {
   return (
     <div className={`relative ${className}`}>
       {!loaded && !error && (
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse rounded" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200 dark:from-slate-700 dark:via-slate-600 dark:to-slate-700 animate-pulse rounded" />
       )}
 
       <img

@@ -2,21 +2,9 @@ import { Award, ExternalLink, Calendar } from "lucide-react";
 import { motion } from "framer-motion";
 import { certifications } from "./constants";
 import SectionHeader from "../ui/SectionHeader";
+import { staggerContainer, cardVariants } from "../../lib/animations";
 
 export default function Certifications() {
-  const containerVariants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.08 } },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.45, ease: "easeOut" },
-    },
-  };
 
   return (
     <section id="certifications" className="section-padding relative overflow-hidden">
@@ -33,7 +21,7 @@ export default function Certifications() {
 
         {/* Certifications Grid */}
         <motion.div
-          variants={containerVariants}
+          variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.08 }}
@@ -42,7 +30,7 @@ export default function Certifications() {
           {certifications.map(({ provider, courses }) => (
             <motion.div
               key={provider}
-              variants={itemVariants}
+              variants={cardVariants}
               whileHover={{ y: -4 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
               className="glass-card p-5 sm:p-6 lg:p-7 rounded-2xl sm:rounded-3xl 2xl:rounded-4xl glow-hover flex flex-col h-full"

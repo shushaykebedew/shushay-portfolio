@@ -1,17 +1,9 @@
 import ContactInfo from "./ContactInfo";
 import ContactForm from "./ContactForm";
 import SectionHeader from "../ui/SectionHeader";
+import { cardVariants } from "../../lib/animations";
 
 export default function Contact() {
-  const cardVariants = {
-    hidden: { opacity: 0, y: 25 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: i * 0.08, duration: 0.45, ease: "easeOut" },
-    }),
-  };
-
   return (
     <section id="contact" className="section-padding relative overflow-hidden">
       <div className="max-w-6xl 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-8">

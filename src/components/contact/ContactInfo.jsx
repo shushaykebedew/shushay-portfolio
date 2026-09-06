@@ -1,8 +1,8 @@
 import { MapPin, Phone, Mail, Copy, Check } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useCopyToClipboard } from "../../hooks/useCopyToClipboard";
 
-const EMAIL = "shusaykebedew12@gmail.com";
+const EMAIL = "shushaykebedew12@gmail.com";
 
 export default function ContactInfo({ cardVariants }) {
   const [copied, copy] = useCopyToClipboard();
@@ -35,9 +35,6 @@ export default function ContactInfo({ cardVariants }) {
                 </p>
                 <p className="text-sm sm:text-base 2xl:text-lg font-semibold text-slate-800 dark:text-slate-200">
                   Addis Ababa, Ethiopia
-                </p>
-                <p className="text-[11px] sm:text-xs text-slate-400 dark:text-slate-500 mt-0.5">
-                  EAT · UTC+3 · Remote-friendly
                 </p>
               </div>
             </div>
@@ -83,7 +80,7 @@ export default function ContactInfo({ cardVariants }) {
                   <button
                     onClick={() => copy(EMAIL)}
                     aria-label={copied ? "Copied!" : "Copy email address"}
-                    className="flex-shrink-0 p-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-200 focus:outline-none"
+                    className="flex-shrink-0 cursor-pointer p-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-200 focus:outline-none"
                   >
                     {copied
                       ? <Check className="w-3.5 h-3.5 text-emerald-500" aria-hidden="true" />
@@ -92,18 +89,18 @@ export default function ContactInfo({ cardVariants }) {
                   </button>
                 </div>
                 {copied && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    className="text-[11px] text-emerald-500 font-semibold mt-1"
-                  >
-                    Copied to clipboard!
-                  </motion.p>
+                  <AnimatePresence>
+                    <motion.p
+                      key="copied-toast"
+                      initial={{ opacity: 0, y: -4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                      className="text-[11px] text-emerald-500 font-semibold mt-1"
+                    >
+                      Copied to clipboard!
+                    </motion.p>
+                  </AnimatePresence>
                 )}
-                <p className="text-[11px] sm:text-xs text-slate-400 dark:text-slate-500 mt-0.5">
-                  Preferred contact method
-                </p>
               </div>
             </div>
           </div>

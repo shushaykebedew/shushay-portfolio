@@ -21,9 +21,7 @@ export default function ScrollProgressBar() {
       <motion.div
         className="h-full origin-left rounded-r-full"
         style={{
-          background:
-            "linear-gradient(to right, #6366f1, #8b5cf6, #ec4899)",
-          scaleX: progress / 100,
+          background: "linear-gradient(to right, #4f46e5, #7c3aed, #d946ef)",
           transformOrigin: "0% 50%",
         }}
         animate={{ scaleX: progress / 100 }}

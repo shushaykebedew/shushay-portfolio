@@ -53,40 +53,65 @@ const navItemVariants = {
   }),
 };
 
+// Panel itself — plain slide, no stagger here anymore. Top bar/footer no
+// longer listen to this parent's variants, so they can't inherit motion.
 const drawerVariants = {
   hidden: { x: "100%" },
   visible: {
     x: 0,
-    transition: {
-      duration: 0.52,
-      ease: [0.16, 1, 0.3, 1],
-      staggerChildren: 0.055,
-      delayChildren: 0.12,
-    },
+    transition: { duration: 0.42, ease: [0.16, 1, 0.3, 1] },
   },
   exit: {
     x: "100%",
-    transition: {
-      duration: 0.38,
-      ease: [0.4, 0, 0.2, 1],
-    },
+    transition: { duration: 0.3, ease: [0.4, 0, 1, 1] },
   },
 };
 
-const drawerItemVariants = {
-  hidden: { x: 45, opacity: 0 },
+// Only the links list owns this — a real right-to-left slide, independent
+// of the panel and of the top bar/footer.
+const linksListVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.05, delayChildren: 0.18 },
+  },
+  exit: {
+    transition: { staggerChildren: 0.02, staggerDirection: -1 },
+  },
+};
+
+const linkItemVariants = {
+  hidden: { x: 36, opacity: 0 },
   visible: {
     x: 0,
     opacity: 1,
-    transition: {
-      duration: 0.45,
-      ease: [0.16, 1, 0.3, 1],
-    },
+    transition: { duration: 0.32, ease: [0.16, 1, 0.3, 1] },
   },
   exit: {
-    x: 20,
+    x: 16,
     opacity: 0,
-    transition: { duration: 0.2, ease: "easeIn" },
+    transition: { duration: 0.14, ease: "easeIn" },
+  },
+};
+
+const backdropVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.35, ease: [0.4, 0, 0.2, 1] } },
+  exit: { opacity: 0, transition: { duration: 0.25, ease: [0.4, 0, 1, 1] } },
+};
+
+const menuIconVariants = {
+  initial: { rotate: -90, opacity: 0, scale: 0.5 },
+  animate: {
+    rotate: 0,
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] },
+  },
+  exit: {
+    rotate: 90,
+    opacity: 0,
+    scale: 0.5,
+    transition: { duration: 0.18, ease: [0.4, 0, 1, 1] },
   },
 };
 
@@ -99,7 +124,6 @@ export default function Navbar({ theme, setTheme }) {
   const menuIconClass = "w-5 h-5";
   const navItemIconClass = "w-4 h-4 sm:w-5 sm:h-5";
 
-  // Prevent background scroll when mobile menu is open
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = "hidden";
@@ -111,7 +135,6 @@ export default function Navbar({ theme, setTheme }) {
     };
   }, [menuOpen]);
 
-  // Detect scroll for navbar shrink & active section
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
@@ -146,7 +169,7 @@ export default function Navbar({ theme, setTheme }) {
           : "bg-white/65 dark:bg-slate-950/50 backdrop-blur-xl border-b border-slate-200/20 dark:border-slate-800/20"
         }`}
     >
-      <div className="max-w-7xl 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-8 flex h-16 sm:h-18 2xl:h-22 items-center justify-between">
+      <div className="relative z-[60] max-w-7xl 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-8 flex h-16 sm:h-18 2xl:h-22 items-center justify-between">
         {/* Logo */}
         <motion.a
           href="#home"
@@ -193,7 +216,6 @@ export default function Navbar({ theme, setTheme }) {
                 {label}
               </span>
 
-              {/* Active background pill */}
               {activeSection === id && (
                 <motion.span
                   layoutId="activeNavBg"
@@ -244,16 +266,37 @@ export default function Navbar({ theme, setTheme }) {
             onClick={() => setMenuOpen(!menuOpen)}
             whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.92 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
             aria-expanded={menuOpen}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors border border-slate-200/60 dark:border-slate-700/60"
+            className="relative p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors border border-slate-200/60 dark:border-slate-700/60"
           >
-            {menuOpen ? (
-              <X className={menuIconClass} />
-            ) : (
-              <Menu className={menuIconClass} />
-            )}
+            <span className="relative block w-5 h-5">
+              <AnimatePresence initial={false}>
+                {menuOpen ? (
+                  <motion.span
+                    key="close"
+                    variants={menuIconVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    className="absolute inset-0 flex items-center justify-center"
+                  >
+                    <X className={menuIconClass} />
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    key="open"
+                    variants={menuIconVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    className="absolute inset-0 flex items-center justify-center"
+                  >
+                    <Menu className={menuIconClass} />
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </span>
           </motion.button>
         </div>
       </div>
@@ -262,19 +305,17 @@ export default function Navbar({ theme, setTheme }) {
       <AnimatePresence>
         {menuOpen && (
           <>
-            {/* Backdrop Overlay */}
             <motion.div
               key="drawer-backdrop"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              variants={backdropVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
               onClick={() => setMenuOpen(false)}
-              className="lg:hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-md"
+              className="lg:hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm will-change-[opacity]"
               aria-hidden="true"
             />
 
-            {/* Slide-over Full-Width Screen from Right to Left with 100% Solid Background */}
             <motion.aside
               key="drawer-panel"
               variants={drawerVariants}
@@ -282,17 +323,19 @@ export default function Navbar({ theme, setTheme }) {
               animate="visible"
               exit="exit"
               style={{ backgroundColor: theme === "dark" ? "#020617" : "#ffffff" }}
-              className="lg:hidden fixed inset-0 w-full h-[100dvh] z-50 shadow-2xl flex flex-col justify-between overflow-y-auto p-5 xs:p-6 sm:p-8"
+              className="lg:hidden fixed inset-0 w-full h-[100dvh] z-50 shadow-2xl flex flex-col justify-between overflow-y-auto p-5 xs:p-6 sm:p-8 will-change-transform"
               aria-label="Mobile Navigation"
             >
-              {/* Drawer Top Bar */}
+              {/* Drawer Top Bar — plain div, no motion/variants at all, so it
+                  can't inherit any transform from the panel or siblings. It
+                  simply appears the moment the panel is visible. */}
               <div className="flex items-center justify-between pb-4 border-b border-slate-200/80 dark:border-slate-800/80">
                 <div className="flex items-center gap-2">
                   <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-fuchsia-500 text-white px-2 py-0.5 rounded-lg text-xs font-extrabold tracking-wide">
                     SK
                   </span>
                   <span className="font-bold text-sm text-slate-900 dark:text-white">
-                    Navigation Menu
+                    Shushay
                   </span>
                 </div>
                 <button
@@ -304,15 +347,22 @@ export default function Navbar({ theme, setTheme }) {
                 </button>
               </div>
 
-              {/* Navigation Links — Animated Stagger from Right to Left */}
-              <div className="flex flex-col gap-1.5 my-auto py-4">
+              {/* Navigation Links — the ONLY thing that slides right-to-left */}
+              <motion.div
+                variants={linksListVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="flex flex-col gap-1.5 my-auto py-4"
+              >
                 {links.map(({ label, id, icon: Icon }) => (
                   <motion.a
                     key={id}
                     href={`#${id}`}
-                    variants={drawerItemVariants}
+                    variants={linkItemVariants}
+                    whileTap={{ scale: 0.97 }}
                     onClick={() => setMenuOpen(false)}
-                    className={`flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all duration-200 ${
+                    className={`flex items-center gap-3.5 px-4 py-3 rounded-xl transition-colors duration-200 ${
                       activeSection === id
                         ? "bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-bold border border-indigo-200/60 dark:border-indigo-800/50 shadow-sm"
                         : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900/60 hover:text-slate-900 dark:hover:text-white font-medium"
@@ -322,20 +372,13 @@ export default function Navbar({ theme, setTheme }) {
                     <span className="text-sm font-semibold">{label}</span>
                   </motion.a>
                 ))}
-              </div>
+              </motion.div>
 
-              {/* Drawer Footer */}
-              <div className="pt-4 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col gap-3">
-                <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
-                  <span>Appearance</span>
-                  <button
-                    onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium cursor-pointer"
-                  >
-                    {theme === "dark" ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
-                    <span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
-                  </button>
-                </div>
+              {/* Drawer Footer — plain div, no animation */}
+              <div className="pt-4 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col gap-1.5">
+                <p className="text-xs text-center font-semibold text-slate-500 dark:text-slate-400">
+                  Full Stack Developer
+                </p>
                 <p className="text-[11px] text-center text-slate-400">
                   Shushay Kebedew • Portfolio
                 </p>

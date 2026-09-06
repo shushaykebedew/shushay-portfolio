@@ -17,7 +17,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { sectionVariants } from "../../lib/animations";
 import { useCopyToClipboard } from "../../hooks/useCopyToClipboard";
 
-const EMAIL = "shusaykebedew12@gmail.com";
+const EMAIL = "shushaykebedew12@gmail.com";
 
 const socialLinks = [
   {
@@ -82,7 +82,7 @@ export default function Footer() {
             className="sm:col-span-2 lg:col-span-5"
           >
             <div className="flex items-center gap-2 mb-3 sm:mb-4 2xl:mb-5">
-              <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-fuchsia-500 text-white px-2.5 2xl:px-3 py-1 2xl:py-1.5 rounded-lg 2xl:rounded-xl text-xs sm:text-sm 2xl:text-base font-extrabold tracking-wide">
+              <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600 text-white px-2.5 2xl:px-3 py-1 2xl:py-1.5 rounded-lg 2xl:rounded-xl text-xs sm:text-sm 2xl:text-base font-extrabold tracking-wide">
                 SK
               </span>
               <span className="text-lg sm:text-xl 2xl:text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
@@ -124,7 +124,7 @@ export default function Footer() {
                 <button
                   onClick={() => copy(EMAIL)}
                   aria-label={copied ? "Copied!" : "Copy email address"}
-                  className="flex-shrink-0 p-1 rounded-md hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-400 hover:text-indigo-500 transition-all duration-200 focus:outline-none"
+                  className="flex-shrink-0 cursor-pointer p-1 rounded-md hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-400 hover:text-indigo-500 transition-all duration-200 focus:outline-none"
                 >
                   {copied
                     ? <Check className="w-3 h-3 text-emerald-500" aria-hidden="true" />

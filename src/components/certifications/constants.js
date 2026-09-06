@@ -37,21 +37,21 @@ export const certifications = [
     courses: [
       {
         title: "Supervised Machine Learning",
-        year: "Feb, 2026",
+        year: "Feb, 2025",
         description:
           "an online course authorized by DeepLearning.AI and Stanford University and offered through Coursera",
         link: "https://www.coursera.org/account/accomplishments/verify/3KO9YDGTRD7G",
       },
       {
         title: "Advanced Learning Algorithms",
-        year: "Mar, 2026",
+        year: "Mar, 2025",
         description:
           "an online course authorized by DeepLearning.AI and Stanford University and offered through Coursera",
         link: "https://www.coursera.org/account/accomplishments/verify/J0ZHPQHYFRJJ",
       },
       {
         title: "Unsupervised Learning, Recommenders, Reinforcement Learning",
-        year: "Mar, 2026",
+        year: "Mar, 2025",
         description:
           "an online course authorized by DeepLearning.AI and Stanford University and offered through Coursera",
         link: "https://www.coursera.org/account/accomplishments/verify/JO3ILQ2WJ2XX",
@@ -63,7 +63,7 @@ export const certifications = [
     courses: [
       {
         title: "Cybersecurity Fundamentals",
-        year: "Jun, 2026",
+        year: "Jun, 2025",
         description:
           "Fundamental cybersecurity concepts including threat analysis, network security, risk management, and security best practices",
         link: "https://www.credly.com/badges/a9c29f76-e8af-4540-b1e9-3f02485da2f2/public_url",
