@@ -10,8 +10,8 @@ const cardItemVariants = slideInLeft;
 
 const STATS = [
   { label: "Years Experience", value: 2, suffix: "+", icon: Briefcase },
-  { label: "Projects Delivered", value: 20, suffix: "+", icon: Code },
-  { label: "Certifications", value: 8, suffix: "", icon: Award },
+  { label: "Projects Built", value: 20, suffix: "+", icon: Code },
+  { label: "Certifications", value: 8, suffix: "+", icon: Award },
 ];
 
 function CountUp({ target, suffix, duration = 1200 }) {
