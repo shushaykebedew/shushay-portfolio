@@ -23,7 +23,7 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="section-padding relative overflow-hidden">
+    <section id="projects" aria-label="Featured Projects" className="section-padding relative overflow-hidden">
       <div className="max-w-6xl 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-8">
         <SectionHeader
           subtitle="My Projects"

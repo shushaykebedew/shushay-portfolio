@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function LazyImage({ src, alt, className }) {
+export default function LazyImage({ src, alt, className, width, height }) {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
 
@@ -18,6 +18,9 @@ export default function LazyImage({ src, alt, className }) {
         onLoad={() => setLoaded(true)}
         onError={() => setError(true)}
         loading="lazy"
+        decoding="async"
+        width={width}
+        height={height}
       />
 
       {error && (

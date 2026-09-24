@@ -5,7 +5,7 @@ import { cardVariants } from "../../lib/animations";
 
 export default function Contact() {
   return (
-    <section id="contact" className="section-padding relative overflow-hidden">
+    <section id="contact" aria-label="Contact" className="section-padding relative overflow-hidden">
       <div className="max-w-6xl 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-8">
         <SectionHeader
           subtitle="Get In Touch"

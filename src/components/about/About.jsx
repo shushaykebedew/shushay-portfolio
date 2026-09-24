@@ -38,7 +38,7 @@ function CountUp({ target, suffix, duration = 1200 }) {
 
 export default function About() {
   return (
-    <section id="about" className="section-padding relative overflow-hidden">
+    <section id="about" aria-label="About Me" className="section-padding relative overflow-hidden">
       <div className="max-w-6xl 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-8">
         <SectionHeader
           subtitle="About Me"
@@ -70,10 +70,13 @@ export default function About() {
                 <div className="w-full h-full rounded-full overflow-hidden shadow-2xl bg-slate-100 dark:bg-slate-800 ring-2 ring-indigo-500/20 dark:ring-indigo-400/30">
                   <img
                     src={AboutImg}
-                    alt="Portrait of Shushay Kebedew"
+                    alt="Shushay Kebedew – Full Stack Developer"
                     className="w-full h-full object-cover grayscale-[15%] hover:grayscale-0 transition duration-500"
                     style={{ transform: "scale(1.15) translateY(-6%)" }}
                     loading="lazy"
+                    fetchPriority="low"
+                    width="320"
+                    height="320"
                   />
                 </div>
               </motion.div>

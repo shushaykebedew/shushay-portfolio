@@ -14,7 +14,7 @@ export default function Skills() {
   );
 
   return (
-    <section id="skills" className="section-padding relative overflow-hidden">
+    <section id="skills" aria-label="Skills and Technologies" className="section-padding relative overflow-hidden">
       <div className="max-w-6xl 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-8">
         <SectionHeader
           subtitle="My Skills"
@@ -70,6 +70,7 @@ export default function Skills() {
             key={activeTab}
             id={`skillpanel-${activeTab}`}
             role="tabpanel"
+            aria-label={`${currentTab.title} skills`}
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}

@@ -76,6 +76,7 @@ export default function Hero() {
     <section
       id="home"
       ref={sectionRef}
+      aria-label="Introduction"
       className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center scroll-mt-16 overflow-hidden py-12 sm:py-16 lg:py-24 2xl:py-32"
     >
       {/* Cursor spotlight */}
