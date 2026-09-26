@@ -1,12 +1,8 @@
+import { useEffect, useRef } from "react";
 import AboutImg from "../../assets/profile.jpg";
 import { CircleCheck, Sparkles, Code, Briefcase, Award } from "lucide-react";
-import { motion, useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
 import SectionHeader from "../ui/SectionHeader";
-import { staggerContainer, slideInLeft } from "../../lib/animations";
-
-const cardContainerVariants = staggerContainer;
-const cardItemVariants = slideInLeft;
+import { gsap } from "../../lib/gsap";
 
 const STATS = [
   { label: "Years Experience", value: 2, suffix: "+", icon: Briefcase },
@@ -14,31 +10,78 @@ const STATS = [
   { label: "Certifications", value: 8, suffix: "+", icon: Award },
 ];
 
-function CountUp({ target, suffix, duration = 1200 }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-  const [display, setDisplay] = useState(0);
-  const rafRef = useRef(null);
+export default function About() {
+  const sectionRef = useRef(null);
+  const imageWrapperRef = useRef(null);
+  const statsContainerRef = useRef(null);
+  const contentColRef = useRef(null);
+  const statValRefs = useRef([]);
 
   useEffect(() => {
-    if (!inView) return;
-    const start = performance.now();
-    const tick = (now) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setDisplay(Math.round(target * eased));
-      if (progress < 1) rafRef.current = requestAnimationFrame(tick);
-    };
-    rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, [inView, target, duration]);
+    const ctx = gsap.context(() => {
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (prefersReduced) return;
 
-  return <span ref={ref}>{display}{suffix}</span>;
-}
+      // Image & Left Column entrance
+      gsap.fromTo(
+        imageWrapperRef.current,
+        { opacity: 0, scale: 0.9, y: 30 },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: imageWrapperRef.current,
+            start: "top 80%",
+          },
+        }
+      );
 
-export default function About() {
+      // Right Column Content Stagger
+      gsap.fromTo(
+        contentColRef.current.children,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.65,
+          stagger: 0.12,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: contentColRef.current,
+            start: "top 80%",
+          },
+        }
+      );
+
+      // GSAP Count-Up for Stats
+      statValRefs.current.forEach((el, index) => {
+        if (!el) return;
+        const targetValue = STATS[index].value;
+        const obj = { val: 0 };
+
+        gsap.to(obj, {
+          val: targetValue,
+          duration: 1.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+          },
+          onUpdate: () => {
+            if (el) el.textContent = Math.floor(obj.val) + STATS[index].suffix;
+          },
+        });
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="about" aria-label="About Me" className="section-padding relative overflow-hidden">
+    <section ref={sectionRef} id="about" aria-label="About Me" className="section-padding relative overflow-hidden">
       <div className="max-w-6xl 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-8">
         <SectionHeader
           subtitle="About Me"
@@ -51,27 +94,17 @@ export default function About() {
 
         <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 2xl:gap-24 items-center">
           {/* Image & Stats Column */}
-          <motion.div
-            className="lg:col-span-5 2xl:col-span-5 flex flex-col items-center justify-center"
-            initial={{ scale: 0.9, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
-          >
-            <div className="relative group">
+          <div className="lg:col-span-5 2xl:col-span-5 flex flex-col items-center justify-center">
+            <div ref={imageWrapperRef} className="relative group">
               {/* Animated decorative gradient glow backdrop */}
-              <div className="absolute -inset-2 rounded-full bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 opacity-30 dark:opacity-40 blur-xl group-hover:opacity-60 transition duration-700 animate-glow-pulse" />
+              <div className="absolute -inset-2 rounded-full bg-gradient-to-tr from-cyan-500 via-blue-600 to-emerald-500 opacity-30 dark:opacity-50 blur-xl group-hover:opacity-75 transition duration-700 animate-glow-pulse" />
 
-              <motion.div
-                className="relative w-52 h-52 xs:w-60 xs:h-60 sm:w-72 sm:h-72 lg:w-80 lg:h-80 2xl:w-96 2xl:h-96 rounded-full p-2 sm:p-2.5 2xl:p-3 glass-card-strong flex items-center justify-center"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-              >
-                <div className="w-full h-full rounded-full overflow-hidden shadow-2xl bg-slate-100 dark:bg-slate-800 ring-2 ring-indigo-500/20 dark:ring-indigo-400/30">
+              <div className="relative w-52 h-52 xs:w-60 xs:h-60 sm:w-72 sm:h-72 lg:w-80 lg:h-80 2xl:w-96 2xl:h-96 rounded-full p-2 sm:p-2.5 2xl:p-3 glass-card-strong flex items-center justify-center border-2 border-cyan-500/30">
+                <div className="w-full h-full rounded-full overflow-hidden shadow-2xl bg-slate-100 dark:bg-slate-900 ring-4 ring-cyan-500/30">
                   <img
                     src={AboutImg}
                     alt="Shushay Kebedew – Full Stack Developer"
-                    className="w-full h-full object-cover grayscale-[15%] hover:grayscale-0 transition duration-500"
+                    className="w-full h-full object-cover grayscale-[10%] hover:grayscale-0 transition duration-500 group-hover:scale-105"
                     style={{ transform: "scale(1.15) translateY(-6%)" }}
                     loading="lazy"
                     fetchPriority="low"
@@ -79,61 +112,48 @@ export default function About() {
                     height="320"
                   />
                 </div>
-              </motion.div>
+              </div>
 
               {/* Floating badge */}
-              <motion.div
-                className="absolute -bottom-2 -right-2 glass-card px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl flex items-center gap-1.5 sm:gap-2 shadow-xl border border-indigo-500/30"
-                initial={{ y: 15, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3, duration: 0.4 }}
-              >
-                <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-500 animate-spin-slow flex-shrink-0" />
-                <span className="text-[11px] sm:text-xs font-bold text-slate-800 dark:text-slate-100 whitespace-nowrap">
+              <div className="absolute -bottom-2 -right-2 glass-card px-3.5 sm:px-4 py-2 rounded-2xl flex items-center gap-2 shadow-2xl border border-cyan-500/40 bg-white/95 dark:bg-slate-900/95 text-slate-900 dark:text-white">
+                <Sparkles className="w-4 h-4 text-cyan-600 dark:text-cyan-400 animate-spin-slow flex-shrink-0" />
+                <span className="text-[11px] sm:text-xs font-black text-cyan-700 dark:text-cyan-300 whitespace-nowrap">
                   Full Stack Engineer
                 </span>
-              </motion.div>
+              </div>
             </div>
 
             {/* Quick Stats */}
-            <div className="grid grid-cols-3 gap-2 sm:gap-3.5 2xl:gap-5 w-full mt-8 sm:mt-10 2xl:mt-12">
+            <div ref={statsContainerRef} className="grid grid-cols-3 gap-3.5 sm:gap-4 2xl:gap-6 w-full mt-8 sm:mt-10 2xl:mt-12">
               {STATS.map((stat, i) => {
                 const Icon = stat.icon;
                 return (
-                  <motion.div
+                  <div
                     key={stat.label}
-                    className="glass-card p-2.5 sm:p-3.5 2xl:p-5 rounded-xl sm:rounded-2xl 2xl:rounded-3xl text-center flex flex-col items-center justify-center glow-hover"
-                    initial={{ opacity: 0, y: 15 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.15 + i * 0.08, duration: 0.4 }}
-                    whileHover={{ y: -3 }}
+                    className="glass-card p-3 sm:p-4 2xl:p-6 rounded-2xl sm:rounded-3xl text-center flex flex-col items-center justify-center glow-hover border border-slate-200 dark:border-cyan-500/20 hover:border-cyan-500 transition-all duration-300 hover:-translate-y-1"
                   >
-                    <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 2xl:w-6 2xl:h-6 text-indigo-500 mb-1 2xl:mb-2" />
-                    <span className="text-base sm:text-xl 2xl:text-3xl font-extrabold text-slate-900 dark:text-white">
-                      <CountUp target={stat.value} suffix={stat.suffix} />
+                    <Icon className="w-4 h-4 sm:w-5 sm:h-5 2xl:w-6 2xl:h-6 text-cyan-600 dark:text-cyan-400 mb-1.5" />
+                    <span
+                      ref={(el) => (statValRefs.current[i] = el)}
+                      className="text-lg sm:text-2xl 2xl:text-3xl font-black text-slate-900 dark:text-white font-mono"
+                    >
+                      0{stat.suffix}
                     </span>
-                    <span className="text-[9px] xs:text-[10px] sm:text-xs 2xl:text-sm text-slate-500 dark:text-slate-400 font-medium leading-tight mt-0.5">
+                    <span className="text-[10px] sm:text-xs 2xl:text-sm text-slate-600 dark:text-slate-400 font-extrabold leading-tight mt-1">
                       {stat.label}
                     </span>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
+          </div>
 
-          </motion.div>
-          <motion.div
-            className="lg:col-span-7 2xl:col-span-7 space-y-4 sm:space-y-6 2xl:space-y-8"
-            initial={{ x: 25, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
-          >
-            <div className="space-y-3 sm:space-y-4 2xl:space-y-5 text-slate-600 dark:text-slate-300">
-              <p className="text-sm sm:text-base lg:text-lg 2xl:text-xl leading-relaxed font-medium">
+          {/* Right Column Content */}
+          <div ref={contentColRef} className="lg:col-span-7 2xl:col-span-7 space-y-5 sm:space-y-6 2xl:space-y-8">
+            <div className="space-y-3 sm:space-y-4 text-slate-700 dark:text-slate-300">
+              <p className="text-sm sm:text-base lg:text-lg 2xl:text-xl leading-relaxed font-semibold">
                 I'm{" "}
-                <strong className="text-slate-900 dark:text-white font-bold">
+                <strong className="text-slate-900 dark:text-white font-black text-cyan-700 dark:text-cyan-400">
                   Shushay Kebedew
                 </strong>
                 , a dedicated Full Stack Developer with deep expertise in crafting
@@ -142,7 +162,7 @@ export default function About() {
                 life with clean architecture and exceptional attention to detail.
               </p>
 
-              <p className="leading-relaxed text-xs sm:text-sm md:text-base 2xl:text-lg text-slate-500 dark:text-slate-400">
+              <p className="leading-relaxed text-xs sm:text-sm md:text-base 2xl:text-lg text-slate-600 dark:text-slate-400 font-medium">
                 My approach unites engineering precision with pragmatic business
                 thinking. I thrive in translating complex technical requirements
                 into frictionless digital products that are fast, accessible, and
@@ -151,94 +171,68 @@ export default function About() {
             </div>
 
             {/* Expertise Cards */}
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 2xl:gap-6 pt-1"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.15 }}
-              variants={cardContainerVariants}
-            >
-              <div className="glass-card p-4 sm:p-5 2xl:p-7 rounded-2xl 2xl:rounded-3xl glow-hover">
-                <h3 className="font-bold mb-2.5 sm:mb-3 2xl:mb-4 text-sm sm:text-base 2xl:text-lg text-indigo-600 dark:text-indigo-400 flex items-center gap-2">
-                  <span className="w-2 h-2 2xl:w-2.5 2xl:h-2.5 rounded-full bg-indigo-500" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 2xl:gap-6 pt-1">
+              <div className="glass-card p-4.5 sm:p-6 2xl:p-7 rounded-2xl 2xl:rounded-3xl glow-hover border border-slate-200 dark:border-cyan-500/20">
+                <h3 className="font-black mb-3 text-sm sm:text-base 2xl:text-lg text-cyan-700 dark:text-cyan-400 flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-cyan-500 shadow-sm shadow-cyan-400/50" />
                   Frontend Architecture
                 </h3>
-                <ul className="space-y-2 2xl:space-y-3 text-xs sm:text-sm 2xl:text-base font-medium text-slate-600 dark:text-slate-300">
+                <ul className="space-y-2.5 text-xs sm:text-sm 2xl:text-base font-bold text-slate-700 dark:text-slate-300">
                   {[
                     "React & Next.js Ecosystem",
                     "Pixel-Perfect Responsive UI/UX",
-                    "TypeScript, ESNext & State Management",
+                    "TypeScript & Modern State Management",
                   ].map((skill, index) => (
-                    <motion.li
-                      key={index}
-                      className="flex items-center gap-2 2xl:gap-3"
-                      variants={cardItemVariants}
-                    >
-                      <CircleCheck
-                        className="w-3.5 h-3.5 sm:w-4 sm:h-4 2xl:w-5 2xl:h-5 text-indigo-500 dark:text-indigo-400 flex-shrink-0"
-                        aria-hidden="true"
-                      />
+                    <li key={index} className="flex items-center gap-2.5">
+                      <CircleCheck className="w-4 h-4 text-cyan-600 dark:text-cyan-400 flex-shrink-0" aria-hidden="true" />
                       <span>{skill}</span>
-                    </motion.li>
+                    </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="glass-card p-4 sm:p-5 2xl:p-7 rounded-2xl 2xl:rounded-3xl glow-hover">
-                <h3 className="font-bold mb-2.5 sm:mb-3 2xl:mb-4 text-sm sm:text-base 2xl:text-lg text-purple-600 dark:text-purple-400 flex items-center gap-2">
-                  <span className="w-2 h-2 2xl:w-2.5 2xl:h-2.5 rounded-full bg-purple-500" />
+              <div className="glass-card p-4.5 sm:p-6 2xl:p-7 rounded-2xl 2xl:rounded-3xl glow-hover border border-slate-200 dark:border-emerald-500/20">
+                <h3 className="font-black mb-3 text-sm sm:text-base 2xl:text-lg text-emerald-700 dark:text-emerald-400 flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-400/50" />
                   Backend & Cloud Data
                 </h3>
-                <ul className="space-y-2 2xl:space-y-3 text-xs sm:text-sm 2xl:text-base font-medium text-slate-600 dark:text-slate-300">
+                <ul className="space-y-2.5 text-xs sm:text-sm 2xl:text-base font-bold text-slate-700 dark:text-slate-300">
                   {[
                     "Robust RESTful APIs & Microservices",
                     "Database Modeling (MongoDB, SQL)",
                     "Authentication, JWT & Cloud Deployment",
                   ].map((skill, index) => (
-                    <motion.li
-                      key={index}
-                      className="flex items-center gap-2 2xl:gap-3"
-                      variants={cardItemVariants}
-                    >
-                      <CircleCheck
-                        className="w-3.5 h-3.5 sm:w-4 sm:h-4 2xl:w-5 2xl:h-5 text-purple-500 dark:text-purple-400 flex-shrink-0"
-                        aria-hidden="true"
-                      />
+                    <li key={index} className="flex items-center gap-2.5">
+                      <CircleCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0" aria-hidden="true" />
                       <span>{skill}</span>
-                    </motion.li>
+                    </li>
                   ))}
                 </ul>
               </div>
-            </motion.div>
+            </div>
 
-            {/* Soft Skills Banner */}
-            <motion.div
-              className="glass-card p-4 sm:p-5 2xl:p-7 rounded-2xl 2xl:rounded-3xl border-l-4 border-l-amber-500 dark:border-l-amber-400"
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.25, duration: 0.4 }}
-            >
-              <h4 className="font-bold mb-2 2xl:mb-3 text-xs sm:text-sm 2xl:text-base text-slate-900 dark:text-white flex items-center gap-2">
-                <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 2xl:w-5 2xl:h-5 text-amber-500 flex-shrink-0" />
+            {/* Mindset Banner */}
+            <div className="glass-card p-4.5 sm:p-6 2xl:p-7 rounded-2xl 2xl:rounded-3xl border-l-4 border-l-cyan-600 dark:border-l-cyan-400 bg-slate-100/80 dark:bg-slate-900/40">
+              <h4 className="font-black mb-2 text-xs sm:text-sm 2xl:text-base text-slate-900 dark:text-white flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-cyan-600 dark:text-cyan-400 flex-shrink-0" />
                 Core Strengths & Mindset
               </h4>
-              <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 2xl:gap-6 text-xs sm:text-sm 2xl:text-base text-slate-600 dark:text-slate-400">
+              <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm 2xl:text-base text-slate-700 dark:text-slate-300 font-medium">
                 <div>
-                  <strong className="text-slate-800 dark:text-slate-200 block mb-0.5 font-semibold">
+                  <strong className="text-slate-900 dark:text-white block mb-0.5 font-black">
                     Problem Solving
                   </strong>
-                  Breaking down ambiguous problems into clean, modular solutions.
+                  Breaking down complex problems into modular, maintainable solutions.
                 </div>
                 <div>
-                  <strong className="text-slate-800 dark:text-slate-200 block mb-0.5 font-semibold">
+                  <strong className="text-slate-900 dark:text-white block mb-0.5 font-black">
                     Agile Collaboration
                   </strong>
-                  Clear communication, code reviews, and high ownership of outcomes.
+                  Clear communication, code reviews, and end-to-end ownership.
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

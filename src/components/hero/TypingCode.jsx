@@ -2,295 +2,181 @@ import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const SNIPPETS = [
-  // Snippet 1 — Developer object (original)
+  // Snippet 1 — Developer object
   {
     label: "shushay.config.js",
     lines: [
       {
         indent: false,
         segments: [
-          { text: "const ", className: "text-pink-500 dark:text-pink-400" },
-          { text: "developer", className: "text-blue-500 dark:text-blue-400" },
-          { text: " = ", className: "text-pink-500 dark:text-pink-400" },
-          { text: "{", className: "text-yellow-500 dark:text-yellow-300" },
+          { text: "const ", className: "text-cyan-400 font-semibold" },
+          { text: "developer", className: "text-blue-400 font-semibold" },
+          { text: " = ", className: "text-cyan-400" },
+          { text: "{", className: "text-amber-300" },
         ],
       },
       {
         indent: true,
         segments: [
-          { text: "name: ", className: "text-slate-700 dark:text-slate-300" },
-          { text: "'Shushay Kebedew'", className: "text-emerald-500 dark:text-emerald-400", nowrap: true },
-          { text: ",", className: "text-slate-700 dark:text-slate-300" },
+          { text: "name: ", className: "text-slate-300" },
+          { text: "'Shushay Kebedew'", className: "text-emerald-400 font-semibold", nowrap: true },
+          { text: ",", className: "text-slate-300" },
         ],
       },
       {
         indent: true,
         segments: [
-          { text: "role: ", className: "text-slate-700 dark:text-slate-300" },
-          { text: "'Full Stack Developer'", className: "text-emerald-500 dark:text-emerald-400", nowrap: true },
-          { text: ",", className: "text-slate-700 dark:text-slate-300" },
+          { text: "role: ", className: "text-slate-300" },
+          { text: "'Full Stack Developer'", className: "text-emerald-400 font-semibold", nowrap: true },
+          { text: ",", className: "text-slate-300" },
         ],
       },
       {
         indent: true,
         segments: [
-          { text: "skills: ", className: "text-slate-700 dark:text-slate-300" },
-          { text: "[", className: "text-violet-500 dark:text-violet-400" },
-          { text: "'React'", className: "text-emerald-500 dark:text-emerald-400" },
-          { text: ", ", className: "text-slate-700 dark:text-slate-300" },
-          { text: "'Next.js'", className: "text-emerald-500 dark:text-emerald-400" },
-          { text: ", ", className: "text-slate-700 dark:text-slate-300" },
-          { text: "'Node.js'", className: "text-emerald-500 dark:text-emerald-400" },
-          { text: "]", className: "text-violet-500 dark:text-violet-400" },
-          { text: ",", className: "text-slate-700 dark:text-slate-300" },
+          { text: "skills: ", className: "text-slate-300" },
+          { text: "[", className: "text-purple-400" },
+          { text: "'React'", className: "text-cyan-300" },
+          { text: ", ", className: "text-slate-300" },
+          { text: "'Next.js'", className: "text-cyan-300" },
+          { text: ", ", className: "text-slate-300" },
+          { text: "'Node.js'", className: "text-cyan-300" },
+          { text: "]", className: "text-purple-400" },
+          { text: ",", className: "text-slate-300" },
         ],
       },
       {
         indent: true,
         showPing: true,
         segments: [
-          { text: "status: ", className: "text-slate-700 dark:text-slate-300" },
-          { text: "'Open to Work'", className: "text-emerald-500 dark:text-emerald-400", nowrap: true },
+          { text: "status: ", className: "text-slate-300" },
+          { text: "'Available for Hire'", className: "text-emerald-400 font-bold", nowrap: true },
         ],
       },
       {
         indent: false,
-        segments: [{ text: "}", className: "text-yellow-500 dark:text-yellow-300" }],
+        segments: [{ text: "}", className: "text-amber-300" }],
       },
     ],
   },
   // Snippet 2 — React component
   {
-    label: "UserCard.tsx",
+    label: "PortfolioHero.tsx",
     lines: [
       {
         indent: false,
         segments: [
-          { text: "import ", className: "text-pink-500 dark:text-pink-400" },
-          { text: "React", className: "text-blue-500 dark:text-blue-400" },
-          { text: " from ", className: "text-pink-500 dark:text-pink-400" },
-          { text: "'react'", className: "text-emerald-500 dark:text-emerald-400" },
-          { text: ";", className: "text-slate-700 dark:text-slate-300" },
+          { text: "import ", className: "text-cyan-400 font-semibold" },
+          { text: "{ gsap }", className: "text-blue-400" },
+          { text: " from ", className: "text-cyan-400" },
+          { text: "'gsap'", className: "text-emerald-400" },
+          { text: ";", className: "text-slate-300" },
         ],
       },
       {
         indent: false,
         segments: [
-          { text: "interface ", className: "text-pink-500 dark:text-pink-400" },
-          { text: "Props", className: "text-blue-500 dark:text-blue-400" },
-          { text: " { ", className: "text-slate-700 dark:text-slate-300" },
-          { text: "name", className: "text-violet-500 dark:text-violet-400" },
-          { text: ": string }", className: "text-slate-700 dark:text-slate-300" },
+          { text: "interface ", className: "text-cyan-400 font-semibold" },
+          { text: "Developer", className: "text-blue-400 font-bold" },
+          { text: " { ", className: "text-slate-300" },
+          { text: "expertise", className: "text-purple-400" },
+          { text: ": string[] }", className: "text-slate-300" },
         ],
       },
       {
         indent: false,
         segments: [
-          { text: "export default ", className: "text-pink-500 dark:text-pink-400" },
-          { text: "function ", className: "text-blue-500 dark:text-blue-400" },
-          { text: "UserCard", className: "text-yellow-500 dark:text-yellow-300" },
-          { text: "({ ", className: "text-slate-700 dark:text-slate-300" },
-          { text: "name", className: "text-violet-500 dark:text-violet-400" },
-          { text: " }) {", className: "text-slate-700 dark:text-slate-300" },
+          { text: "export default ", className: "text-cyan-400 font-semibold" },
+          { text: "function ", className: "text-blue-400 font-semibold" },
+          { text: "Hero", className: "text-amber-300 font-bold" },
+          { text: "() {", className: "text-slate-300" },
         ],
       },
       {
         indent: true,
         segments: [
-          { text: "return ", className: "text-pink-500 dark:text-pink-400" },
-          { text: "(", className: "text-slate-700 dark:text-slate-300" },
+          { text: "return ", className: "text-cyan-400 font-semibold" },
+          { text: "(", className: "text-slate-300" },
         ],
       },
       {
         indent: true,
         segments: [
-          { text: "  <", className: "text-slate-700 dark:text-slate-300" },
-          { text: "div ", className: "text-blue-500 dark:text-blue-400" },
-          { text: "className", className: "text-violet-500 dark:text-violet-400" },
-          { text: "=", className: "text-slate-700 dark:text-slate-300" },
-          { text: '"card"', className: "text-emerald-500 dark:text-emerald-400" },
-          { text: ">", className: "text-slate-700 dark:text-slate-300" },
+          { text: "  <", className: "text-slate-300" },
+          { text: "FullStackPortfolio ", className: "text-cyan-300 font-semibold" },
+          { text: "mode", className: "text-purple-400" },
+          { text: "=", className: "text-slate-300" },
+          { text: '"ObsidianCyber"', className: "text-emerald-400" },
+          { text: " />", className: "text-slate-300" },
         ],
       },
       {
         indent: true,
         segments: [
-          { text: "    <", className: "text-slate-700 dark:text-slate-300" },
-          { text: "h2", className: "text-blue-500 dark:text-blue-400" },
-          { text: ">{ ", className: "text-slate-700 dark:text-slate-300" },
-          { text: "name", className: "text-violet-500 dark:text-violet-400" },
-          { text: " }</", className: "text-slate-700 dark:text-slate-300" },
-          { text: "h2", className: "text-blue-500 dark:text-blue-400" },
-          { text: ">", className: "text-slate-700 dark:text-slate-300" },
-        ],
-      },
-      {
-        indent: true,
-        segments: [
-          { text: "  </", className: "text-slate-700 dark:text-slate-300" },
-          { text: "div", className: "text-blue-500 dark:text-blue-400" },
-          { text: ">);", className: "text-slate-700 dark:text-slate-300" },
+          { text: ");", className: "text-slate-300" },
         ],
       },
       {
         indent: false,
-        segments: [{ text: "}", className: "text-yellow-500 dark:text-yellow-300" }],
+        segments: [{ text: "}", className: "text-amber-300" }],
       },
     ],
   },
   // Snippet 3 — Node.js API route
   {
-    label: "api/users.js",
+    label: "api/fullstack.js",
     lines: [
       {
         indent: false,
         segments: [
-          { text: "const ", className: "text-pink-500 dark:text-pink-400" },
-          { text: "router", className: "text-blue-500 dark:text-blue-400" },
-          { text: " = ", className: "text-pink-500 dark:text-pink-400" },
-          { text: "express", className: "text-yellow-500 dark:text-yellow-300" },
-          { text: ".Router();", className: "text-slate-700 dark:text-slate-300" },
+          { text: "const ", className: "text-cyan-400 font-semibold" },
+          { text: "app", className: "text-blue-400" },
+          { text: " = ", className: "text-cyan-400" },
+          { text: "express", className: "text-amber-300" },
+          { text: "();", className: "text-slate-300" },
         ],
       },
       {
         indent: false,
         segments: [
-          { text: "router", className: "text-blue-500 dark:text-blue-400" },
-          { text: ".", className: "text-slate-700 dark:text-slate-300" },
-          { text: "get", className: "text-yellow-500 dark:text-yellow-300" },
-          { text: "(", className: "text-slate-700 dark:text-slate-300" },
-          { text: "'/:id'", className: "text-emerald-500 dark:text-emerald-400" },
-          { text: ", async (", className: "text-slate-700 dark:text-slate-300" },
-          { text: "req, res", className: "text-violet-500 dark:text-violet-400" },
-          { text: ") => {", className: "text-slate-700 dark:text-slate-300" },
+          { text: "app", className: "text-blue-400" },
+          { text: ".", className: "text-slate-300" },
+          { text: "get", className: "text-amber-300 font-semibold" },
+          { text: "(", className: "text-slate-300" },
+          { text: "'/api/projects'", className: "text-emerald-400" },
+          { text: ", async (", className: "text-slate-300" },
+          { text: "req, res", className: "text-purple-400" },
+          { text: ") => {", className: "text-slate-300" },
         ],
       },
       {
         indent: true,
         segments: [
-          { text: "const ", className: "text-pink-500 dark:text-pink-400" },
-          { text: "user", className: "text-blue-500 dark:text-blue-400" },
-          { text: " = ", className: "text-pink-500 dark:text-pink-400" },
-          { text: "await ", className: "text-pink-500 dark:text-pink-400" },
-          { text: "User", className: "text-yellow-500 dark:text-yellow-300" },
-          { text: ".", className: "text-slate-700 dark:text-slate-300" },
-          { text: "findById", className: "text-blue-500 dark:text-blue-400" },
-          { text: "(", className: "text-slate-700 dark:text-slate-300" },
-          { text: "req.params.id", className: "text-violet-500 dark:text-violet-400", nowrap: true },
-          { text: ");", className: "text-slate-700 dark:text-slate-300" },
+          { text: "const ", className: "text-cyan-400 font-semibold" },
+          { text: "projects", className: "text-blue-400" },
+          { text: " = ", className: "text-cyan-400" },
+          { text: "await ", className: "text-cyan-400 font-semibold" },
+          { text: "getFeaturedWorks", className: "text-amber-300" },
+          { text: "();", className: "text-slate-300" },
         ],
       },
       {
         indent: true,
         segments: [
-          { text: "if ", className: "text-pink-500 dark:text-pink-400" },
-          { text: "(!", className: "text-slate-700 dark:text-slate-300" },
-          { text: "user", className: "text-blue-500 dark:text-blue-400" },
-          { text: ") ", className: "text-slate-700 dark:text-slate-300" },
-          { text: "return ", className: "text-pink-500 dark:text-pink-400" },
-          { text: "res", className: "text-violet-500 dark:text-violet-400" },
-          { text: ".", className: "text-slate-700 dark:text-slate-300" },
-          { text: "status", className: "text-blue-500 dark:text-blue-400" },
-          { text: "(", className: "text-slate-700 dark:text-slate-300" },
-          { text: "404", className: "text-orange-400 dark:text-orange-300" },
-          { text: ").json({", className: "text-slate-700 dark:text-slate-300" },
-        ],
-      },
-      {
-        indent: true,
-        segments: [
-          { text: "  error: ", className: "text-slate-700 dark:text-slate-300" },
-          { text: "'User not found'", className: "text-emerald-500 dark:text-emerald-400", nowrap: true },
-          { text: " });", className: "text-slate-700 dark:text-slate-300" },
-        ],
-      },
-      {
-        indent: true,
-        segments: [
-          { text: "res", className: "text-violet-500 dark:text-violet-400" },
-          { text: ".", className: "text-slate-700 dark:text-slate-300" },
-          { text: "json", className: "text-blue-500 dark:text-blue-400" },
-          { text: "({ ", className: "text-slate-700 dark:text-slate-300" },
-          { text: "user", className: "text-violet-500 dark:text-violet-400" },
-          { text: " });", className: "text-slate-700 dark:text-slate-300" },
+          { text: "res", className: "text-purple-400" },
+          { text: ".", className: "text-slate-300" },
+          { text: "json", className: "text-blue-400" },
+          { text: "({ ", className: "text-slate-300" },
+          { text: "status: ", className: "text-slate-300" },
+          { text: "200", className: "text-amber-400 font-bold" },
+          { text: ", ", className: "text-slate-300" },
+          { text: "projects", className: "text-blue-400" },
+          { text: " });", className: "text-slate-300" },
         ],
       },
       {
         indent: false,
-        segments: [{ text: "});", className: "text-yellow-500 dark:text-yellow-300" }],
-      },
-    ],
-  },
-  // Snippet 4 — DB query
-  {
-    label: "queries/analytics.ts",
-    lines: [
-      {
-        indent: false,
-        segments: [
-          { text: "const ", className: "text-pink-500 dark:text-pink-400" },
-          { text: "stats", className: "text-blue-500 dark:text-blue-400" },
-          { text: " = ", className: "text-pink-500 dark:text-pink-400" },
-          { text: "await ", className: "text-pink-500 dark:text-pink-400" },
-          { text: "prisma", className: "text-yellow-500 dark:text-yellow-300" },
-          { text: ".", className: "text-slate-700 dark:text-slate-300" },
-          { text: "order", className: "text-blue-500 dark:text-blue-400" },
-          { text: ".", className: "text-slate-700 dark:text-slate-300" },
-          { text: "aggregate", className: "text-blue-500 dark:text-blue-400" },
-          { text: "({", className: "text-slate-700 dark:text-slate-300" },
-        ],
-      },
-      {
-        indent: true,
-        segments: [
-          { text: "_sum: ", className: "text-slate-700 dark:text-slate-300" },
-          { text: "{ ", className: "text-violet-500 dark:text-violet-400" },
-          { text: "amount: ", className: "text-slate-700 dark:text-slate-300" },
-          { text: "true", className: "text-orange-400 dark:text-orange-300" },
-          { text: " },", className: "text-violet-500 dark:text-violet-400" },
-        ],
-      },
-      {
-        indent: true,
-        segments: [
-          { text: "_count: ", className: "text-slate-700 dark:text-slate-300" },
-          { text: "{ ", className: "text-violet-500 dark:text-violet-400" },
-          { text: "id: ", className: "text-slate-700 dark:text-slate-300" },
-          { text: "true", className: "text-orange-400 dark:text-orange-300" },
-          { text: " },", className: "text-violet-500 dark:text-violet-400" },
-        ],
-      },
-      {
-        indent: true,
-        segments: [
-          { text: "where: ", className: "text-slate-700 dark:text-slate-300" },
-          { text: "{", className: "text-violet-500 dark:text-violet-400" },
-        ],
-      },
-      {
-        indent: true,
-        segments: [
-          { text: "  status: ", className: "text-slate-700 dark:text-slate-300" },
-          { text: "'completed'", className: "text-emerald-500 dark:text-emerald-400", nowrap: true },
-          { text: ",", className: "text-slate-700 dark:text-slate-300" },
-        ],
-      },
-      {
-        indent: true,
-        segments: [
-          { text: "  createdAt: ", className: "text-slate-700 dark:text-slate-300" },
-          { text: "{ gte: ", className: "text-violet-500 dark:text-violet-400" },
-          { text: "startDate", className: "text-blue-500 dark:text-blue-400" },
-          { text: " }", className: "text-violet-500 dark:text-violet-400" },
-        ],
-      },
-      {
-        indent: true,
-        segments: [{ text: "}", className: "text-violet-500 dark:text-violet-400" }],
-      },
-      {
-        indent: false,
-        segments: [{ text: "});", className: "text-yellow-500 dark:text-yellow-300" }],
+        segments: [{ text: "});", className: "text-amber-300" }],
       },
     ],
   },
@@ -325,7 +211,6 @@ export default function TypingCode() {
     if (!visible) return;
 
     if (lineIdx >= lines.length) {
-      // Finished typing this snippet — pause, then fade out and switch
       const pauseTimer = setTimeout(() => {
         setVisible(false);
       }, 3200);
@@ -349,7 +234,6 @@ export default function TypingCode() {
     return () => clearTimeout(lineBreakTimer);
   }, [lineIdx, charIdx, lines, visible]);
 
-  // When fade-out completes, switch snippet and restart
   const handleExitComplete = () => {
     setSnippetIdx((i) => (i + 1) % SNIPPETS.length);
     setLineIdx(0);
@@ -361,7 +245,6 @@ export default function TypingCode() {
 
   return (
     <div className="font-mono text-xs sm:text-sm md:text-[15px] 2xl:text-base leading-relaxed 2xl:leading-loose overflow-x-auto w-full max-w-full pb-1 scrollbar-none min-h-[180px] sm:min-h-[220px]">
-      {/* Filename label */}
       <AnimatePresence mode="wait" onExitComplete={handleExitComplete}>
         {visible && (
           <motion.div
@@ -373,18 +256,18 @@ export default function TypingCode() {
             className="space-y-2 sm:space-y-3 2xl:space-y-4"
           >
             {/* Snippet tab label */}
-            <div className="flex items-center gap-1.5 mb-3 sm:mb-4">
-              <span className="text-[10px] sm:text-xs font-mono text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-800/60 px-2 py-0.5 rounded-md border border-slate-200/60 dark:border-slate-700/60">
+            <div className="flex items-center gap-2 mb-3 sm:mb-4">
+              <span className="text-[10px] sm:text-xs font-mono font-bold text-cyan-400 bg-cyan-950/60 px-2.5 py-0.5 rounded-md border border-cyan-500/30 shadow-sm">
                 {snippet.label}
               </span>
-              <span className="flex gap-0.5">
+              <span className="flex gap-1">
                 {SNIPPETS.map((_, i) => (
                   <span
                     key={i}
-                    className={`inline-block h-1 rounded-full transition-all duration-300 ${
+                    className={`inline-block h-1.5 rounded-full transition-all duration-300 ${
                       i === snippetIdx
-                        ? "w-4 bg-indigo-500"
-                        : "w-1 bg-slate-300 dark:bg-slate-600"
+                        ? "w-5 bg-cyan-400 shadow-sm shadow-cyan-400/50"
+                        : "w-1.5 bg-slate-700"
                     }`}
                   />
                 ))}
@@ -403,10 +286,10 @@ export default function TypingCode() {
                 <div key={i} className={line.indent ? "pl-3 sm:pl-5 md:pl-6 2xl:pl-8" : ""}>
                   {renderTypedSegments(line.segments, count)}
                   {showCursor && (
-                    <span className="inline-block align-middle w-[2px] 2xl:w-[3px] h-3.5 sm:h-4 2xl:h-5 ml-0.5 bg-indigo-500 dark:bg-indigo-400 animate-pulse" />
+                    <span className="inline-block align-middle w-[2px] 2xl:w-[3px] h-3.5 sm:h-4 2xl:h-5 ml-0.5 bg-cyan-400 animate-pulse shadow-sm shadow-cyan-400" />
                   )}
                   {showPing && (
-                    <span className="inline-block align-middle ml-2 animate-ping h-1.5 sm:h-2 2xl:h-2.5 w-1.5 sm:w-2 2xl:w-2.5 rounded-full bg-emerald-500" />
+                    <span className="inline-block align-middle ml-2 animate-ping h-1.5 sm:h-2 2xl:h-2.5 w-1.5 sm:w-2 2xl:w-2.5 rounded-full bg-emerald-400" />
                   )}
                 </div>
               );

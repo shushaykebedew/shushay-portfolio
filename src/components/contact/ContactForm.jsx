@@ -107,12 +107,12 @@ export default function ContactForm({ cardVariants }) {
       viewport={{ once: true, amount: 0.08 }}
       className="h-full"
     >
-      <div className="glass-card p-5 sm:p-7 md:p-8 2xl:p-10 rounded-2xl sm:rounded-3xl 2xl:rounded-4xl glow-hover h-full flex flex-col justify-between">
+      <div className="glass-card p-6 sm:p-8 2xl:p-10 rounded-3xl 2xl:rounded-4xl glow-hover h-full flex flex-col justify-between border border-slate-200 dark:border-cyan-500/20">
         <div>
-          <h3 className="text-xl sm:text-2xl 2xl:text-3xl font-bold mb-5 sm:mb-6 2xl:mb-8 text-slate-900 dark:text-white">
+          <h3 className="text-xl sm:text-2xl 2xl:text-3xl font-black mb-6 sm:mb-8 text-slate-900 dark:text-white">
             Send a Message
           </h3>
-          <form className="space-y-3.5 sm:space-y-4 2xl:space-y-5" onSubmit={sendEmail} noValidate>
+          <form className="space-y-4 sm:space-y-5" onSubmit={sendEmail} noValidate>
             <FormField
               id="name"
               label="Your Name"
@@ -157,7 +157,7 @@ export default function ContactForm({ cardVariants }) {
               rows={4}
             />
 
-            <div className="pt-1.5 sm:pt-2">
+            <div className="pt-2">
               <SubmitButton loading={loading} disabled={!shouldBtnActive} />
             </div>
 

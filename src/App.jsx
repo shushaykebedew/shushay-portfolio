@@ -65,9 +65,9 @@ export default function App() {
       >
         {/* Global floating gradient orbs */}
         <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10 w-full max-w-[100vw]" aria-hidden="true">
-          <div className="absolute top-0 left-1/4 w-[350px] sm:w-[500px] lg:w-[600px] h-[350px] sm:h-[500px] lg:h-[600px] rounded-full bg-gradient-to-br from-indigo-500/8 to-violet-500/8 dark:from-indigo-500/5 dark:to-violet-500/5 blur-3xl animate-float-slow" />
+          <div className="absolute top-0 left-1/4 w-[350px] sm:w-[500px] lg:w-[600px] h-[350px] sm:h-[500px] lg:h-[600px] rounded-full bg-gradient-to-br from-cyan-500/10 to-blue-600/10 dark:from-cyan-500/6 dark:to-blue-600/6 blur-3xl animate-float-slow" />
           <div
-            className="absolute bottom-1/4 right-0 w-[300px] sm:w-[450px] lg:w-[500px] h-[300px] sm:h-[450px] lg:h-[500px] rounded-full bg-gradient-to-br from-violet-500/6 to-fuchsia-500/6 dark:from-violet-500/4 dark:to-fuchsia-500/4 blur-3xl animate-float-slow"
+            className="absolute bottom-1/4 right-0 w-[300px] sm:w-[450px] lg:w-[500px] h-[300px] sm:h-[450px] lg:h-[500px] rounded-full bg-gradient-to-br from-emerald-500/8 to-teal-500/8 dark:from-emerald-500/5 dark:to-teal-500/5 blur-3xl animate-float-slow"
             style={{ animationDelay: "8s" }}
           />
         </div>
