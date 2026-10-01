@@ -28,15 +28,15 @@ const links = [
 ];
 
 const drawerVariants = {
-  hidden: { opacity: 0, scale: 0.98 },
+  hidden: { opacity: 0, y: -10 },
   visible: {
     opacity: 1,
-    scale: 1,
+    y: 0,
     transition: { duration: 0.25, ease: [0.4, 0, 0.2, 1] },
   },
   exit: {
     opacity: 0,
-    scale: 0.98,
+    y: -10,
     transition: { duration: 0.2, ease: [0.4, 0, 1, 1] },
   },
 };
@@ -144,7 +144,9 @@ export default function Navbar({ theme, setTheme }) {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full ${
-        scrolled
+        menuOpen
+          ? "bg-white/95 dark:bg-slate-950/95 backdrop-blur-2xl border-b border-slate-200 dark:border-slate-800 shadow-md"
+          : scrolled
           ? "bg-white/90 dark:bg-slate-950/90 backdrop-blur-2xl shadow-xl shadow-cyan-950/5 dark:shadow-black/30 border-b border-slate-200/80 dark:border-cyan-500/20"
           : "bg-white/70 dark:bg-slate-950/40 backdrop-blur-xl border-b border-slate-200/40 dark:border-slate-800/30"
       }`}
@@ -153,6 +155,7 @@ export default function Navbar({ theme, setTheme }) {
         {/* Logo */}
         <a
           href="#home"
+          onClick={() => setMenuOpen(false)}
           className="group font-bold text-base sm:text-lg 2xl:text-xl flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded-lg p-1"
           aria-label="Go to home section"
         >
@@ -277,7 +280,7 @@ export default function Navbar({ theme, setTheme }) {
               animate="visible"
               exit="exit"
               onClick={() => setMenuOpen(false)}
-              className="lg:hidden fixed inset-0 z-50 bg-black/60 dark:bg-black/80 backdrop-blur-md"
+              className="lg:hidden fixed inset-0 top-16 sm:top-18 z-40 bg-black/60 dark:bg-black/80 backdrop-blur-sm"
               aria-hidden="true"
             />
 
@@ -287,26 +290,9 @@ export default function Navbar({ theme, setTheme }) {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="lg:hidden fixed inset-0 w-full h-[100dvh] z-50 bg-white dark:bg-slate-950 text-slate-900 dark:text-white shadow-2xl flex flex-col justify-between overflow-y-auto p-6 sm:p-8"
+              className="lg:hidden fixed inset-x-0 top-16 sm:top-18 bottom-0 h-[calc(100dvh-4rem)] sm:h-[calc(100dvh-4.5rem)] z-50 bg-white/95 dark:bg-slate-950/95 backdrop-blur-2xl text-slate-900 dark:text-white shadow-2xl flex flex-col justify-between overflow-y-auto p-6 sm:p-8 border-t border-slate-200/60 dark:border-slate-800/60"
               aria-label="Mobile Navigation"
             >
-              {/* Top bar */}
-              <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
-                <div className="flex items-center gap-2">
-                  <span className="bg-gradient-to-r from-cyan-600 via-blue-600 to-emerald-600 text-white px-2.5 py-1 rounded-xl text-xs font-black">
-                    SK
-                  </span>
-                  <span className="font-extrabold text-slate-900 dark:text-slate-100">Shushay Kebedew</span>
-                </div>
-                <button
-                  onClick={() => setMenuOpen(false)}
-                  className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
-                  aria-label="Close menu"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
               {/* Navigation Links */}
               <motion.div
                 variants={linksListVariants}
@@ -335,7 +321,7 @@ export default function Navbar({ theme, setTheme }) {
               </motion.div>
 
               {/* Footer */}
-              <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+              <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0">
                 <span className="text-xs font-extrabold text-slate-600 dark:text-slate-400 flex items-center gap-1">
                   <Sparkles className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" /> Full Stack Developer
                 </span>
