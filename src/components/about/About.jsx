@@ -112,7 +112,7 @@ export default function About() {
                 <div className="w-full h-full rounded-full overflow-hidden shadow-2xl bg-slate-100 dark:bg-slate-900 ring-4 ring-cyan-500/30">
                   <img
                     src={AboutImg}
-                    alt="Shushay Kebedew – Full Stack Developer"
+                    alt="Shushay Kebedew – Frontend Engineer"
                     className="w-full h-full object-cover grayscale-[10%] hover:grayscale-0 transition duration-500 group-hover:scale-105"
                     style={{ transform: "scale(1.15) translateY(-6%)" }}
                     loading="lazy"
@@ -127,7 +127,7 @@ export default function About() {
               <div className="absolute -bottom-2 -right-2 glass-card px-3.5 sm:px-4 py-2 rounded-2xl flex items-center gap-2 shadow-2xl border border-cyan-500/40 bg-white/95 dark:bg-slate-900/95 text-slate-900 dark:text-white">
                 <Sparkles className="w-4 h-4 text-cyan-600 dark:text-cyan-400 animate-spin-slow flex-shrink-0" />
                 <span className="text-[11px] sm:text-xs font-black text-cyan-700 dark:text-cyan-300 whitespace-nowrap">
-                  Full Stack Engineer
+                  Frontend Engineer & UI Specialist
                 </span>
               </div>
             </div>
@@ -165,17 +165,16 @@ export default function About() {
                 <strong className="text-slate-900 dark:text-white font-black text-cyan-700 dark:text-cyan-400">
                   Shushay Kebedew
                 </strong>
-                , a dedicated Full Stack Developer with deep expertise in crafting
-                modern, responsive, and scalable web applications. I specialize in
-                React, Next.js, Node.js, and database ecosystems, bringing ideas to
-                life with clean architecture and exceptional attention to detail.
+                , a dedicated Frontend Engineer with deep expertise in crafting
+                modern, high-performance, and pixel-perfect web applications. I specialize in
+                React, Next.js, TypeScript, and modern UI engineering, bringing complex interfaces
+                to life with clean component architecture, fluid motion, and accessible design.
               </p>
 
               <p className="leading-relaxed text-xs sm:text-sm md:text-base 2xl:text-lg text-slate-600 dark:text-slate-400 font-medium">
-                My approach unites engineering precision with pragmatic business
-                thinking. I thrive in translating complex technical requirements
-                into frictionless digital products that are fast, accessible, and
-                maintainable.
+                My approach unites engineering precision with thoughtful user experience. I thrive
+                in translating complex designs and requirements into frictionless digital products
+                that feel fast, intuitive, and responsive across every device.
               </p>
             </div>
 
@@ -188,8 +187,8 @@ export default function About() {
                 </h3>
                 <ul className="space-y-2.5 text-xs sm:text-sm 2xl:text-base font-bold text-slate-700 dark:text-slate-300">
                   {[
-                    "React & Next.js Ecosystem",
-                    "Pixel-Perfect Responsive UI/UX",
+                    "React 19 & Next.js App Router",
+                    "Pixel-Perfect Responsive UI/UX Systems",
                     "TypeScript & Modern State Management",
                   ].map((skill, index) => (
                     <li key={index} className="flex items-center gap-2.5">
@@ -203,13 +202,13 @@ export default function About() {
               <div className="glass-card p-4.5 sm:p-6 2xl:p-7 rounded-2xl 2xl:rounded-3xl glow-hover border border-slate-200 dark:border-emerald-500/20">
                 <h3 className="font-black mb-3 text-sm sm:text-base 2xl:text-lg text-emerald-700 dark:text-emerald-400 flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-400/50" />
-                  Backend & Cloud Data
+                  Motion & Performance
                 </h3>
                 <ul className="space-y-2.5 text-xs sm:text-sm 2xl:text-base font-bold text-slate-700 dark:text-slate-300">
                   {[
-                    "Robust RESTful APIs & Microservices",
-                    "Database Modeling (MongoDB, SQL)",
-                    "Authentication, Network Security & Cloud Deployment",
+                    "Framer Motion & GSAP Micro-Interactions",
+                    "TanStack Query & Zustand State",
+                    "Core Web Vitals & Web Performance",
                   ].map((skill, index) => (
                     <li key={index} className="flex items-center gap-2.5">
                       <CircleCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0" aria-hidden="true" />

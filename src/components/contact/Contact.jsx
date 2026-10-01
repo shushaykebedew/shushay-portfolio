@@ -14,7 +14,7 @@ export default function Contact() {
               Let's Build Something <span className="brand-gradient-text">Great</span>
             </>
           }
-          description="Ready to bring your ideas to life? I'm available for full-stack engineering roles, freelance builds, consulting, and ambitious collaborations."
+          description="Ready to bring your ideas to life? I'm available for frontend engineering roles, modern web application builds, UI consulting, and ambitious collaborations."
         />
 
         {/* Equal height grid */}

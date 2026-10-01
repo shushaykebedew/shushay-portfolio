@@ -2,15 +2,15 @@ import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const SNIPPETS = [
-  // Snippet 1 — Developer object
+  // Snippet 1 — Developer config object
   {
-    label: "shushay.config.js",
+    label: "shushay.config.ts",
     lines: [
       {
         indent: false,
         segments: [
           { text: "const ", className: "text-cyan-400 font-semibold" },
-          { text: "developer", className: "text-blue-400 font-semibold" },
+          { text: "frontendEngineer", className: "text-blue-400 font-semibold" },
           { text: " = ", className: "text-cyan-400" },
           { text: "{", className: "text-amber-300" },
         ],
@@ -27,20 +27,20 @@ const SNIPPETS = [
         indent: true,
         segments: [
           { text: "role: ", className: "text-slate-300" },
-          { text: "'Full Stack Developer'", className: "text-emerald-400 font-semibold", nowrap: true },
+          { text: "'Frontend Engineer'", className: "text-emerald-400 font-semibold", nowrap: true },
           { text: ",", className: "text-slate-300" },
         ],
       },
       {
         indent: true,
         segments: [
-          { text: "skills: ", className: "text-slate-300" },
+          { text: "stack: ", className: "text-slate-300" },
           { text: "[", className: "text-purple-400" },
-          { text: "'React'", className: "text-cyan-300" },
+          { text: "'React 19'", className: "text-cyan-300" },
           { text: ", ", className: "text-slate-300" },
           { text: "'Next.js'", className: "text-cyan-300" },
           { text: ", ", className: "text-slate-300" },
-          { text: "'Node.js'", className: "text-cyan-300" },
+          { text: "'TypeScript'", className: "text-cyan-300" },
           { text: "]", className: "text-purple-400" },
           { text: ",", className: "text-slate-300" },
         ],
@@ -50,37 +50,27 @@ const SNIPPETS = [
         showPing: true,
         segments: [
           { text: "status: ", className: "text-slate-300" },
-          { text: "'Available for Hire'", className: "text-emerald-400 font-bold", nowrap: true },
+          { text: "'Open to Frontend Roles'", className: "text-emerald-400 font-bold", nowrap: true },
         ],
       },
       {
         indent: false,
-        segments: [{ text: "}", className: "text-amber-300" }],
+        segments: [{ text: "};", className: "text-amber-300" }],
       },
     ],
   },
-  // Snippet 2 — React component
+  // Snippet 2 — Framer Motion Component
   {
-    label: "PortfolioHero.tsx",
+    label: "FrontendHero.tsx",
     lines: [
       {
         indent: false,
         segments: [
           { text: "import ", className: "text-cyan-400 font-semibold" },
-          { text: "{ gsap }", className: "text-blue-400" },
+          { text: "{ motion }", className: "text-blue-400 font-semibold" },
           { text: " from ", className: "text-cyan-400" },
-          { text: "'gsap'", className: "text-emerald-400" },
+          { text: "'framer-motion'", className: "text-emerald-400" },
           { text: ";", className: "text-slate-300" },
-        ],
-      },
-      {
-        indent: false,
-        segments: [
-          { text: "interface ", className: "text-cyan-400 font-semibold" },
-          { text: "Developer", className: "text-blue-400 font-bold" },
-          { text: " { ", className: "text-slate-300" },
-          { text: "expertise", className: "text-purple-400" },
-          { text: ": string[] }", className: "text-slate-300" },
         ],
       },
       {
@@ -88,7 +78,7 @@ const SNIPPETS = [
         segments: [
           { text: "export default ", className: "text-cyan-400 font-semibold" },
           { text: "function ", className: "text-blue-400 font-semibold" },
-          { text: "Hero", className: "text-amber-300 font-bold" },
+          { text: "HeroUI", className: "text-amber-300 font-bold" },
           { text: "() {", className: "text-slate-300" },
         ],
       },
@@ -103,10 +93,24 @@ const SNIPPETS = [
         indent: true,
         segments: [
           { text: "  <", className: "text-slate-300" },
-          { text: "FullStackPortfolio ", className: "text-cyan-300 font-semibold" },
-          { text: "mode", className: "text-purple-400" },
-          { text: "=", className: "text-slate-300" },
-          { text: '"ObsidianCyber"', className: "text-emerald-400" },
+          { text: "motion.div ", className: "text-cyan-300 font-semibold" },
+          { text: "animate", className: "text-purple-400" },
+          { text: "={{ ", className: "text-slate-300" },
+          { text: "opacity: ", className: "text-blue-300" },
+          { text: "1", className: "text-amber-400" },
+          { text: ", ", className: "text-slate-300" },
+          { text: "scale: ", className: "text-blue-300" },
+          { text: "1", className: "text-amber-400" },
+          { text: " }}", className: "text-slate-300" },
+        ],
+      },
+      {
+        indent: true,
+        segments: [
+          { text: "    className", className: "text-purple-400" },
+          { text: "='", className: "text-slate-300" },
+          { text: "pixel-perfect-ui glow-hover", className: "text-emerald-400" },
+          { text: "'", className: "text-slate-300" },
           { text: " />", className: "text-slate-300" },
         ],
       },
@@ -122,30 +126,27 @@ const SNIPPETS = [
       },
     ],
   },
-  // Snippet 3 — Node.js API route
+  // Snippet 3 — Fluid Motion Hook
   {
-    label: "api/fullstack.js",
+    label: "useFluidMotion.ts",
     lines: [
       {
         indent: false,
         segments: [
-          { text: "const ", className: "text-cyan-400 font-semibold" },
-          { text: "app", className: "text-blue-400" },
-          { text: " = ", className: "text-cyan-400" },
-          { text: "express", className: "text-amber-300" },
-          { text: "();", className: "text-slate-300" },
+          { text: "import ", className: "text-cyan-400 font-semibold" },
+          { text: "{ useScroll, useSpring }", className: "text-blue-400 font-semibold" },
+          { text: " from ", className: "text-cyan-400" },
+          { text: "'framer-motion'", className: "text-emerald-400" },
+          { text: ";", className: "text-slate-300" },
         ],
       },
       {
         indent: false,
         segments: [
-          { text: "app", className: "text-blue-400" },
-          { text: ".", className: "text-slate-300" },
-          { text: "get", className: "text-amber-300 font-semibold" },
-          { text: "(", className: "text-slate-300" },
-          { text: "'/api/projects'", className: "text-emerald-400" },
-          { text: ", async (", className: "text-slate-300" },
-          { text: "req, res", className: "text-purple-400" },
+          { text: "export const ", className: "text-cyan-400 font-semibold" },
+          { text: "useFluidMotion", className: "text-blue-400 font-bold" },
+          { text: " = (", className: "text-slate-300" },
+          { text: "targetRef", className: "text-purple-400" },
           { text: ") => {", className: "text-slate-300" },
         ],
       },
@@ -153,30 +154,40 @@ const SNIPPETS = [
         indent: true,
         segments: [
           { text: "const ", className: "text-cyan-400 font-semibold" },
-          { text: "projects", className: "text-blue-400" },
+          { text: "{ scrollYProgress }", className: "text-blue-400" },
           { text: " = ", className: "text-cyan-400" },
-          { text: "await ", className: "text-cyan-400 font-semibold" },
-          { text: "getFeaturedWorks", className: "text-amber-300" },
-          { text: "();", className: "text-slate-300" },
+          { text: "useScroll", className: "text-amber-300" },
+          { text: "({ ", className: "text-slate-300" },
+          { text: "target: ", className: "text-slate-300" },
+          { text: "targetRef", className: "text-purple-400" },
+          { text: " });", className: "text-slate-300" },
         ],
       },
       {
         indent: true,
         segments: [
-          { text: "res", className: "text-purple-400" },
-          { text: ".", className: "text-slate-300" },
-          { text: "json", className: "text-blue-400" },
-          { text: "({ ", className: "text-slate-300" },
-          { text: "status: ", className: "text-slate-300" },
-          { text: "200", className: "text-amber-400 font-bold" },
-          { text: ", ", className: "text-slate-300" },
-          { text: "projects", className: "text-blue-400" },
+          { text: "const ", className: "text-cyan-400 font-semibold" },
+          { text: "smoothSpring", className: "text-blue-400" },
+          { text: " = ", className: "text-cyan-400" },
+          { text: "useSpring", className: "text-amber-300" },
+          { text: "(", className: "text-slate-300" },
+          { text: "scrollYProgress", className: "text-purple-400" },
+          { text: ", { ", className: "text-slate-300" },
+          { text: "damping: ", className: "text-slate-300" },
+          { text: "25", className: "text-amber-400" },
           { text: " });", className: "text-slate-300" },
         ],
       },
       {
+        indent: true,
+        segments: [
+          { text: "return ", className: "text-cyan-400 font-semibold" },
+          { text: "{ progress: smoothSpring };", className: "text-slate-300" },
+        ],
+      },
+      {
         indent: false,
-        segments: [{ text: "});", className: "text-amber-300" }],
+        segments: [{ text: "};", className: "text-amber-300" }],
       },
     ],
   },

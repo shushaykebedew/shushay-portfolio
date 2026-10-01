@@ -323,7 +323,7 @@ export default function Navbar({ theme, setTheme }) {
               {/* Footer */}
               <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0">
                 <span className="text-xs font-extrabold text-slate-600 dark:text-slate-400 flex items-center gap-1">
-                  <Sparkles className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" /> Full Stack Developer
+                  <Sparkles className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" /> Frontend Engineer
                 </span>
                 <span className="text-[11px] font-mono font-bold text-cyan-600 dark:text-cyan-400">
                   Addis Ababa, ET

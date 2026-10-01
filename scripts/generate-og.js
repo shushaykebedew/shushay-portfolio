@@ -58,7 +58,7 @@ const svgContent = `
 
     <!-- Role Subtitle -->
     <text x="0" y="300" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-weight="800" font-size="34" fill="url(#brandGrad)" letter-spacing="0">
-      Full Stack Engineer &amp; AI Specialist
+      Frontend Engineer &amp; UI Specialist
     </text>
 
     <!-- Divider Line -->
@@ -68,23 +68,23 @@ const svgContent = `
     <g transform="translate(0, 365)">
       <!-- Tech Badge 1: React -->
       <rect x="0" y="0" width="105" height="42" rx="12" fill="#0b1120" stroke="#06b6d4" stroke-width="1.5" stroke-opacity="0.5" />
-      <text x="52.5" y="26" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="16" fill="#22d3ee" text-anchor="middle">React</text>
+      <text x="52.5" y="26" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="16" fill="#22d3ee" text-anchor="middle">React 19</text>
 
       <!-- Tech Badge 2: Next.js -->
       <rect x="120" y="0" width="110" height="42" rx="12" fill="#0b1120" stroke="#06b6d4" stroke-width="1.5" stroke-opacity="0.5" />
       <text x="175" y="26" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="16" fill="#22d3ee" text-anchor="middle">Next.js</text>
 
-      <!-- Tech Badge 3: Node.js -->
-      <rect x="245" y="0" width="110" height="42" rx="12" fill="#0b1120" stroke="#06b6d4" stroke-width="1.5" stroke-opacity="0.5" />
-      <text x="300" y="26" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="16" fill="#22d3ee" text-anchor="middle">Node.js</text>
+      <!-- Tech Badge 3: TypeScript -->
+      <rect x="245" y="0" width="130" height="42" rx="12" fill="#0b1120" stroke="#06b6d4" stroke-width="1.5" stroke-opacity="0.5" />
+      <text x="310" y="26" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="16" fill="#22d3ee" text-anchor="middle">TypeScript</text>
 
-      <!-- Tech Badge 4: TypeScript -->
-      <rect x="370" y="0" width="130" height="42" rx="12" fill="#0b1120" stroke="#06b6d4" stroke-width="1.5" stroke-opacity="0.5" />
-      <text x="435" y="26" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="16" fill="#22d3ee" text-anchor="middle">TypeScript</text>
+      <!-- Tech Badge 4: Tailwind -->
+      <rect x="390" y="0" width="125" height="42" rx="12" fill="#0b1120" stroke="#06b6d4" stroke-width="1.5" stroke-opacity="0.5" />
+      <text x="452.5" y="26" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="16" fill="#22d3ee" text-anchor="middle">Tailwind</text>
 
-      <!-- Tech Badge 5: MongoDB -->
-      <rect x="515" y="0" width="125" height="42" rx="12" fill="#0b1120" stroke="#06b6d4" stroke-width="1.5" stroke-opacity="0.5" />
-      <text x="577.5" y="26" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="16" fill="#22d3ee" text-anchor="middle">MongoDB</text>
+      <!-- Tech Badge 5: Motion -->
+      <rect x="530" y="0" width="115" height="42" rx="12" fill="#0b1120" stroke="#06b6d4" stroke-width="1.5" stroke-opacity="0.5" />
+      <text x="587.5" y="26" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="16" fill="#22d3ee" text-anchor="middle">Motion</text>
     </g>
   </g>
 

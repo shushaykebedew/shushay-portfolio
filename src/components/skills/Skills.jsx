@@ -23,7 +23,7 @@ export default function Skills() {
               Tools & <span className="brand-gradient-text">Technologies</span>
             </>
           }
-          description="A comprehensive overview of my technical expertise across frontend architectures, backend systems, database modeling, and AI integrations."
+          description="A comprehensive overview of my technical expertise across modern frontend frameworks, interactive UI engineering, responsive styling, and supporting technologies."
         />
 
         {/* Tab Controls */}

@@ -4,7 +4,7 @@ import TypingCode from "./TypingCode";
 import GradientOrbs from "../ui/GradientOrbs";
 import { gsap } from "../../lib/gsap";
 
-const TECH_STACK = ["React", "Next.js", "Node.js", "TypeScript", "Tailwind CSS", "MongoDB"];
+const TECH_STACK = ["React 19", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "TanStack Query", "Zustand"];
 
 const HERO_ORBS = [
   {
@@ -131,7 +131,7 @@ export default function Hero() {
 
             <div className="glass-card inline-flex items-center gap-2 rounded-full px-3.5 sm:px-4.5 2xl:px-5 py-1.5 2xl:py-2 text-[10px] sm:text-xs 2xl:text-sm font-extrabold tracking-wider text-cyan-700 dark:text-cyan-400 border border-cyan-500/30 shadow-md shadow-cyan-500/10">
               <Globe className="w-3.5 h-3.5 2xl:w-4 2xl:h-4 flex-shrink-0" aria-hidden="true" />
-              <span>FULL STACK DEVELOPER</span>
+              <span>FRONTEND ENGINEER</span>
             </div>
           </div>
 
@@ -144,13 +144,13 @@ export default function Hero() {
           {/* Subtitle Tagline */}
           <div className="flex items-center gap-2 mb-4 text-cyan-700 dark:text-cyan-400 font-black text-sm sm:text-base 2xl:text-lg uppercase tracking-wider">
             <Sparkles className="w-4 h-4 text-cyan-600 dark:text-cyan-400 animate-pulse" />
-            <span>Building Next-Gen Digital Products</span>
+            <span>Crafting High-Performance User Experiences</span>
           </div>
 
           {/* Description */}
           <p className="text-slate-700 dark:text-slate-300 mb-6 sm:mb-8 2xl:mb-10 max-w-xl 2xl:max-w-2xl text-sm sm:text-base lg:text-lg 2xl:text-xl font-medium leading-relaxed">
-            <strong className="text-slate-900 dark:text-white font-extrabold">Full Stack Engineer</strong>{" "}
-            specializing in resilient frontend architectures, scalable backend services, and high-precision user interfaces. I build modern web applications with clean code and cutting-edge tech stacks.
+            <strong className="text-slate-900 dark:text-white font-extrabold">Frontend Engineer</strong>{" "}
+            specializing in building high-performance, accessible, and pixel-perfect web applications with React, Next.js, and TypeScript. Passionate about fluid micro-interactions, responsive design systems, and modern state architectures.
           </p>
 
           {/* Tech stack badges */}
