@@ -3,11 +3,17 @@ import AboutImg from "../../assets/profile.jpg";
 import { CircleCheck, Sparkles, Code, Briefcase, Award } from "lucide-react";
 import SectionHeader from "../ui/SectionHeader";
 import { gsap } from "../../lib/gsap";
+import { certifications } from "../certifications/constants";
+
+const totalCertifications = certifications.reduce(
+  (acc, c) => acc + c.courses.length,
+  0
+) || 10;
 
 const STATS = [
   { label: "Years Experience", value: 2, suffix: "+", icon: Briefcase },
   { label: "Projects Built", value: 20, suffix: "+", icon: Code },
-  { label: "Certifications", value: 8, suffix: "+", icon: Award },
+  { label: "Certifications", value: 10, suffix: "+", icon: Award },
 ];
 
 export default function About() {
@@ -71,7 +77,10 @@ export default function About() {
             start: "top 85%",
           },
           onUpdate: () => {
-            if (el) el.textContent = Math.floor(obj.val) + STATS[index].suffix;
+            if (el) el.textContent = Math.round(obj.val) + STATS[index].suffix;
+          },
+          onComplete: () => {
+            if (el) el.textContent = targetValue + STATS[index].suffix;
           },
         });
       });
@@ -137,7 +146,7 @@ export default function About() {
                       ref={(el) => (statValRefs.current[i] = el)}
                       className="text-lg sm:text-2xl 2xl:text-3xl font-black text-slate-900 dark:text-white font-mono"
                     >
-                      0{stat.suffix}
+                      {stat.value}{stat.suffix}
                     </span>
                     <span className="text-[10px] sm:text-xs 2xl:text-sm text-slate-600 dark:text-slate-400 font-extrabold leading-tight mt-1">
                       {stat.label}
@@ -200,7 +209,7 @@ export default function About() {
                   {[
                     "Robust RESTful APIs & Microservices",
                     "Database Modeling (MongoDB, SQL)",
-                    "Authentication, JWT & Cloud Deployment",
+                    "Authentication, Network Security & Cloud Deployment",
                   ].map((skill, index) => (
                     <li key={index} className="flex items-center gap-2.5">
                       <CircleCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0" aria-hidden="true" />

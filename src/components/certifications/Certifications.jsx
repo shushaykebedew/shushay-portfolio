@@ -47,7 +47,7 @@ export default function Certifications() {
               Continuous <span className="brand-gradient-text">Learning</span>
             </>
           }
-          description="Verified credentials in AI, machine learning, mobile development, cybersecurity, and software fundamentals."
+          description="Verified credentials in AI, machine learning, cybersecurity, networking, mobile development, and software fundamentals."
         />
 
         {/* Certifications Grid */}
