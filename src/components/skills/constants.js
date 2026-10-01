@@ -47,6 +47,8 @@ export const TABS = [
       { name: "Express.js", level: 83, proficiency: "Advanced" },
       { name: "REST APIs", level: 87, proficiency: "Advanced" },
       { name: "Authentication (JWT / OAuth)", level: 82, proficiency: "Advanced" },
+      { name: "Network Architecture & Protocols", level: 82, proficiency: "Advanced" },
+      { name: "Cybersecurity & Web Security", level: 84, proficiency: "Advanced" },
     ],
   },
   {
