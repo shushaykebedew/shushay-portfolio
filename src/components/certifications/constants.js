@@ -82,16 +82,31 @@ export const certifications = [
       },
     ],
   },
-  {
-    provider: "Simplilearn",
-    courses: [
-      {
-        title: "Learn CCNA 200-301 Network Fundamentals",
-        year: "Sep, 2026",
-        description:
-          "Foundational networking concepts covering network architecture, protocols, connectivity, and network security",
-        link: "https://simpli-web.app.link/e/Dq68iRT4E6b",
-      },
-    ],
-  },
+{
+  provider: "Simplilearn",
+  courses: [
+    {
+      title: "Learn CCNA 200-301 Network Fundamentals",
+      year: "Sep, 2026",
+      description:
+        "Foundational networking concepts covering network architecture, protocols, IP addressing, connectivity, and network security.",
+      link: "https://simpli-web.app.link/e/Dq68iRT4E6b",
+    },
+    {
+      title: "Introduction to Data Science",
+      year: "Oct, 2026",
+      description:
+        "Introduction to data science concepts, data analysis, statistical methods, data visualization, and extracting insights from datasets.",
+      link: "https://simpli-web.app.link/e/45hKNEQW06b",
+    },
+    {
+      title: "Ethical Hacking 101: Beginners Guide to Ethical Hacking",
+      year: "Oct, 2026",
+      description:
+        "Introduction to ethical hacking, cybersecurity fundamentals, common vulnerabilities, penetration testing concepts, and defensive security practices.",
+      link: "https://simpli-web.app.link/e/ftHUbu0n26b",
+    },
+  ],
+},
+
 ];
