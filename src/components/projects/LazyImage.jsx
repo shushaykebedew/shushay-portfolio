@@ -4,6 +4,14 @@ export default function LazyImage({ src, alt, className, width, height }) {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
 
+  if (!src) {
+    return (
+      <div className={`relative ${className} flex items-center justify-center bg-gradient-to-br from-slate-100 via-slate-200 to-cyan-100 dark:from-slate-800 dark:via-slate-900 dark:to-cyan-950`} role="img" aria-label={alt}>
+        <span className="rounded-full border border-slate-300/70 bg-white/70 px-3 py-1.5 text-xs font-semibold text-slate-500 dark:border-slate-700 dark:bg-slate-950/60 dark:text-slate-400">Preview unavailable</span>
+      </div>
+    );
+  }
+
   return (
     <div className={`relative ${className}`}>
       {!loaded && !error && (
