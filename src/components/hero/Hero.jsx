@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Globe, Github, Linkedin, FileText, ChevronDown, FolderKanban, Sparkles } from "lucide-react";
 import TypingCode from "./TypingCode";
 import GradientOrbs from "../ui/GradientOrbs";
-import { gsap } from "../../lib/gsap";
 
 const TECH_STACK = ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Prisma"];
 
@@ -32,36 +31,9 @@ const HERO_ORBS = [
 
 export default function Hero() {
   const sectionRef = useRef(null);
-  const leftColRef = useRef(null);
-  const terminalRef = useRef(null);
   const spotlightRef = useRef(null);
   const [mousePos, setMousePos] = useState({ x: -999, y: -999 });
   const [isHoveringSection, setIsHoveringSection] = useState(false);
-
-  // GSAP Entrance Timeline
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (prefersReduced) return;
-
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-      tl.fromTo(
-        leftColRef.current.children,
-        { opacity: 0, y: 35 },
-        { opacity: 1, y: 0, duration: 0.7, stagger: 0.12 }
-      );
-
-      tl.fromTo(
-        terminalRef.current,
-        { opacity: 0, scale: 0.9, y: 30 },
-        { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: "back.out(1.4)" },
-        "-=0.5"
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
 
   // Cursor spotlight tracking
   useEffect(() => {
@@ -118,7 +90,7 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-7xl 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-8 grid lg:grid-cols-12 gap-10 sm:gap-14 lg:gap-16 2xl:gap-20 items-center w-full">
         {/* Left Column */}
-        <div ref={leftColRef} className="lg:col-span-7 2xl:col-span-7 flex flex-col justify-center">
+        <div className="lg:col-span-7 2xl:col-span-7 flex flex-col justify-center">
           {/* Status badges */}
           <div className="flex flex-wrap items-center gap-2.5 sm:gap-3.5 2xl:gap-4 mb-6 sm:mb-8 2xl:mb-10">
             <div className="glass-card inline-flex items-center gap-2 rounded-full px-3.5 sm:px-4.5 2xl:px-5 py-1.5 2xl:py-2 text-[10px] sm:text-xs 2xl:text-sm font-extrabold tracking-wider text-emerald-700 dark:text-emerald-400 border border-emerald-500/30 shadow-md shadow-emerald-500/10">
@@ -131,7 +103,7 @@ export default function Hero() {
 
             <div className="glass-card inline-flex items-center gap-2 rounded-full px-3.5 sm:px-4.5 2xl:px-5 py-1.5 2xl:py-2 text-[10px] sm:text-xs 2xl:text-sm font-extrabold tracking-wider text-cyan-700 dark:text-cyan-400 border border-cyan-500/30 shadow-md shadow-cyan-500/10">
               <Globe className="w-3.5 h-3.5 2xl:w-4 2xl:h-4 flex-shrink-0" aria-hidden="true" />
-              <span>FULL STACK DEVELOPER</span>
+              <span>FRONTEND &amp; FULL STACK DEVELOPER</span>
             </div>
           </div>
 
@@ -204,7 +176,7 @@ export default function Hero() {
         </div>
 
         {/* Right Column — Code Terminal */}
-        <div ref={terminalRef} className="lg:col-span-5 relative w-full mt-4 lg:mt-0">
+        <div className="lg:col-span-5 relative w-full mt-4 lg:mt-0">
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/25 to-emerald-500/25 dark:from-cyan-500/15 dark:to-emerald-500/15 rounded-3xl blur-2xl sm:blur-3xl animate-glow-pulse pointer-events-none" />
           <div className="relative glass-card-strong rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-7 glow-hover w-full overflow-hidden border border-slate-200 dark:border-cyan-500/20 shadow-2xl bg-slate-950 dark:bg-slate-950 text-slate-100">
             {/* Terminal header */}
