@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, ExternalLink, ArrowUpRight, Play, Lock } from "lucide-react";
+import { Github, ExternalLink, ArrowUpRight, Play, Lock, Layers } from "lucide-react";
 import LazyImage from "./LazyImage";
 
 export default function ProjectCard({
@@ -81,11 +81,18 @@ export default function ProjectCard({
           animate={{ opacity: videoUrl && hovered && videoReady ? 0 : 1 }}
           transition={{ duration: 0.3 }}
         >
-          <LazyImage
-            src={image}
-            alt={`${title} project screenshot`}
-            className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
-          />
+          {image ? (
+            <LazyImage
+              src={image}
+              alt={`${title} project screenshot`}
+              className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+          ) : (
+            <div className="w-full h-full flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-slate-100 via-slate-200 to-cyan-100 dark:from-slate-900 dark:via-slate-800 dark:to-cyan-950 text-slate-500 dark:text-cyan-300">
+              <Layers className="w-10 h-10" aria-hidden="true" />
+              <span className="text-xs font-bold tracking-wide">Project preview unavailable</span>
+            </div>
+          )}
         </motion.div>
 
         {/* Video element */}
