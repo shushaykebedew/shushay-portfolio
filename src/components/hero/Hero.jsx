@@ -4,7 +4,7 @@ import TypingCode from "./TypingCode";
 import GradientOrbs from "../ui/GradientOrbs";
 import { gsap } from "../../lib/gsap";
 
-const TECH_STACK = ["React", "Next.js", "Node.js", "TypeScript", "Tailwind CSS", "MongoDB"];
+const TECH_STACK = ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Prisma"];
 
 const HERO_ORBS = [
   {
@@ -144,13 +144,13 @@ export default function Hero() {
           {/* Subtitle Tagline */}
           <div className="flex items-center gap-2 mb-4 text-cyan-700 dark:text-cyan-400 font-black text-sm sm:text-base 2xl:text-lg uppercase tracking-wider">
             <Sparkles className="w-4 h-4 text-cyan-600 dark:text-cyan-400 animate-pulse" />
-            <span>Building Next-Gen Digital Products</span>
+            <span>Full-Stack Web Development & Applied AI</span>
           </div>
 
           {/* Description */}
           <p className="text-slate-700 dark:text-slate-300 mb-6 sm:mb-8 2xl:mb-10 max-w-xl 2xl:max-w-2xl text-sm sm:text-base lg:text-lg 2xl:text-xl font-medium leading-relaxed">
             <strong className="text-slate-900 dark:text-white font-extrabold">Full Stack Engineer</strong>{" "}
-            specializing in resilient frontend architectures, scalable backend services, and high-precision user interfaces. I build modern web applications with clean code and cutting-edge tech stacks.
+            building production-ready web applications across frontend and backend systems. I work with React, Next.js, TypeScript, Node.js, PostgreSQL, and Prisma, with additional experience in machine learning and fraud detection.
           </p>
 
           {/* Tech stack badges */}
