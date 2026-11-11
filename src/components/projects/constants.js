@@ -176,7 +176,14 @@ export const projects = [
     description:
       "A full-stack digital platform for the Ethio Real Estate Awards, designed to present the awards program, showcase real-estate industry participants, and support the end-to-end awards experience.",
     image: null,
-    tech: [],
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "PostgreSQL",
+      "Tailwind CSS",
+      "Role-Based Authentication",
+    ],
     demoUrl: "https://ethio-real-estate-awards.vercel.app/",
   },
 ];
