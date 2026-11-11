@@ -131,6 +131,7 @@ export const projects = [
       "sweetalert2",
     ],
     demoUrl: "",
+    githubUrl: "https://github.com/shushaykebedew/automated-id-verification",
   },
   {
     title: "AI-Powered Fraud Detection",
@@ -147,5 +148,22 @@ export const projects = [
       "REST API",
     ],
     demoUrl: "",
+    githubUrl: "https://github.com/shushaykebedew/ai-powered-fraud-detection",
+  },
+  {
+    title: "Blih-Ops Talent & Skills",
+    category: "fullstack",
+    description: "A talent and skills management platform built to organize people, capabilities, and operational workflows.",
+    image: null,
+    tech: ["Next.js", "TypeScript", "Express.js", "Prisma", "PostgreSQL", "OpenAPI"],
+    demoUrl: "",
+  },
+  {
+    title: "Ethio Real Estate Awards",
+    category: "frontend",
+    description: "A digital platform for the Ethio Real Estate Awards.",
+    image: null,
+    tech: [],
+    demoUrl: "https://ethio-real-estate-awards",
   },
 ];
