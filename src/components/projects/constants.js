@@ -54,7 +54,7 @@ export const projects = [
   },
   {
     title: "Sheqlee Admin Dashboard",
-    category: "fullstack",
+    category: "frontend",
     description:
       "Full-stack admin platform for freelancer marketplace management. Includes user management, project tracking, payment processing, and analytics dashboard with real-time data synchronization.",
     image: sheqleeDashboard,
@@ -153,17 +153,30 @@ export const projects = [
   {
     title: "Blih-Ops Talent & Skills",
     category: "fullstack",
-    description: "A talent and skills management platform built to organize people, capabilities, and operational workflows.",
+    description:
+      "A unified talent and skills platform that brings learning, verified talent discovery, employer subscriptions, and recruitment operations into one system. Built as a full-stack monorepo with a Next.js web application, Express REST API, shared TypeScript packages, and a PostgreSQL data layer.",
     image: null,
-    tech: ["Next.js", "TypeScript", "Express.js", "Prisma", "PostgreSQL", "OpenAPI"],
-    demoUrl: "",
+    tech: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Express.js 5",
+      "PostgreSQL",
+      "Prisma ORM",
+      "Tailwind CSS",
+      "OpenAPI",
+      "Zod",
+      "pnpm Monorepo",
+    ],
+    demoUrl: "https://blihops-talent-and-skills.vercel.app/",
   },
   {
     title: "Ethio Real Estate Awards",
-    category: "frontend",
-    description: "A digital platform for the Ethio Real Estate Awards.",
+    category: "fullstack",
+    description:
+      "A full-stack digital platform for the Ethio Real Estate Awards, designed to present the awards program, showcase real-estate industry participants, and support the end-to-end awards experience.",
     image: null,
     tech: [],
-    demoUrl: "https://ethio-real-estate-awards",
+    demoUrl: "https://ethio-real-estate-awards.vercel.app/",
   },
 ];
