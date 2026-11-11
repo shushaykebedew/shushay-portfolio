@@ -15,34 +15,33 @@ export default function ContactInfo({ cardVariants }) {
       viewport={{ once: true, amount: 0.08 }}
       className="h-full"
     >
-      <div className="glass-card p-6 sm:p-8 rounded-3xl 2xl:rounded-4xl glow-hover h-full flex flex-col justify-between border border-slate-200 dark:border-cyan-500/20">
-
+      <div className="glass-card p-5 sm:p-6 rounded-3xl 2xl:rounded-4xl glow-hover h-full flex flex-col justify-between border border-slate-200 dark:border-cyan-500/20">
         {/* Contact Details */}
         <div>
-          <h3 className="text-xl sm:text-2xl 2xl:text-3xl font-black mb-6 sm:mb-8 text-slate-900 dark:text-white">
+          <h3 className="text-lg sm:text-xl 2xl:text-2xl font-black mb-5 sm:mb-6 text-slate-900 dark:text-white">
             Contact Details
           </h3>
 
-          <div className="space-y-6">
+          <div className="space-y-5">
             {/* Location */}
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 bg-cyan-500/10 dark:bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 border border-cyan-500/30">
-                <MapPin className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-cyan-500/10 dark:bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 border border-cyan-500/30">
+                <MapPin className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
               </div>
               <div className="min-w-0">
                 <p className="text-xs uppercase tracking-wider font-extrabold text-slate-500 dark:text-slate-400 mb-1">
                   Location
                 </p>
-                <p className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100">
+                <p className="text-sm sm:text-base font-bold text-slate-900 dark:text-slate-100">
                   Addis Ababa, Ethiopia
                 </p>
               </div>
             </div>
 
             {/* Phone */}
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 bg-blue-500/10 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/30">
-                <Phone className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-blue-500/10 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/30">
+                <Phone className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
               </div>
               <div className="min-w-0">
                 <p className="text-xs uppercase tracking-wider font-extrabold text-slate-500 dark:text-slate-400 mb-1">
@@ -50,7 +49,7 @@ export default function ContactInfo({ cardVariants }) {
                 </p>
                 <a
                   href="tel:+251943668796"
-                  className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none"
+                  className="text-sm sm:text-base font-bold text-slate-900 dark:text-slate-100 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors focus:outline-none"
                   aria-label="Call +251 943 668 796"
                 >
                   +251 943 668 796
@@ -59,9 +58,9 @@ export default function ContactInfo({ cardVariants }) {
             </div>
 
             {/* Email */}
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 bg-emerald-500/10 dark:bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
-                <Mail className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-emerald-500/10 dark:bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
+                <Mail className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
               </div>
               <div className="min-w-0">
                 <p className="text-xs uppercase tracking-wider font-extrabold text-slate-500 dark:text-slate-400 mb-1">
@@ -72,7 +71,7 @@ export default function ContactInfo({ cardVariants }) {
                     href={`https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors break-all focus:outline-none"
+                    className="text-sm sm:text-base font-bold text-slate-900 dark:text-slate-100 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors break-all focus:outline-none"
                     aria-label={`Send email to ${EMAIL}`}
                   >
                     {EMAIL}
@@ -107,7 +106,7 @@ export default function ContactInfo({ cardVariants }) {
         </div>
 
         {/* Map */}
-        <div className="relative w-full aspect-[16/9] min-h-[160px] rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-inner mt-6">
+        <div className="relative w-full aspect-[16/9] min-h-[160px] rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-inner mt-5">
           <iframe
             title="Map of Addis Ababa, Ethiopia"
             src="https://www.openstreetmap.org/export/embed.html?bbox=38.70%2C8.95%2C38.80%2C9.05&layer=mapnik&marker=9.03%2C38.74"
@@ -117,7 +116,6 @@ export default function ContactInfo({ cardVariants }) {
             referrerPolicy="no-referrer-when-downgrade"
           />
         </div>
-
       </div>
     </motion.div>
   );
