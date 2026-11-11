@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import { AnimatePresence } from "framer-motion";
-import LoadingScreen from "./components/ui/LoadingScreen";
 import ScrollProgressBar from "./components/ui/ScrollProgressBar";
 import Navbar from "./components/navbar/Navbar";
 import Hero from "./components/hero/Hero";
@@ -14,8 +12,6 @@ import Experience from "./components/experience/Experience";
 import Certifications from "./components/certifications/Certifications";
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
-
   // Initialize theme from localStorage or default to dark
   const [theme, setTheme] = useState(() => {
     if (typeof window !== "undefined") {
@@ -39,24 +35,10 @@ export default function App() {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  // Loading screen
-  useEffect(() => {
-    // Increased duration slightly to let the animation play out beautifully
-    const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <>
       {/* Scroll Progress Bar */}
       <ScrollProgressBar />
-
-      {/* Loading Screen */}
-      <AnimatePresence>
-        {loading && (
-          <LoadingScreen />
-        )}
-      </AnimatePresence>
 
       {/* Main App Container */}
       <div
