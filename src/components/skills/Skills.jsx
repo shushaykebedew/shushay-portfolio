@@ -1,17 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { TABS } from "./constants";
-import { SkillRowColored } from "./SkillRow";
 import SectionHeader from "../ui/SectionHeader";
 
 export default function Skills() {
   const [activeTab, setActiveTab] = useState("frontend");
 
   const currentTab = TABS.find((t) => t.id === activeTab) || TABS[0];
-  const avg = Math.round(
-    currentTab.skills.reduce((a, s) => a + s.level, 0) /
-    currentTab.skills.length
-  );
 
   return (
     <section id="skills" aria-label="Skills and Technologies" className="section-padding relative overflow-hidden">
@@ -23,7 +18,7 @@ export default function Skills() {
               Tools & <span className="brand-gradient-text">Technologies</span>
             </>
           }
-          description="A comprehensive overview of my technical expertise across frontend architectures, backend systems, database modeling, and AI integrations."
+          description="A practical overview of the technologies I use to build and ship modern web applications, backend services, and data-driven products."
         />
 
         {/* Tab Controls */}
@@ -76,60 +71,36 @@ export default function Skills() {
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           >
-            <div className="relative glass-card p-5 sm:p-7 md:p-9 2xl:p-12 rounded-3xl 2xl:rounded-4xl glow-hover border border-slate-200 dark:border-cyan-500/20 overflow-hidden shadow-2xl">
-              {/* Decorative radial gradient in corner */}
-              <div
-                className="absolute top-0 right-0 w-64 sm:w-80 h-64 sm:h-80 rounded-full opacity-20 dark:opacity-25 blur-3xl bg-gradient-to-br from-cyan-500 to-emerald-500 pointer-events-none"
-              />
-
-              {/* Card Header */}
-              <div className="flex items-center justify-between mb-6 sm:mb-8 2xl:mb-10 relative z-10 gap-3">
-                <div className="flex items-center gap-3.5 sm:gap-4.5 2xl:gap-5 min-w-0">
-                  <div className="p-3 sm:p-4 rounded-2xl bg-gradient-to-br from-cyan-600 to-blue-600 text-white shadow-lg shadow-cyan-500/20 flex-shrink-0">
-                    {(() => {
-                      const Icon = currentTab.icon;
-                      return <Icon className="w-5 h-5 sm:w-6 sm:h-6 2xl:w-7 2xl:h-7" aria-hidden="true" />;
-                    })()}
+            <div className="relative glass-card p-5 sm:p-7 md:p-9 2xl:p-12 rounded-3xl glow-hover border border-slate-200 dark:border-cyan-500/20 overflow-hidden shadow-xl">
+              <div className="flex items-center justify-between gap-4 mb-7 relative z-10">
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="p-3 rounded-2xl bg-gradient-to-br from-cyan-600 to-blue-600 text-white shadow-lg">
+                    {(() => { const Icon = currentTab.icon; return <Icon className="w-6 h-6" aria-hidden="true" />; })()}
                   </div>
                   <div className="min-w-0">
-                    <h3 className="text-base sm:text-lg md:text-xl 2xl:text-2xl font-black text-slate-900 dark:text-white truncate">
-                      {currentTab.title}
-                    </h3>
-                    <p className="text-xs 2xl:text-sm font-bold text-cyan-700 dark:text-cyan-400 mt-0.5">
-                      {currentTab.skills.length} Tech Stack Modules
-                    </p>
+                    <h3 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white">{currentTab.title}</h3>
+                    <p className="text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400 mt-1">{currentTab.skills.length} technologies</p>
                   </div>
                 </div>
-
-                <div className="flex flex-col items-end flex-shrink-0">
-                  <span className="text-[10px] sm:text-[11px] 2xl:text-xs uppercase tracking-wider font-extrabold text-slate-500 dark:text-slate-400">
-                    Avg Proficiency
-                  </span>
-                  <span className="text-base sm:text-xl 2xl:text-2xl font-black font-mono text-cyan-700 dark:text-cyan-400">
-                    {avg}%
-                  </span>
-                </div>
+                <span className="hidden sm:inline-flex rounded-full px-3 py-1.5 text-xs font-bold bg-cyan-50 text-cyan-800 dark:bg-cyan-950/50 dark:text-cyan-300">Core stack</span>
               </div>
-
-              {/* Skills List - 2 columns on xl screens */}
-              <div className="space-y-2 sm:space-y-3 xl:grid xl:grid-cols-2 xl:gap-x-10 xl:gap-y-4 xl:space-y-0 relative z-10">
-                {currentTab.skills.map((skill, i) => (
-                  <SkillRowColored
-                    key={`${activeTab}-${skill.name}`}
-                    tab={currentTab}
-                    skillIndex={i}
-                    {...skill}
-                  />
+              <div className="flex flex-wrap gap-2.5 relative z-10" aria-label={`${currentTab.title} technologies`}>
+                {currentTab.skills.map((skill, index) => (
+                  <motion.span
+                    key={skill.name}
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.25, delay: index * 0.025 }}
+                    className="inline-flex items-center rounded-xl border border-slate-200 bg-white/80 px-3.5 py-2.5 text-sm font-bold text-slate-700 shadow-sm transition-colors hover:border-cyan-400 hover:text-cyan-700 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:border-cyan-500 dark:hover:text-cyan-300"
+                  >
+                    {skill.name}
+                  </motion.span>
                 ))}
               </div>
-
-              {/* Footer */}
-              <div className="mt-6 sm:mt-8 pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs font-bold text-slate-600 dark:text-slate-400 relative z-10">
-                <span>Proficiency scale: 0 - 100%</span>
-                <span className="font-mono font-black text-cyan-700 dark:text-cyan-400">
-                  {currentTab.skills.length} modules listed
-                </span>
-              </div>
+              <p className="mt-7 border-t border-slate-200 pt-4 text-xs font-medium text-slate-500 dark:border-slate-800 dark:text-slate-400 relative z-10">
+                Technologies are grouped by practical use rather than self-assigned percentage ratings.
+              </p>
             </div>
           </motion.div>
         </AnimatePresence>
