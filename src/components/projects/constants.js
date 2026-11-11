@@ -174,7 +174,7 @@ export const projects = [
     title: "Ethio Real Estate Awards",
     category: "fullstack",
     description:
-      "A full-stack digital platform for the Ethio Real Estate Awards, designed to present the awards program, showcase real-estate industry participants, and support the end-to-end awards experience.",
+      "A full-stack awards platform built for Ethiopia’s real estate industry. Brings the public awards experience together with nominee registration, public voting, judge scoring, and event and gallery content. Role-based access supports the administration of the awards workflow.",
     image: null,
     tech: [
       "Next.js",
