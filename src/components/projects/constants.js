@@ -6,6 +6,8 @@ import katechImg from "../../assets/katech.jpg";
 import bellboy from "../../assets/bellboy.jpg";
 import xCafe from "../../assets/x-cafe.jpg";
 import AI_Powered_Fraud_Detection from "../../assets/AI_Powered_Fraud_Detection.jpg";
+import era_img from "../../assets/era-img.jpg";
+import blih_ops_img from "../../assets/blih-ops-img.jpg";
 
 export const PROJECT_CATEGORIES = [
   { id: "all", label: "All" },
@@ -155,7 +157,7 @@ export const projects = [
     category: "fullstack",
     description:
       "A unified talent and skills platform that brings learning, verified talent discovery, employer subscriptions, and recruitment operations into one system. Built as a full-stack monorepo with a Next.js web application, Express REST API, shared TypeScript packages, and a PostgreSQL data layer.",
-    image: null,
+    image: blih_ops_img,
     tech: [
       "Next.js 16",
       "React 19",
@@ -175,7 +177,7 @@ export const projects = [
     category: "fullstack",
     description:
       "A full-stack awards platform built for Ethiopia’s real estate industry. Brings the public awards experience together with nominee registration, public voting, judge scoring, and event and gallery content. Role-based access supports the administration of the awards workflow.",
-    image: null,
+    image: era_img,
     tech: [
       "Next.js",
       "TypeScript",
