@@ -14,7 +14,7 @@ export const experience = [
     company: "Metnee Systems PLC",
     year: "Feb 2025 - Jun 2026",
     details: [
-      "Co-developed and delivered web applications for international clients, including projects for clients in South Korea.",
+      "Developed and delivered web applications for international clients, including projects for clients in South Korea.",
       "Built pixel-perfect user interfaces from Figma designs with strong attention to detail, translating design specifications into responsive, consistent interfaces.",
       "Developed reusable React and TypeScript components, integrated REST APIs with JWT authentication, and implemented application state using Redux Toolkit and Zustand.",
       "Built and maintained multilingual interfaces supporting English and Korean across modern browsers and devices.",
@@ -25,8 +25,9 @@ export const experience = [
     company: "Metnee Systems PLC",
     year: "Sep 2024 - Jan 2025",
     details: [
-      "Built administrative dashboards with filtering, sorting, and pagination for data-management workflows.",
-      "Contributed to UI/UX refinement, accessibility improvements, and migration of legacy pages to modern React architecture.",
+      "Developed Sheqlee, a web-based recruitment platform, contributing to its user-facing features and overall frontend experience.",
+      "Built responsive, reusable React interfaces and connected application screens to backend services.",
+      "Refined layouts and interactions to make job-seeking and recruitment workflows clear and easy to use.",
     ],
   },
 ];
