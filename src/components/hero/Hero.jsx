@@ -109,7 +109,7 @@ export default function Hero() {
 
           {/* Heading */}
           <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl 2xl:text-7xl font-black mb-4 sm:mb-6 2xl:mb-8 leading-[1.1] tracking-tight text-slate-900 dark:text-white">
-            Hi, I'm{" "}
+            Hi,{" "}
             <span className="brand-gradient-text">Shushay</span>
           </h1>
 
@@ -122,7 +122,7 @@ export default function Hero() {
           {/* Description */}
           <p className="text-slate-700 dark:text-slate-300 mb-6 sm:mb-8 2xl:mb-10 max-w-xl 2xl:max-w-2xl text-sm sm:text-base lg:text-lg 2xl:text-xl font-medium leading-relaxed">
             <strong className="text-slate-900 dark:text-white font-extrabold">Full Stack Engineer</strong>{" "}
-            building production-ready web applications across frontend and backend systems. I work with React, Next.js, TypeScript, Node.js, PostgreSQL, and Prisma, with additional experience in machine learning and fraud detection.
+            building production-ready web applications across frontend and backend systems. I work with React, Next.js, TypeScript, Node.js, PostgreSQL, and Prisma, with additional experience applying machine learning to data-driven problems.
           </p>
 
           {/* Tech stack badges */}
