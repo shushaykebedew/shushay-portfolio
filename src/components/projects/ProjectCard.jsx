@@ -11,6 +11,7 @@ export default function ProjectCard({
   tech,
   demoUrl,
   githubUrl,
+  technicalEvidence,
   index,
   isFeatured = false,
 }) {
@@ -139,6 +140,19 @@ export default function ProjectCard({
           <p className="text-xs sm:text-sm 2xl:text-base mb-6 leading-relaxed font-semibold text-slate-600 dark:text-slate-300">
             {description}
           </p>
+
+          {technicalEvidence?.length > 0 && (
+            <details className="mb-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/40">
+              <summary className="cursor-pointer px-3.5 py-2.5 text-xs font-extrabold text-cyan-700 dark:text-cyan-400">
+                Technical notes
+              </summary>
+              <ul className="space-y-2 px-3.5 pb-3.5 text-xs leading-relaxed text-slate-600 dark:text-slate-300">
+                {technicalEvidence.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </details>
+          )}
         </div>
 
         <div>
