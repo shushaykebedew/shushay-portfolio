@@ -27,7 +27,7 @@ const SNIPPETS = [
         indent: true,
         segments: [
           { text: "role: ", className: "text-slate-300" },
-          { text: "'Full Stack Developer'", className: "text-emerald-400 font-semibold", nowrap: true },
+          { text: "'Frontend & Full Stack Developer'", className: "text-emerald-400 font-semibold", nowrap: true },
           { text: ",", className: "text-slate-300" },
         ],
       },

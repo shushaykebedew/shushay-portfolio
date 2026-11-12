@@ -22,7 +22,7 @@ export default function Projects() {
               Featured <span className="brand-gradient-text">Works</span>
             </>
           }
-          description="A curated selection of client projects, full-stack web applications, and AI platforms built for real-world impact."
+          description="20+ projects delivered across client work and independent products. This portfolio highlights selected representative projects; private and confidential work is not publicly displayed."
         />
 
         {/* Category Filter Tabs */}

@@ -15,10 +15,10 @@ dist/
 dist-ssr/
 
 # Local environment
-*.local
 .env
 .env.*
 !.env.example
+*.local
 
 # Editor settings
 !.vscode/extensions.json
