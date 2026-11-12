@@ -158,6 +158,11 @@ export const projects = [
     description:
       "A unified talent and skills platform that brings learning, verified talent discovery, employer subscriptions, and recruitment operations into one system. Built as a full-stack monorepo with a Next.js web application, Express REST API, shared TypeScript packages, and a PostgreSQL data layer.",
     image: blih_ops_img,
+    technicalEvidence: [
+      "Architecture: Next.js web app and Express REST API in a pnpm monorepo, backed by PostgreSQL and Prisma.",
+      "Contribution: Full-stack implementation across the web application, API, shared TypeScript packages, and data layer.",
+      "Engineering focus: Shared packages keep types and reusable logic consistent across the application and API.",
+    ],
     tech: [
       "Next.js 16",
       "React 19",
@@ -178,6 +183,11 @@ export const projects = [
     description:
       "A full-stack awards platform built for Ethiopia’s real estate industry. Brings the public awards experience together with nominee registration, public voting, judge scoring, and event and gallery content. Role-based access supports the administration of the awards workflow.",
     image: era_img,
+    technicalEvidence: [
+      "Architecture: Next.js application with a Node.js backend and PostgreSQL data layer.",
+      "Contribution: Public awards experience plus nominee registration, voting, judge scoring, and administration workflows.",
+      "Engineering focus: Role-based access separates public participation from administrative operations.",
+    ],
     tech: [
       "Next.js",
       "TypeScript",
