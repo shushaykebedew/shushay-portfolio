@@ -158,35 +158,35 @@ export default function Navbar({ theme, setTheme }) {
           : "bg-white/70 dark:bg-slate-950/40 backdrop-blur-xl border-b border-slate-200/40 dark:border-slate-800/30"
       }`}
     >
-      <div className="relative z-[60] max-w-7xl 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-8 flex h-16 sm:h-18 2xl:h-22 items-center justify-between">
+      <div className="relative z-[60] max-w-7xl 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-10 flex h-[4.5rem] 2xl:h-20 items-center justify-between">
         {/* Logo */}
         <a
           href="#home"
           onClick={() => setMenuOpen(false)}
-          className="group font-bold text-base sm:text-lg 2xl:text-xl flex items-center gap-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded-lg p-1"
+          className="group font-bold flex items-center gap-2.5 cursor-pointer rounded-xl p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500"
           aria-label="Go to home section"
         >
-          <span className="relative flex items-center justify-center bg-gradient-to-r from-cyan-600 via-blue-600 to-emerald-600 text-white px-2.5 py-1 2xl:px-3.5 2xl:py-1.5 rounded-xl text-xs sm:text-sm 2xl:text-base font-black tracking-wide shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+          <span className="relative flex h-9 w-9 2xl:h-10 2xl:w-10 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-600 via-blue-600 to-emerald-600 text-xs 2xl:text-sm font-black tracking-wide text-white shadow-md shadow-cyan-500/20 transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105">
             SK
           </span>
-          <span className="inline text-slate-900 dark:text-white font-black tracking-tight text-sm sm:text-base 2xl:text-lg group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+          <span className="inline text-[15px] sm:text-base 2xl:text-lg font-extrabold tracking-tight text-slate-900 dark:text-white transition-colors group-hover:text-cyan-600 dark:group-hover:text-cyan-400">
             Shushay
           </span>
-          <span className="hidden xl:inline text-slate-500 dark:text-cyan-400/80 font-semibold text-xs 2xl:text-sm tracking-normal">
+          <span className="hidden xl:inline border-l border-slate-300/80 dark:border-slate-700 pl-2.5 text-xs 2xl:text-sm font-medium tracking-wide text-slate-500 dark:text-slate-400">
             Kebedew
           </span>
         </a>
 
         {/* Desktop Navigation */}
         <nav
-          className="hidden lg:flex items-center gap-1 xl:gap-1.5 2xl:gap-2 text-sm font-medium"
+          className="hidden lg:flex items-center gap-1 rounded-2xl border border-slate-200/80 bg-slate-100/65 p-1.5 shadow-inner shadow-slate-900/[0.025] dark:border-slate-800/80 dark:bg-slate-900/55 dark:shadow-black/10 text-sm font-medium"
           aria-label="Main Navigation"
         >
           {links.map(({ label, id }) => (
             <a
               key={id}
               href={`#${id}`}
-              className="relative px-3 2xl:px-4 py-1.5 2xl:py-2 rounded-xl group cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all duration-200"
+              className="relative rounded-xl px-2.5 xl:px-3 2xl:px-3.5 py-2 group cursor-pointer transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500"
               onClick={() => setMenuOpen(false)}
             >
               <span
@@ -202,7 +202,7 @@ export default function Navbar({ theme, setTheme }) {
               {activeSection === id && (
                 <motion.span
                   layoutId="activeNavBg"
-                  className="absolute inset-0 rounded-xl bg-cyan-500/10 dark:bg-cyan-500/15 border border-cyan-500/30 shadow-sm"
+                  className="absolute inset-0 rounded-xl border border-cyan-500/25 bg-white shadow-sm shadow-cyan-950/5 dark:bg-slate-800/90 dark:border-cyan-400/20"
                   transition={{ type: "spring", stiffness: 420, damping: 32 }}
                 />
               )}
@@ -210,11 +210,11 @@ export default function Navbar({ theme, setTheme }) {
           ))}
 
           {/* Dark Mode Toggle */}
-          <div className="ml-2 pl-2 2xl:ml-4 2xl:pl-4 border-l border-slate-200 dark:border-slate-800">
+          <div className="ml-2 border-l border-slate-200 pl-2.5 dark:border-slate-800">
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               aria-label="Toggle Dark Mode"
-              className="p-2 2xl:p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700/80 text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-white transition-all duration-300 cursor-pointer border border-slate-200/80 dark:border-cyan-500/20 shadow-sm"
+              className="rounded-xl border border-slate-200/80 bg-white/80 p-2.5 text-cyan-600 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md dark:border-slate-700/80 dark:bg-slate-900/80 dark:text-cyan-400 dark:hover:bg-slate-800 dark:hover:text-white"
             >
               {theme === "dark" ? (
                 <Sun className="w-4 h-4 sm:w-[18px] sm:h-[18px] 2xl:w-5 2xl:h-5" />
@@ -230,7 +230,7 @@ export default function Navbar({ theme, setTheme }) {
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             aria-label="Toggle Dark Mode"
-            className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-cyan-600 dark:text-cyan-400 transition-colors cursor-pointer border border-slate-200 dark:border-cyan-500/20"
+            className="rounded-xl border border-slate-200/80 bg-white/80 p-2.5 text-cyan-600 shadow-sm transition-colors dark:border-slate-700/80 dark:bg-slate-900/80 dark:text-cyan-400"
           >
             {theme === "dark" ? (
               <Sun className="w-4.5 h-4.5" />
@@ -243,7 +243,7 @@ export default function Navbar({ theme, setTheme }) {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="relative p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 transition-colors cursor-pointer border border-slate-200 dark:border-cyan-500/20"
+            className="relative rounded-xl border border-slate-200/80 bg-white/80 p-2.5 text-slate-800 shadow-sm transition-colors dark:border-slate-700/80 dark:bg-slate-900/80 dark:text-slate-200"
           >
             <span className="relative block w-5 h-5">
               <AnimatePresence initial={false}>
@@ -297,7 +297,7 @@ export default function Navbar({ theme, setTheme }) {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="lg:hidden fixed inset-x-0 top-16 sm:top-18 bottom-0 h-[calc(100dvh-4rem)] sm:h-[calc(100dvh-4.5rem)] z-50 bg-white/95 dark:bg-slate-950/95 backdrop-blur-2xl text-slate-900 dark:text-white shadow-2xl flex flex-col justify-between overflow-y-auto p-6 sm:p-8 border-t border-slate-200/60 dark:border-slate-800/60"
+              className="lg:hidden fixed inset-x-0 top-[4.5rem] bottom-0 h-[calc(100dvh-4.5rem)] z-50 flex flex-col justify-between overflow-y-auto border-t border-slate-200/60 bg-white/95 p-5 text-slate-900 shadow-2xl backdrop-blur-2xl dark:border-slate-800/60 dark:bg-slate-950/95 dark:text-white sm:p-8"
               aria-label="Mobile Navigation"
             >
               {/* Navigation Links */}
@@ -306,7 +306,7 @@ export default function Navbar({ theme, setTheme }) {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="flex flex-col gap-2 my-auto py-4"
+                className="my-auto flex flex-col gap-2.5 py-6"
               >
                 {links.map(({ label, id, icon: Icon }) => (
                   <motion.a
