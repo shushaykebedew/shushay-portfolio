@@ -13,8 +13,8 @@ const totalCertifications = certifications.reduce(
 
 const STATS = [
   { label: "Years Experience", value: 2, suffix: "+", icon: Briefcase },
-  { label: "Featured Projects", value: projects.length, suffix: "", icon: Code },
-  { label: "Courses & Credentials", value: totalCertifications, suffix: "", icon: Award },
+  { label: "Projects Delivered", value: 20, suffix: "+", icon: Code },
+  { label: "Courses & Credentials", value: totalCertifications, suffix: "+", icon: Award },
 ];
 
 export default function About() {
@@ -156,6 +156,9 @@ export default function About() {
                 );
               })}
             </div>
+            <p className="mt-3 max-w-sm text-center text-[10px] sm:text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+              The portfolio highlights selected work; additional client projects are not shown due to confidentiality.
+            </p>
           </div>
 
           {/* Right Column Content */}

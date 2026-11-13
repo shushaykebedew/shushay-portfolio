@@ -39,7 +39,7 @@ export default function Skills() {
                 aria-selected={isActive}
                 aria-controls={`skillpanel-${tab.id}`}
                 tabIndex={isActive ? 0 : -1}
-                className={`inline-flex items-center gap-2 text-xs sm:text-sm font-bold px-4 sm:px-5 py-2.5 rounded-full border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 ${
+                className={`inline-flex items-center gap-2 text-xs sm:text-sm font-bold px-4 sm:px-5 py-2.5 rounded-full border transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 ${
                   isActive
                     ? "bg-gradient-to-r from-cyan-600 via-blue-600 to-emerald-600 text-white border-transparent shadow-lg shadow-cyan-500/20"
                     : "glass-card text-slate-700 dark:text-slate-300 border-slate-200 dark:border-cyan-500/20 hover:border-cyan-500/50"

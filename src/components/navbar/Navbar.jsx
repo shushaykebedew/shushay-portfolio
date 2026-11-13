@@ -21,9 +21,9 @@ const links = [
   { label: "About", id: "about", icon: User },
   { label: "Skills", id: "skills", icon: Wrench },
   { label: "Experience", id: "experience", icon: Briefcase },
-  { label: "Certifications", id: "certifications", icon: Award },
   { label: "Projects", id: "projects", icon: FolderKanban },
   { label: "Education", id: "education", icon: GraduationCap },
+  { label: "Certifications", id: "certifications", icon: Award },
   { label: "Contact", id: "contact", icon: Mail },
 ];
 
@@ -121,12 +121,17 @@ export default function Navbar({ theme, setTheme }) {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
 
-      const sections = links.map((link) => document.getElementById(link.id));
+      const sections = links
+        .map((link) => ({
+          id: link.id,
+          element: document.getElementById(link.id),
+        }))
+        .filter(({ element }) => element)
+        .sort((a, b) => a.element.offsetTop - b.element.offsetTop);
       const scrollPosition = window.scrollY + 140;
       for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(links[i].id);
+        if (sections[i].element.offsetTop <= scrollPosition) {
+          setActiveSection(sections[i].id);
           break;
         }
       }
@@ -156,7 +161,7 @@ export default function Navbar({ theme, setTheme }) {
         <a
           href="#home"
           onClick={() => setMenuOpen(false)}
-          className="group font-bold text-base sm:text-lg 2xl:text-xl flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded-lg p-1"
+          className="group font-bold text-base sm:text-lg 2xl:text-xl flex items-center gap-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded-lg p-1"
           aria-label="Go to home section"
         >
           <span className="relative flex items-center justify-center bg-gradient-to-r from-cyan-600 via-blue-600 to-emerald-600 text-white px-2.5 py-1 2xl:px-3.5 2xl:py-1.5 rounded-xl text-xs sm:text-sm 2xl:text-base font-black tracking-wide shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
@@ -179,7 +184,7 @@ export default function Navbar({ theme, setTheme }) {
             <a
               key={id}
               href={`#${id}`}
-              className="relative px-3 2xl:px-4 py-1.5 2xl:py-2 rounded-xl group focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all duration-200"
+              className="relative px-3 2xl:px-4 py-1.5 2xl:py-2 rounded-xl group cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all duration-200"
               onClick={() => setMenuOpen(false)}
             >
               <span
@@ -223,7 +228,7 @@ export default function Navbar({ theme, setTheme }) {
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             aria-label="Toggle Dark Mode"
-            className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-cyan-600 dark:text-cyan-400 transition-colors border border-slate-200 dark:border-cyan-500/20"
+            className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-cyan-600 dark:text-cyan-400 transition-colors cursor-pointer border border-slate-200 dark:border-cyan-500/20"
           >
             {theme === "dark" ? (
               <Sun className="w-4.5 h-4.5" />
@@ -236,7 +241,7 @@ export default function Navbar({ theme, setTheme }) {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="relative p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 transition-colors border border-slate-200 dark:border-cyan-500/20"
+            className="relative p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 transition-colors cursor-pointer border border-slate-200 dark:border-cyan-500/20"
           >
             <span className="relative block w-5 h-5">
               <AnimatePresence initial={false}>
@@ -308,7 +313,7 @@ export default function Navbar({ theme, setTheme }) {
                     variants={linkItemVariants}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setMenuOpen(false)}
-                    className={`flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all duration-200 ${
+                    className={`flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all duration-200 cursor-pointer ${
                       activeSection === id
                         ? "bg-cyan-50 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-400 font-black border border-cyan-500/30"
                         : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 font-bold"

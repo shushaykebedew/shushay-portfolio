@@ -104,7 +104,7 @@ export default function Certifications() {
                           href={link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-xs font-black text-cyan-700 dark:text-cyan-400 hover:text-cyan-600 dark:hover:text-cyan-300 transition-colors focus:outline-none"
+                          className="inline-flex items-center gap-1.5 text-xs font-black text-cyan-700 dark:text-cyan-400 hover:text-cyan-600 dark:hover:text-cyan-300 transition-colors cursor-pointer focus:outline-none"
                           aria-label={`View ${title} certificate`}
                         >
                           <span>Verify</span>
