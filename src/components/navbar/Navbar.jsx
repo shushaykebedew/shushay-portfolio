@@ -179,7 +179,7 @@ export default function Navbar({ theme, setTheme }) {
 
         {/* Desktop Navigation */}
         <nav
-          className="hidden lg:flex items-center gap-1 rounded-2xl border border-slate-200/80 bg-slate-100/65 p-1.5 shadow-inner shadow-slate-900/[0.025] dark:border-slate-800/80 dark:bg-slate-900/55 dark:shadow-black/10 text-sm font-medium"
+          className="hidden lg:flex items-center gap-1 text-sm font-medium"
           aria-label="Main Navigation"
         >
           {links.map(({ label, id }) => (
@@ -214,7 +214,7 @@ export default function Navbar({ theme, setTheme }) {
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               aria-label="Toggle Dark Mode"
-              className="rounded-xl border border-slate-200/80 bg-white/80 p-2.5 text-cyan-600 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md dark:border-slate-700/80 dark:bg-slate-900/80 dark:text-cyan-400 dark:hover:bg-slate-800 dark:hover:text-white"
+              className="rounded-xl border border-slate-200/80 bg-white/80 p-2.5 text-cyan-600 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md cursor-pointer dark:border-slate-700/80 dark:bg-slate-900/80 dark:text-cyan-400 dark:hover:bg-slate-800 dark:hover:text-white"
             >
               {theme === "dark" ? (
                 <Sun className="w-4 h-4 sm:w-[18px] sm:h-[18px] 2xl:w-5 2xl:h-5" />
@@ -230,7 +230,7 @@ export default function Navbar({ theme, setTheme }) {
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             aria-label="Toggle Dark Mode"
-            className="rounded-xl border border-slate-200/80 bg-white/80 p-2.5 text-cyan-600 shadow-sm transition-colors dark:border-slate-700/80 dark:bg-slate-900/80 dark:text-cyan-400"
+            className="rounded-xl border border-slate-200/80 bg-white/80 p-2.5 text-cyan-600 shadow-sm transition-colors cursor-pointer dark:border-slate-700/80 dark:bg-slate-900/80 dark:text-cyan-400"
           >
             {theme === "dark" ? (
               <Sun className="w-4.5 h-4.5" />
