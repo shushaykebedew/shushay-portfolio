@@ -127,14 +127,16 @@ export default function Navbar({ theme, setTheme }) {
           element: document.getElementById(link.id),
         }))
         .filter(({ element }) => element)
-        .sort((a, b) => a.element.offsetTop - b.element.offsetTop);
-      const scrollPosition = window.scrollY + 140;
-      for (let i = sections.length - 1; i >= 0; i--) {
-        if (sections[i].element.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i].id);
-          break;
-        }
-      }
+        .sort(
+          (a, b) =>
+            a.element.getBoundingClientRect().top -
+            b.element.getBoundingClientRect().top
+        );
+      const active = [...sections]
+        .reverse()
+        .find(({ element }) => element.getBoundingClientRect().top <= 140);
+
+      if (active) setActiveSection(active.id);
     };
 
     handleScroll();
@@ -184,7 +186,11 @@ export default function Navbar({ theme, setTheme }) {
             <a
               key={id}
               href={`#${id}`}
-              className="relative px-3 2xl:px-4 py-1.5 2xl:py-2 rounded-xl group cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all duration-200"
+              className={`relative px-3 2xl:px-4 py-1.5 2xl:py-2 rounded-xl group cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all duration-200 border ${
+                activeSection === id
+                  ? "bg-cyan-500/10 dark:bg-cyan-500/15 border-cyan-500/30 shadow-sm"
+                  : "border-transparent"
+              }`}
               onClick={() => setMenuOpen(false)}
             >
               <span
@@ -197,13 +203,6 @@ export default function Navbar({ theme, setTheme }) {
                 {label}
               </span>
 
-              {activeSection === id && (
-                <motion.span
-                  layoutId="activeNavBg"
-                  className="absolute inset-0 rounded-xl bg-cyan-500/10 dark:bg-cyan-500/15 border border-cyan-500/30 shadow-sm"
-                  transition={{ type: "spring", stiffness: 420, damping: 32 }}
-                />
-              )}
             </a>
           ))}
 

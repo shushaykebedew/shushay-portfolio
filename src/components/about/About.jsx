@@ -157,7 +157,7 @@ export default function About() {
               })}
             </div>
             <p className="mt-3 max-w-sm text-center text-[10px] sm:text-xs leading-relaxed text-slate-500 dark:text-slate-400">
-              The portfolio highlights selected work; additional client projects are not shown due to confidentiality.
+              20+ projects delivered across client work and independent products. This portfolio highlights selected representative projects.
             </p>
           </div>
 
