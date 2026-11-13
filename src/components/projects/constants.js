@@ -58,7 +58,7 @@ export const projects = [
     title: "Sheqlee Admin Dashboard",
     category: "frontend",
     description:
-      "Full-stack admin platform for freelancer marketplace management. Includes user management, project tracking, payment processing, and analytics dashboard with real-time data synchronization.",
+      "Admin platform for freelancer marketplace management. Includes user management, project tracking, payment processing, and analytics dashboard with real-time data synchronization.",
     image: sheqleeDashboard,
     tech: [
       "React",
@@ -119,7 +119,7 @@ export const projects = [
     title: "Automated ID Verification System",
     category: "fullstack",
     description:
-      "Enterprise-grade identity verification platform with QR code scanning. Features secure user authentication, real-time verification status, and comprehensive admin dashboard.",
+      "QR-based identity verification platform. Features secure user authentication, real-time verification status, and comprehensive admin dashboard.",
     image: qrCodeScan,
     tech: [
       "React",
@@ -182,7 +182,7 @@ export const projects = [
     title: "Ethio Real Estate Awards",
     category: "fullstack",
     description:
-      "A full-stack awards platform built for Ethiopia’s real estate industry. Brings the public awards experience together with nominee registration, public voting, judge scoring, and event and gallery content. Role-based access supports the administration of the awards workflow.",
+      "An awards platform built for Ethiopia’s real estate industry. Brings the public awards experience together with nominee registration, public voting, judge scoring, and event and gallery content. Role-based access supports the administration of the awards workflow.",
     image: era_img,
     technicalEvidence: [
       "Architecture: Next.js application with a Node.js backend and PostgreSQL data layer.",
