@@ -169,18 +169,19 @@ export default function About() {
                 <strong className="text-slate-900 dark:text-white font-black text-cyan-700 dark:text-cyan-400">
                   Shushay Kebedew
                 </strong>
-                . I began my professional career in frontend development at Metnee
-                Systems, contributing to web applications for international clients,
-                including projects for South Korean teams. I now work across the
-                stack at Blih Marketing & Communications, building interfaces, APIs,
-                and database-backed features.
+                , a Full Stack Developer focused on building reliable, user-centered
+                web applications. Over 2+ years, I've contributed to products for
+                international clients and local teams, progressing from frontend
+                development at Metnee Systems to full-stack work at Blih Marketing
+                & Communications. My work spans responsive interfaces, REST APIs,
+                and database-backed application features.
               </p>
 
               <p className="leading-relaxed text-xs sm:text-sm md:text-base 2xl:text-lg text-slate-600 dark:text-slate-400 font-medium">
-                My approach starts with understanding the requirement and breaking it into
-                manageable changes. I use Vitest for automated tests and Postman to
-                verify API behavior, then address issues before delivery. I value
-                readable code, practical solutions, and clear team communication.
+                I approach development by understanding the problem, choosing a practical
+                implementation, and carrying it through testing and delivery. I focus
+                on maintainable code, reusable components, dependable API integrations,
+                and clear collaboration throughout the development process.
               </p>
             </div>
 
@@ -193,9 +194,9 @@ export default function About() {
                 </h3>
                 <ul className="space-y-2.5 text-xs sm:text-sm 2xl:text-base font-bold text-slate-700 dark:text-slate-300">
                   {[
-                    "React & Next.js Ecosystem",
-                    "Responsive UI Implementation",
-                    "TypeScript & Modern State Management",
+                    "React & Next.js Development",
+                    "Responsive Interfaces & Reusable Components",
+                    "TypeScript & Application State Management",
                   ].map((skill, index) => (
                     <li key={index} className="flex items-center gap-2.5">
                       <CircleCheck className="w-4 h-4 text-cyan-600 dark:text-cyan-400 flex-shrink-0" aria-hidden="true" />
@@ -212,9 +213,9 @@ export default function About() {
                 </h3>
                 <ul className="space-y-2.5 text-xs sm:text-sm 2xl:text-base font-bold text-slate-700 dark:text-slate-300">
                   {[
-                    "REST APIs & Backend Integration",
-                    "Database Modeling (PostgreSQL, MongoDB)",
-                    "Authentication, Network Security & Cloud Deployment",
+                    "Node.js & REST API Development",
+                    "Database Design (PostgreSQL, MongoDB)",
+                    "Authentication & Deployment Workflows",
                   ].map((skill, index) => (
                     <li key={index} className="flex items-center gap-2.5">
                       <CircleCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0" aria-hidden="true" />
