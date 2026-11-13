@@ -2,9 +2,9 @@
 
 # 👋 Hello, I'm Shushay Kebedew
 
-### Full-Stack Developer • React • Next.js • Node.js • AI Automation
+### Full-Stack Developer • React • Next.js • TypeScript • Node.js
 
-I build fast, scalable, and user-friendly web applications with modern technologies. I enjoy creating clean, maintainable code, intuitive user interfaces, and automation solutions that solve real-world problems.
+I build reliable, user-friendly web applications with modern technologies, focusing on maintainable code, practical architecture, and intuitive interfaces.
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/shushay-kebedew/)
 [![Portfolio](https://img.shields.io/badge/Portfolio-000000?style=flat-square&logo=vercel&logoColor=white)](https://shushaykebedew-portfolio.vercel.app/)
@@ -16,9 +16,9 @@ I build fast, scalable, and user-friendly web applications with modern technolog
 
 ## 🚀 About Me
 
-I'm a full-stack developer passionate about building modern web applications with **React, Next.js, TypeScript, Node.js, and MongoDB**. I focus on writing clean, maintainable code, creating accessible and responsive interfaces, and delivering great user experiences.
+I'm a full-stack developer focused on building modern web applications with **React, Next.js, TypeScript, Node.js, and PostgreSQL**. I work across frontend interfaces, REST APIs, database-backed features, and deployment workflows.
 
-I enjoy turning ideas into reliable products that solve real-world problems. Alongside web development, I'm exploring **AI automation with n8n and OpenAI APIs**, while continuously improving my knowledge of backend architecture, system design, and scalable application patterns.
+I enjoy turning product requirements into reliable software and continuously improving my knowledge of backend architecture, system design, and maintainable application patterns.
 
 ---
 
@@ -112,11 +112,8 @@ I enjoy turning ideas into reliable products that solve real-world problems. Alo
 
 ### Exploring
 
-![n8n](https://img.shields.io/badge/n8n-EA4B71?style=for-the-badge&logo=n8n&logoColor=white)
-![OpenAI](https://img.shields.io/badge/OpenAI_APIs-412991?style=for-the-badge&logo=openai&logoColor=white)
 ![CI/CD](https://img.shields.io/badge/CI%2FCD-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
 ![System Design](https://img.shields.io/badge/System_Design-4B5563?style=for-the-badge&logo=blueprint&logoColor=white)
-![AI Engineer](https://img.shields.io/badge/AI_Engineer-6366F1?style=for-the-badge&logo=openai&logoColor=white)
 ---
 
 ## 📊 GitHub Analytics

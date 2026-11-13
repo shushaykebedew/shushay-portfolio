@@ -15,7 +15,7 @@ export const experience = [
     year: "Feb 2025 - Jun 2026",
     details: [
       "Developed and delivered web applications for international clients, including projects for clients in South Korea.",
-      "Built pixel-perfect user interfaces from Figma designs with strong attention to detail, translating design specifications into responsive, consistent interfaces.",
+      "Translated Figma designs into responsive interfaces with consistent layouts and behavior across screen sizes.",
       "Developed reusable React and TypeScript components, integrated REST APIs with JWT authentication, and implemented application state using Redux Toolkit and Zustand.",
       "Built and maintained multilingual interfaces supporting English and Korean across modern browsers and devices.",
     ],

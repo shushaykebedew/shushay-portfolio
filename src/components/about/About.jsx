@@ -6,14 +6,14 @@ import { gsap } from "../../lib/gsap";
 import { certifications } from "../certifications/constants";
 
 const totalCertifications = certifications.reduce(
-  (acc, c) => acc + c.courses.length,
+  (acc, provider) => acc + provider.courses.length,
   0
-) || 10;
+);
 
 const STATS = [
   { label: "Years Experience", value: 2, suffix: "+", icon: Briefcase },
   { label: "Projects Built", value: 20, suffix: "+", icon: Code },
-  { label: "Certifications", value: 10, suffix: "+", icon: Award },
+  { label: "Courses & Credentials", value: totalCertifications, suffix: "", icon: Award },
 ];
 
 export default function About() {
@@ -127,7 +127,7 @@ export default function About() {
               <div className="absolute -bottom-2 -right-2 glass-card px-3.5 sm:px-4 py-2 rounded-2xl flex items-center gap-2 shadow-2xl border border-cyan-500/40 bg-white/95 dark:bg-slate-900/95 text-slate-900 dark:text-white">
                 <Sparkles className="w-4 h-4 text-cyan-600 dark:text-cyan-400 animate-spin-slow flex-shrink-0" />
                 <span className="text-[11px] sm:text-xs font-black text-cyan-700 dark:text-cyan-300 whitespace-nowrap">
-                  Full Stack Engineer
+                  Full Stack Developer
                 </span>
               </div>
             </div>
@@ -165,17 +165,17 @@ export default function About() {
                 <strong className="text-slate-900 dark:text-white font-black text-cyan-700 dark:text-cyan-400">
                   Shushay Kebedew
                 </strong>
-                , a dedicated Full Stack Developer with deep expertise in crafting
-                modern, responsive, and scalable web applications. I specialize in
-                React, Next.js, Node.js, and database ecosystems, bringing ideas to
-                life with clean architecture and exceptional attention to detail.
+                , a Full Stack Developer with professional experience building web
+                applications for local and international clients. I work primarily
+                with React, Next.js, TypeScript, Node.js, and PostgreSQL, delivering
+                features across frontend interfaces, APIs, and data layers.
               </p>
 
               <p className="leading-relaxed text-xs sm:text-sm md:text-base 2xl:text-lg text-slate-600 dark:text-slate-400 font-medium">
-                My approach unites engineering precision with pragmatic business
-                thinking. I thrive in translating complex technical requirements
-                into frictionless digital products that are fast, accessible, and
-                maintainable.
+                I contribute across the development lifecycle, from understanding requirements
+                and implementing features to testing and deployment. I focus on
+                practical solutions, maintainable code, and clear collaboration
+                that helps teams deliver useful software.
               </p>
             </div>
 
@@ -189,7 +189,7 @@ export default function About() {
                 <ul className="space-y-2.5 text-xs sm:text-sm 2xl:text-base font-bold text-slate-700 dark:text-slate-300">
                   {[
                     "React & Next.js Ecosystem",
-                    "Pixel-Perfect Responsive UI/UX",
+                    "Responsive UI Implementation",
                     "TypeScript & Modern State Management",
                   ].map((skill, index) => (
                     <li key={index} className="flex items-center gap-2.5">
@@ -207,8 +207,8 @@ export default function About() {
                 </h3>
                 <ul className="space-y-2.5 text-xs sm:text-sm 2xl:text-base font-bold text-slate-700 dark:text-slate-300">
                   {[
-                    "Robust RESTful APIs & Microservices",
-                    "Database Modeling (MongoDB, SQL)",
+                    "REST APIs & Backend Integration",
+                    "Database Modeling (PostgreSQL, MongoDB)",
                     "Authentication, Network Security & Cloud Deployment",
                   ].map((skill, index) => (
                     <li key={index} className="flex items-center gap-2.5">
