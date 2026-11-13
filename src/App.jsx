@@ -60,9 +60,9 @@ export default function App() {
           <About />
           <Skills />
           <Experience />
-          <Certifications />
           <Projects />
           <Education />
+          <Certifications />
           <Contact />
         </main>
         <Footer />
