@@ -186,11 +186,7 @@ export default function Navbar({ theme, setTheme }) {
             <a
               key={id}
               href={`#${id}`}
-              className={`relative px-3 2xl:px-4 py-1.5 2xl:py-2 rounded-xl group cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all duration-200 border ${
-                activeSection === id
-                  ? "bg-cyan-500/10 dark:bg-cyan-500/15 border-cyan-500/30 shadow-sm"
-                  : "border-transparent"
-              }`}
+              className="relative px-3 2xl:px-4 py-1.5 2xl:py-2 rounded-xl group cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all duration-200"
               onClick={() => setMenuOpen(false)}
             >
               <span
@@ -203,6 +199,13 @@ export default function Navbar({ theme, setTheme }) {
                 {label}
               </span>
 
+              {activeSection === id && (
+                <motion.span
+                  layoutId="activeNavBg"
+                  className="absolute inset-0 rounded-xl bg-cyan-500/10 dark:bg-cyan-500/15 border border-cyan-500/30 shadow-sm"
+                  transition={{ type: "spring", stiffness: 420, damping: 32 }}
+                />
+              )}
             </a>
           ))}
 
