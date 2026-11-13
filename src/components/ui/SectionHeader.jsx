@@ -70,7 +70,7 @@ export default function SectionHeader({ subtitle, title, description, align = "c
       {subtitle && (
         <div
           ref={subtitleRef}
-          className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[11px] sm:text-xs 2xl:text-sm uppercase tracking-[0.2em] font-extrabold text-cyan-600 dark:text-cyan-400 glass-card mb-3.5 border border-cyan-500/20 dark:border-cyan-400/20 shadow-sm"
+          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-[10px] sm:text-xs 2xl:text-sm uppercase tracking-[0.18em] font-bold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/40 mb-4 border border-blue-200/70 dark:border-blue-900/70"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
           <span>{subtitle}</span>
@@ -79,7 +79,7 @@ export default function SectionHeader({ subtitle, title, description, align = "c
 
       <h2
         ref={titleRef}
-        className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.15]"
+        className="text-2xl xs:text-3xl sm:text-4xl lg:text-[2.75rem] 2xl:text-5xl font-extrabold text-slate-950 dark:text-slate-50 tracking-tight leading-[1.12]"
       >
         {title}
       </h2>
@@ -87,13 +87,13 @@ export default function SectionHeader({ subtitle, title, description, align = "c
       {/* Glowing Divider Line */}
       <div
         ref={lineRef}
-        className="h-1 rounded-full bg-gradient-to-r from-cyan-500 via-blue-500 to-emerald-500 my-3.5 shadow-sm shadow-cyan-500/30"
+        className="h-0.5 w-12 rounded-full bg-blue-600 dark:bg-blue-400 my-4"
       />
 
       {description && (
         <p
           ref={descRef}
-          className="text-xs sm:text-sm md:text-base 2xl:text-lg leading-relaxed font-medium text-slate-600 dark:text-slate-300 max-w-2xl 2xl:max-w-3xl"
+          className="text-sm sm:text-base 2xl:text-lg leading-relaxed font-normal text-slate-600 dark:text-slate-400 max-w-2xl 2xl:max-w-3xl"
         >
           {description}
         </p>
