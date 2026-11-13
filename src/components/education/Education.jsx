@@ -47,7 +47,7 @@ export default function Education() {
               Academic <span className="brand-gradient-text">Background</span>
             </>
           }
-          description="Formal foundation in Information Technology and Business Management."
+          description="BSc in Information Technology, supported by strong academic results and a national exit-exam score of 90/100."
         />
 
         {/* Education Grid */}
