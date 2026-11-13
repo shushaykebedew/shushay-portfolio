@@ -1,4 +1,4 @@
-import { Code2, Server, Database, Brain, Wrench } from "lucide-react";
+import { Code2, Server, Database, Brain, Wrench, FlaskConical } from "lucide-react";
 
 export const TABS = [
   {
@@ -27,7 +27,14 @@ export const TABS = [
     label: "Tools & DevOps",
     title: "Development Workflow & DevOps",
     icon: Wrench,
-    skills: ["Git", "GitHub", "Docker", "CI/CD", "Vitest", "Postman", "Vercel", "Netlify", "Figma"],
+    skills: ["Git", "GitHub", "Docker", "CI/CD", "Vercel", "Netlify", "Figma"],
+  },
+  {
+    id: "testing",
+    label: "Testing",
+    title: "Testing & API Verification",
+    icon: FlaskConical,
+    skills: ["Vitest", "Postman", "Unit Testing", "REST API Testing"],
   },
   {
     id: "ai",

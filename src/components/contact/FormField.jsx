@@ -13,10 +13,10 @@ export default function FormField({
   required = true,
   rows,
 }) {
-  const inputClass = `w-full rounded-xl px-4 py-3 text-sm font-bold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 bg-slate-50 dark:bg-slate-900/80 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 border ${
+  const inputClass = `w-full rounded-xl px-4 py-3 text-sm font-bold transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-blue-500/20 bg-slate-50 dark:bg-slate-900/80 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 border ${
     error
       ? "border-red-500 focus:border-red-500"
-      : "border-slate-200 dark:border-slate-800 focus:border-cyan-500 dark:focus:border-cyan-400"
+      : "border-slate-200 dark:border-slate-800 focus:border-blue-400 dark:focus:border-blue-500"
   } ${rows ? "resize-none" : ""}`;
 
   const InputComponent = rows ? "textarea" : "input";

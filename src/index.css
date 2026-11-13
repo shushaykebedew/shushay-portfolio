@@ -482,3 +482,12 @@ html.dark section.section-padding:nth-of-type(even) {
     padding-bottom: 3.25rem;
   }
 }
+
+
+/* Keep form-control focus states subtle while preserving keyboard visibility. */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none !important;
+  outline-offset: 0 !important;
+}

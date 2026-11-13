@@ -4,6 +4,7 @@ import { CircleCheck, Sparkles, Code, Briefcase, Award } from "lucide-react";
 import SectionHeader from "../ui/SectionHeader";
 import { gsap } from "../../lib/gsap";
 import { certifications } from "../certifications/constants";
+import { projects } from "../projects/constants";
 
 const totalCertifications = certifications.reduce(
   (acc, provider) => acc + provider.courses.length,
@@ -12,7 +13,7 @@ const totalCertifications = certifications.reduce(
 
 const STATS = [
   { label: "Years Experience", value: 2, suffix: "+", icon: Briefcase },
-  { label: "Projects Built", value: 20, suffix: "+", icon: Code },
+  { label: "Featured Projects", value: projects.length, suffix: "", icon: Code },
   { label: "Courses & Credentials", value: totalCertifications, suffix: "", icon: Award },
 ];
 
@@ -165,17 +166,18 @@ export default function About() {
                 <strong className="text-slate-900 dark:text-white font-black text-cyan-700 dark:text-cyan-400">
                   Shushay Kebedew
                 </strong>
-                , a Full Stack Developer with professional experience building web
-                applications for local and international clients. I work primarily
-                with React, Next.js, TypeScript, Node.js, and PostgreSQL, delivering
-                features across frontend interfaces, APIs, and data layers.
+                . I began my professional career in frontend development at Metnee
+                Systems, contributing to web applications for international clients,
+                including projects for South Korean teams. I now work across the
+                stack at Blih Marketing & Communications, building interfaces, APIs,
+                and database-backed features.
               </p>
 
               <p className="leading-relaxed text-xs sm:text-sm md:text-base 2xl:text-lg text-slate-600 dark:text-slate-400 font-medium">
-                I contribute across the development lifecycle, from understanding requirements
-                and implementing features to testing and deployment. I focus on
-                practical solutions, maintainable code, and clear collaboration
-                that helps teams deliver useful software.
+                My approach starts with understanding the requirement and breaking it into
+                manageable changes. I use Vitest for automated tests and Postman to
+                verify API behavior, then address issues before delivery. I value
+                readable code, practical solutions, and clear team communication.
               </p>
             </div>
 
@@ -237,7 +239,7 @@ export default function About() {
                   <strong className="text-slate-900 dark:text-white block mb-0.5 font-black">
                     Agile Collaboration
                   </strong>
-                  Clear communication, code reviews, and end-to-end ownership.
+                  Clear communication, practical collaboration, and ownership through delivery.
                 </div>
               </div>
             </div>

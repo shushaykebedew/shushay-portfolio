@@ -1,12 +1,12 @@
 export const experience = [
   {
-    role: "Full-Stack Developer",
+    role: "Full Stack Developer",
     company: "Blih Marketing and Communications PLC",
     year: "Jun 2026 - Present",
     details: [
       "Develop and maintain production web applications across frontend and backend using React, Next.js, TypeScript, Node.js, and PostgreSQL.",
       "Build responsive interfaces, reusable components, REST APIs, and database-backed application features.",
-      "Contribute across the delivery lifecycle, from requirements and implementation to testing, deployment, and maintenance.",
+      "Test application behavior with Vitest and verify REST API requests using Postman; investigate issues before deployment.",
     ],
   },
   {
