@@ -32,8 +32,6 @@ const HERO_ORBS = [
 export default function Hero() {
   const sectionRef = useRef(null);
   const spotlightRef = useRef(null);
-  const [mousePos, setMousePos] = useState({ x: -999, y: -999 });
-  const [isHoveringSection, setIsHoveringSection] = useState(false);
 
   // Cursor spotlight tracking
   useEffect(() => {
@@ -42,10 +40,17 @@ export default function Hero() {
 
     const handleMove = (e) => {
       const rect = section.getBoundingClientRect();
-      setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+      if (!spotlightRef.current) return;
+      const x = e.clientX - rect.left - 275;
+      const y = e.clientY - rect.top - 275;
+      spotlightRef.current.style.transform = `translate3d(${x}px, ${y}px, 0)`;
     };
-    const handleEnter = () => setIsHoveringSection(true);
-    const handleLeave = () => setIsHoveringSection(false);
+    const handleEnter = () => {
+      if (spotlightRef.current) spotlightRef.current.style.opacity = "1";
+    };
+    const handleLeave = () => {
+      if (spotlightRef.current) spotlightRef.current.style.opacity = "0";
+    };
 
     section.addEventListener("mousemove", handleMove, { passive: true });
     section.addEventListener("mouseenter", handleEnter);
@@ -67,7 +72,7 @@ export default function Hero() {
       {/* Cursor spotlight */}
       <div
         className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-500"
-        style={{ opacity: isHoveringSection ? 1 : 0 }}
+        style={{ opacity: 0 }}
         aria-hidden="true"
       >
         <div
@@ -76,11 +81,11 @@ export default function Hero() {
           style={{
             width: 550,
             height: 550,
-            left: mousePos.x - 275,
-            top: mousePos.y - 275,
+            left: 0,
+            top: 0,
             background:
               "radial-gradient(circle, rgba(6,182,212,0.12) 0%, rgba(16,185,129,0.05) 45%, transparent 70%)",
-            transition: "left 0.08s ease-out, top 0.08s ease-out",
+            transition: "transform 0.08s ease-out, opacity 0.5s ease",
           }}
         />
       </div>
