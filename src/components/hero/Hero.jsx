@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Globe, Github, Linkedin, FileText, ChevronDown, FolderKanban, Sparkles } from "lucide-react";
 import TypingCode from "./TypingCode";
 import GradientOrbs from "../ui/GradientOrbs";

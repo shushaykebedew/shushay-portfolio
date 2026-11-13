@@ -4,9 +4,9 @@ export const experience = [
     company: "Blih Marketing and Communications PLC",
     year: "Jun 2026 - Present",
     details: [
-      "Develop and maintain production web applications across frontend and backend using React, Next.js, TypeScript, Node.js, and PostgreSQL.",
-      "Build responsive interfaces, reusable components, REST APIs, and database-backed application features.",
-      "Test application behavior with Vitest and verify REST API requests using Postman; investigate issues before deployment.",
+      "Translate product requirements and project documentation into implementation tasks, contributing across UI/UX, full-stack development, testing, and deployment workflows.",
+      "Build and maintain responsive React and Next.js interfaces, reusable components, Node.js REST APIs, and PostgreSQL-backed application features.",
+      "Collaborate on implementation, validate user flows and API behavior, troubleshoot defects, and support deployment and DevOps tasks.",
     ],
   },
   {
@@ -14,10 +14,10 @@ export const experience = [
     company: "Metnee Systems PLC",
     year: "Feb 2025 - Jun 2026",
     details: [
-      "Developed and delivered web applications for international clients, including projects for clients in South Korea.",
-      "Translated Figma designs into responsive interfaces with consistent layouts and behavior across screen sizes.",
-      "Developed reusable React and TypeScript components, integrated REST APIs with JWT authentication, and implemented application state using Redux Toolkit and Zustand.",
-      "Built and maintained multilingual interfaces supporting English and Korean across modern browsers and devices.",
+      "Developed frontend features for web applications serving international clients, including teams in South Korea.",
+      "Implemented responsive React and TypeScript interfaces from Figma designs and integrated them with REST APIs.",
+      "Built reusable components and application state flows, working with JWT-authenticated APIs and state management tools including Redux Toolkit and Zustand.",
+      "Contributed to multilingual interfaces supporting English and Korean across client projects.",
     ],
   },
   {
