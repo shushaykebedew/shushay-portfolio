@@ -114,7 +114,7 @@ export default function Hero() {
 
           {/* Heading */}
           <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl 2xl:text-7xl font-black mb-4 sm:mb-6 2xl:mb-8 leading-[1.1] tracking-tight text-slate-900 dark:text-white">
-            Hi,{" "}
+            Hi, I'm{" "}
             <span className="brand-gradient-text">Shushay</span>
           </h1>
 
