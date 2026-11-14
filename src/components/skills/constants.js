@@ -34,7 +34,7 @@ export const TABS = [
     label: "Testing",
     title: "Testing & API Verification",
     icon: FlaskConical,
-    skills: ["Vitest", "Postman", "Unit Testing", "REST API Testing"],
+    skills: ["Postman", "Unit Testing", "REST API Testing"],
   },
   {
     id: "ai",
