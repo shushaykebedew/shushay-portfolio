@@ -27,7 +27,7 @@ export const TABS = [
     label: "Tools & DevOps",
     title: "Development Workflow & DevOps",
     icon: Wrench,
-    skills: ["Git", "GitHub", "Docker", "Nx", "pnpm", "Cloudinary", "Resend", "Vercel", "Netlify", "Figma"],
+    skills: ["Git", "GitHub", "Docker", "Nx", "pnpm", "Cloudinary", "Resend", "Vercel", "Render", "Netlify", "Figma"],
   },
   {
     id: "testing",
