@@ -13,7 +13,7 @@ export const TABS = [
     label: "Backend",
     title: "Backend Engineering",
     icon: Server,
-    skills: ["Node.js", "Express.js", "REST APIs", "JWT Authentication", "OAuth", "Network Architecture", "Web Security"],
+    skills: ["Node.js", "Express.js", "REST APIs", "JWT Authentication", "Network Architecture", "Web Security"],
   },
   {
     id: "database",
@@ -41,6 +41,6 @@ export const TABS = [
     label: "AI / ML",
     title: "Artificial Intelligence & Machine Learning",
     icon: Brain,
-    skills: ["Python", "Machine Learning", "Scikit-learn", "TensorFlow", "XGBoost", "SHAP", "Data Analysis"],
+    skills: ["Python", "Machine Learning", "Scikit-learn", "XGBoost", "SHAP", "Data Analysis"],
   },
 ];

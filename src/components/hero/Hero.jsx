@@ -108,7 +108,7 @@ export default function Hero() {
 
             <div className="glass-card inline-flex items-center gap-2 rounded-full px-3.5 sm:px-4.5 2xl:px-5 py-1.5 2xl:py-2 text-[10px] sm:text-xs 2xl:text-sm font-extrabold tracking-wider text-cyan-700 dark:text-cyan-400 border border-cyan-500/30 shadow-md shadow-cyan-500/10">
               <Globe className="w-3.5 h-3.5 2xl:w-4 2xl:h-4 flex-shrink-0" aria-hidden="true" />
-              <span>FULL STACK DEVELOPER</span>
+              <span>FULL-STACK DEVELOPER</span>
             </div>
           </div>
 
@@ -126,7 +126,7 @@ export default function Hero() {
 
           {/* Description */}
           <p className="text-slate-700 dark:text-slate-300 mb-6 sm:mb-8 2xl:mb-10 max-w-xl 2xl:max-w-2xl text-sm sm:text-base lg:text-lg 2xl:text-xl font-medium leading-relaxed">
-            <strong className="text-slate-900 dark:text-white font-extrabold">Full Stack Developer</strong>{" "}
+            <strong className="text-slate-900 dark:text-white font-extrabold">Full-Stack Developer</strong>{" "}
             building production-ready web applications across frontend and backend systems. I work with React, Next.js, TypeScript, Node.js, PostgreSQL, and Prisma, with additional experience applying machine learning to data-driven problems.
           </p>
 

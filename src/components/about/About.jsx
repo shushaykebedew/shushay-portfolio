@@ -113,7 +113,7 @@ export default function About() {
                 <div className="w-full h-full rounded-full overflow-hidden shadow-2xl bg-slate-100 dark:bg-slate-900 ring-4 ring-cyan-500/30">
                   <img
                     src={AboutImg}
-                    alt="Shushay Kebedew – Full Stack Developer"
+                    alt="Shushay Kebedew – Full-Stack Developer"
                     className="w-full h-full object-cover grayscale-[10%] hover:grayscale-0 transition duration-500 group-hover:scale-105"
                     style={{ transform: "scale(1.15) translateY(-6%)" }}
                     loading="lazy"
@@ -128,7 +128,7 @@ export default function About() {
               <div className="absolute -bottom-2 -right-2 glass-card px-3.5 sm:px-4 py-2 rounded-2xl flex items-center gap-2 shadow-2xl border border-cyan-500/40 bg-white/95 dark:bg-slate-900/95 text-slate-900 dark:text-white">
                 <Sparkles className="w-4 h-4 text-cyan-600 dark:text-cyan-400 animate-spin-slow flex-shrink-0" />
                 <span className="text-[11px] sm:text-xs font-black text-cyan-700 dark:text-cyan-300 whitespace-nowrap">
-                  Full Stack Developer
+                  Full-Stack Developer
                 </span>
               </div>
             </div>
@@ -169,8 +169,8 @@ export default function About() {
                 <strong className="text-slate-900 dark:text-white font-black text-cyan-700 dark:text-cyan-400">
                   Shushay Kebedew
                 </strong>
-                , a Full Stack Developer focused on building reliable, user-centered
-                web applications. Over 2+ years, I've contributed to products for
+                , a Full-Stack Developer focused on building reliable, user-centered
+                web applications. With more than two years of experience, I've contributed to products for
                 international clients and local teams, progressing from frontend
                 development at Metnee Systems to full-stack work at Blih Marketing
                 & Communications. My work spans responsive interfaces, REST APIs,

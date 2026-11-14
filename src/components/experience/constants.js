@@ -1,6 +1,6 @@
 export const experience = [
   {
-    role: "Full Stack Developer",
+    role: "Full-Stack Developer",
     company: "Blih Marketing and Communications PLC",
     year: "Jun 2026 - Present",
     details: [

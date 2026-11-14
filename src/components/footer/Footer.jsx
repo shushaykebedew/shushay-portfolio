@@ -84,7 +84,7 @@ export default function Footer() {
             </div>
 
             <p className="text-xs sm:text-sm 2xl:text-base text-slate-600 dark:text-slate-400 mb-6 max-w-sm 2xl:max-w-md leading-relaxed font-medium">
-              Full Stack Developer focused on building high-performance web
+              Full-Stack Developer focused on building high-performance web
               applications with modern interfaces and scalable architectures.
             </p>
 
